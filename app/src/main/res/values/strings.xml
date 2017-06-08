@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BaseDialog</string>
+    <string name="app_custom">这是测试</string>
+
+
+
+
 </resources>

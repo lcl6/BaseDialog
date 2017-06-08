@@ -31,7 +31,9 @@ public abstract class BaseDialog extends Dialog {
         initParams(getWindow());
     }
 
-    protected abstract void initParams(Window window);
+    protected  void initParams(Window window){
+
+    }
 
     @Override
     public void setContentView(@NonNull View view) {
@@ -49,13 +51,28 @@ public abstract class BaseDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getlayoutId());
+        findView();
+        setListener();
         initData();
     }
 
+    /**
+     * 初始化事件
+     */
+    protected void setListener() {
 
+    }
 
-    /** 初始化数据 */
-    protected abstract void initData();
+    /** 初始化控件 */
+    protected abstract void findView();
+
+    /**
+     * 初始化数据
+     */
+    protected void initData() {
+
+    }
+
     /** 初始化布局  */
     protected abstract int getlayoutId();
 }
