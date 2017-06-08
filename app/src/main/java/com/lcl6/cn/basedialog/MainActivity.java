@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.lcl6.cn.basedialog.dialog.CustomButtomDialog;
 import com.lcl6.cn.basedialog.dialog.CustomDialog;
+import com.lcl6.cn.basedialog.dialog.CustomLeftDialog;
 import com.lcl6.cn.basedialog.dialog.CustomRightDialog;
 
 import butterknife.ButterKnife;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right})
+    @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.tv_cumston:
@@ -40,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.tv_right:
                 CustomRightDialog dialogRight = new CustomRightDialog(getContext());
                 dialogRight.show();
+                break;
+            case R.id.tv_left:
+                CustomLeftDialog dialogLeft = new CustomLeftDialog(getContext());
+                dialogLeft.show();
                 break;
         }
     }

@@ -28,4 +28,11 @@
         android:gravity="center"
         android:text="右边弹出的dialog"
         />
+    <TextView
+        android:id="@+id/tv_left"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="左边弹出的dialog"
+        />
 </LinearLayout>

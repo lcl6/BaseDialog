@@ -46,4 +46,9 @@
         <item name="android:windowEnterAnimation">@anim/anim_right_in</item>
         <item name="android:windowExitAnimation">@anim/anim_right_out</item>
     </style>
+    <!-- 左进左出 -->
+    <style name="animation_left_in_left_out" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_left_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_left_out</item>
+    </style>
 </resources>
