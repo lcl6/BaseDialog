@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.lcl6.cn.basedialog.dialog.CustomButtomDialog;
 import com.lcl6.cn.basedialog.dialog.CustomDialog;
 
 import butterknife.ButterKnife;
@@ -24,12 +25,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.tv_cumston)
+    @OnClick({R.id.tv_cumston,R.id.tv_bottom})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.tv_cumston:
                 CustomDialog customDialog = new CustomDialog(getContext());
                 customDialog.show();
+                break;
+            case R.id.tv_bottom:
+                CustomButtomDialog dialogBottom = new CustomButtomDialog(getContext());
+                dialogBottom.show();
                 break;
         }
     }
