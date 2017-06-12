@@ -1,1 +1,1 @@
-include ':app', ':basedialogl'
+include ':app', ':basedialogl', ':utils'
