@@ -9,7 +9,7 @@ import com.lcl6.cn.basedialog.dialog.CustomButtomDialog;
 import com.lcl6.cn.basedialog.dialog.CustomDialog;
 import com.lcl6.cn.basedialog.dialog.CustomLeftDialog;
 import com.lcl6.cn.basedialog.dialog.CustomRightDialog;
-import com.lcl6.cn.utils.LocationUtils;
+import com.lcl6.cn.utils.ToastUtils;
 import com.lcl6.cn.utils.Utils;
 
 import butterknife.ButterKnife;
@@ -29,9 +29,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Utils.init(getContext());
         ButterKnife.bind(this);
-
-        String countryName = LocationUtils.getCountryName(24.13, 118.10);
-        
 
 
     }
@@ -57,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
                 dialogLeft.show();
                 break;
             case R.id.tv_next:
-                SecondActivity.start(getContext());
+//                SecondActivity.start(getContext());
+                ToastUtils.showShortSafe("显示短图示");
                 break;
 
         }
