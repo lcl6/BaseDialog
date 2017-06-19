@@ -4,10 +4,12 @@ package com.lcl6.cn.basedialog.dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.TextView;
 
 import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialogl.BaseDialog;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -17,6 +19,8 @@ import butterknife.OnClick;
  */
 
 public class CustomDialog extends BaseDialog {
+    @BindView(R.id.tv_text)
+    TextView mText;
 
     public CustomDialog(@NonNull Context context) {
         super(context);
@@ -31,6 +35,9 @@ public class CustomDialog extends BaseDialog {
 
     }
 
+    public void setData(String data){
+        mText.setText(data);
+    }
     @Override
     protected int getlayoutId() {
         return R.layout.dialog_custom;

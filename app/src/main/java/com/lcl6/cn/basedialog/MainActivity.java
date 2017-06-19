@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         switch (v.getId()){
             case R.id.tv_cumston:
                 CustomDialog customDialog = new CustomDialog(getContext());
+                customDialog.setData("你好，bug");
                 customDialog.show();
                 break;
             case R.id.tv_bottom:
