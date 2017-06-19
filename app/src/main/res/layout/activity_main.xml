@@ -35,4 +35,14 @@
         android:gravity="center"
         android:text="左边弹出的dialog"
         />
+
+    <TextView
+        android:id="@+id/tv_next"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="进入下个界面"
+        />
+
 </LinearLayout>
