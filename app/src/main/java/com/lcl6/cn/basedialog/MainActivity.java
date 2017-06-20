@@ -3,7 +3,10 @@ package com.lcl6.cn.basedialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.lcl6.cn.basedialog.dialog.CustomButtomDialog;
 import com.lcl6.cn.basedialog.dialog.CustomDialog;
@@ -12,6 +15,7 @@ import com.lcl6.cn.basedialog.dialog.CustomRightDialog;
 import com.lcl6.cn.utils.ToastUtils;
 import com.lcl6.cn.utils.Utils;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -23,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
         return this;
     }
 
+    @BindView(R.id.lin_base)
+    LinearLayout mLinBase;
+    @BindView(R.id.tv_cumston)
+    TextView mTextCumston;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +40,40 @@ public class MainActivity extends AppCompatActivity {
         Utils.init(getContext());
         ButterKnife.bind(this);
 
+        initListener();
 
     }
+
+    private void initListener() {
+
+//        mLinBase.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//
+//                return false;
+//            }
+//        });
+
+//        mTextCumston.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                Log.e(TAG, "onTouch: "+event.getAction() );
+//                return true;
+//            }
+//        });
+//        mTextCumston.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.e(TAG, "onClick: " );
+//            }
+//        });
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
+    }
+
 
     @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next})
     public void onClick(View v){
@@ -60,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+
+
 
 
 }
