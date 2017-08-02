@@ -1,12 +1,9 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'//添加
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
 
-    lintOptions {
-        abortOnError false
-    }
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 26
@@ -26,13 +23,4 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-}
-//添加
-publish {
-    userOrg = 'lcl'//bintray.com用户名
-    groupId = 'com.lcl6.cn.basedialog'//jcenter上的路径
-    artifactId = 'basedialogl'//项目名称
-    publishVersion = '1.0.3'//版本号
-    desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
-    website = 'https://github.com/lcl6/Lubanl'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }
