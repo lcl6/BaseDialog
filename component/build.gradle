@@ -27,7 +27,8 @@ android {
 dependencies {
     compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
     compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-
+    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+    compile project(':utils')
 
 }
 //添加
@@ -35,7 +36,7 @@ publish {
     userOrg = 'lcl'//bintray.com用户名
     groupId = 'com.lcl6.cn.component'//jcenter上的路径
     artifactId = 'component'//项目名称
-    publishVersion = '1.0.0'//版本号
+    publishVersion = '1.0.1'//版本号
     desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
     website = 'https://github.com/lcl6/Lubanl'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }
