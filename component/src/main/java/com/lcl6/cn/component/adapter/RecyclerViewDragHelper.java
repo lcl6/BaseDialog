@@ -1,4 +1,4 @@
-package com.lcl6.cn.component;
+package com.lcl6.cn.component.adapter;
 
 import android.support.annotation.ColorInt;
 import android.support.v7.widget.GridLayoutManager;

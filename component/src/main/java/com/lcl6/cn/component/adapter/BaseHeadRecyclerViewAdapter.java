@@ -1,4 +1,4 @@
-package com.lcl6.cn.component;
+package com.lcl6.cn.component.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
