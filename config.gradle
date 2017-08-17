@@ -2,7 +2,7 @@
 ext{
 //    //Sdk and tools
     midSdkVersion = 19
-    targetSdkVersion = 26
+    targetSdkVersion = 22
     compileSdkVersion = 26
     buildToolsVersion = '26.0.0'
 //

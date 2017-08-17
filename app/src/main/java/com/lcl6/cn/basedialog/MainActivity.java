@@ -32,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tv_cumston)
     TextView mTextCumston;
 
+    @BindView(R.id.tv_jsoup)
+    TextView mTextJsoup;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next})
+    @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next,R.id.tv_jsoup})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.tv_cumston:
@@ -99,7 +104,9 @@ public class MainActivity extends AppCompatActivity {
 //                SecondActivity.start(getContext());
                 ToastUtils.showShortSafe("显示短图示");
                 break;
-
+            case R.id.tv_jsoup://跳转网络爬虫界面
+                JsoupActivity.start(getContext());
+                break;
         }
     }
 
