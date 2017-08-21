@@ -32,7 +32,8 @@
         <activity android:name=".JsoupActivity">
         </activity>
 
-
+        <activity android:name=".WidgetActivity">
+        </activity>
     </application>
 
 </manifest>
