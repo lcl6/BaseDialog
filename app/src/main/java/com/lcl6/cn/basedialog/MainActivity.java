@@ -8,10 +8,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.lcl6.cn.basedialog.dialog.CustomButtomDialog;
-import com.lcl6.cn.basedialog.dialog.CustomDialog;
-import com.lcl6.cn.basedialog.dialog.CustomLeftDialog;
-import com.lcl6.cn.basedialog.dialog.CustomRightDialog;
+import com.lcl6.cn.basedialog.widget.dialog.CustomButtomDialog;
+import com.lcl6.cn.basedialog.widget.dialog.CustomDialog;
+import com.lcl6.cn.basedialog.widget.dialog.CustomLeftDialog;
+import com.lcl6.cn.basedialog.widget.dialog.CustomRightDialog;
 import com.lcl6.cn.basedialog.mvp.ui.MvpActivity;
 import com.lcl6.cn.utils.ToastUtils;
 import com.lcl6.cn.utils.Utils;

@@ -1,4 +1,4 @@
-package com.lcl6.cn.basedialog.dialog;
+package com.lcl6.cn.basedialog.widget.dialog;
 
 
 import android.content.Context;

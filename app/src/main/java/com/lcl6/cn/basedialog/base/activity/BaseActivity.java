@@ -1,6 +1,7 @@
-package com.lcl6.cn.basedialog.base;
+package com.lcl6.cn.basedialog.base.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -24,13 +25,17 @@ public abstract class BaseActivity extends Activity {
         initData();
         initViewListener();
     }
+
+    public Context getContext(){
+        return this;
+    }
     protected abstract int setLayoutId();
 
-    protected  void initIntentData(){};
+    protected  void initIntentData(){}
 
-    protected  void beforeCreatView(){ };
+    protected  void beforeCreatView(){ }
 
-    protected  void initViewListener(){};
+    protected  void initViewListener(){}
 
     protected abstract void initData();
 
