@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next,R.id.tv_jsoup,R.id.tv_mvp，R.id.tv_widget})
+    @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next,R.id.tv_jsoup,R.id.tv_mvp,R.id.tv_widget})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.tv_cumston:
