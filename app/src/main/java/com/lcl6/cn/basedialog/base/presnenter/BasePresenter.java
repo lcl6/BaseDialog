@@ -1,16 +1,14 @@
 package com.lcl6.cn.basedialog.base.presnenter;
 
+import com.lcl6.cn.basedialog.base.view.BaseView;
+
 /**
  * Created by liancl on 2017/8/23.
  */
 
-public abstract class BasePresenter<T> {
+public interface BasePresenter<T extends BaseView> {
 
-    T mView;
-    public  void attachView(T view){
-        mView=view;
-    }
-    public   void dechView(){
-        this.mView=null;
-    }
+    void attachView(T view);
+
+    void dechView();
 }

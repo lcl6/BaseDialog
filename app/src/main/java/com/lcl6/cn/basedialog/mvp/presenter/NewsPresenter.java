@@ -1,10 +1,10 @@
 package com.lcl6.cn.basedialog.mvp.presenter;
 
-import com.lcl6.cn.basedialog.base.presnenter.BasePresenter;
+import com.lcl6.cn.basedialog.base.presnenter.RxPresenter;
 import com.lcl6.cn.basedialog.bean.JsoupBean;
+import com.lcl6.cn.basedialog.mvp.contract.NewsContract;
 import com.lcl6.cn.basedialog.mvp.model.NewsModel;
 import com.lcl6.cn.basedialog.mvp.model.impl.NewsModelImpl;
-import com.lcl6.cn.basedialog.mvp.view.NewsView;
 
 import java.util.List;
 
@@ -12,24 +12,22 @@ import java.util.List;
  * Created by liancl on 2017/8/23.
  */
 
-public class NewsPresenter extends BasePresenter<NewsModel> {
+public class NewsPresenter extends RxPresenter<NewsContract.View> implements NewsContract.Presenter {
 
     NewsModel mNewsModel;
-    NewsView mNewsView;
-    public NewsPresenter( NewsView newsView) {
+    public NewsPresenter() {
         mNewsModel=new NewsModelImpl();
-        mNewsView=newsView;
     }
 
-    public void getData(){
+    @Override
+    public void getData() {
         if (mNewsModel != null) {
             mNewsModel.getData(new NewsModel.LoadCompleteListener() {
                 @Override
                 public void comlpete(List<JsoupBean> list) {
-                    mNewsView.showContent(list);
+                    mView.showContent(list);
                 }
             });
         }
     }
-
 }

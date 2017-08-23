@@ -9,10 +9,9 @@ import android.widget.LinearLayout;
 import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialog.adapter.mvp.MvpListAdapter;
 import com.lcl6.cn.basedialog.base.activity.BaseActivity;
-import com.lcl6.cn.basedialog.base.presnenter.BasePresenter;
 import com.lcl6.cn.basedialog.bean.JsoupBean;
+import com.lcl6.cn.basedialog.mvp.contract.NewsContract;
 import com.lcl6.cn.basedialog.mvp.presenter.NewsPresenter;
-import com.lcl6.cn.basedialog.mvp.view.NewsView;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ import butterknife.BindView;
  * Created by liancl on 2017/8/23.
  */
 
-public class MvpActivity  extends BaseActivity<BasePresenter> implements NewsView{
+public class MvpActivity  extends BaseActivity<NewsPresenter> implements NewsContract.View{
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
@@ -35,8 +34,8 @@ public class MvpActivity  extends BaseActivity<BasePresenter> implements NewsVie
     }
 
     @Override
-    protected BasePresenter getPresenter() {
-        mNewsPresenter= new NewsPresenter(this);
+    protected NewsPresenter getPresenter() {
+        mNewsPresenter= new NewsPresenter();
         return mNewsPresenter;
     }
 
