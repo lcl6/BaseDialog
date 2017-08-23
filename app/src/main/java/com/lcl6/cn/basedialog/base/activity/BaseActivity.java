@@ -29,8 +29,6 @@ public abstract class BaseActivity <T extends BasePresenter>extends Activity imp
         initIntentData();
         initData();
         initViewListener();
-
-
     }
 
     protected abstract T getPresenter();
