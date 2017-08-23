@@ -12,6 +12,7 @@ import com.lcl6.cn.basedialog.dialog.CustomButtomDialog;
 import com.lcl6.cn.basedialog.dialog.CustomDialog;
 import com.lcl6.cn.basedialog.dialog.CustomLeftDialog;
 import com.lcl6.cn.basedialog.dialog.CustomRightDialog;
+import com.lcl6.cn.basedialog.mvp.ui.MvpActivity;
 import com.lcl6.cn.utils.ToastUtils;
 import com.lcl6.cn.utils.Utils;
 
@@ -44,35 +45,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Utils.init(getContext());
         ButterKnife.bind(this);
-
-        initListener();
-
     }
 
-    private void initListener() {
-
-//        mLinBase.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//
-//                return false;
-//            }
-//        });
-
-//        mTextCumston.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                Log.e(TAG, "onTouch: "+event.getAction() );
-//                return true;
-//            }
-//        });
-//        mTextCumston.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.e(TAG, "onClick: " );
-//            }
-//        });
-    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -80,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next,R.id.tv_jsoup})
+    @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next,R.id.tv_jsoup,R.id.tv_mvp})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.tv_cumston:
@@ -107,6 +81,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.tv_jsoup://跳转网络爬虫界面
                 JsoupActivity.start(getContext());
                 break;
+            case R.id.tv_mvp://跳转mvp界面
+                MvpActivity.start(getContext());
+                break;
+
+
         }
     }
 

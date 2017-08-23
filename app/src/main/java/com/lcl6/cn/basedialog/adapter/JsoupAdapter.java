@@ -42,7 +42,6 @@ public class JsoupAdapter extends BaseRecyclerViewAdapter<JsoupBean> {
                 .error(R.mipmap.ic_launcher)
                 .priority(Priority.HIGH);
         Glide.with(getContext()).load("http:"+item.getAvatar()).apply(options).into(holder.avatar);
-//        Glide.with(getContext()).load(item.getAvatar()).into(holder.avatar);
     }
 
     @Override

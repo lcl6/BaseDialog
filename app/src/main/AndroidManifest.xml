@@ -31,6 +31,10 @@
 
         <activity android:name=".JsoupActivity">
         </activity>
+        <activity android:name=".mvp.ui.MvpActivity">
+        </activity>
+
+
 
 
     </application>
