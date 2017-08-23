@@ -53,10 +53,16 @@ public class NewsModelImpl implements NewsModel {
                         mJsoupList.add(jsoupBean);
                     }
                     if(li.size()==mJsoupList.size()){
-                        Message msg = new Message();
-                        msg.what = 1;
-                        msg.obj=listener;
-                        uihandler.sendMessage(msg);
+                        uihandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Message msg = new Message();
+                                msg.what = 1;
+                                msg.obj=listener;
+                                uihandler.sendMessage(msg);
+                            }
+                        },1000);
+
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

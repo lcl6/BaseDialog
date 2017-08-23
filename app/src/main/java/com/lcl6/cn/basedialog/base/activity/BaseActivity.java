@@ -5,14 +5,18 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.lcl6.cn.basedialog.base.presnenter.BasePresenter;
+import com.lcl6.cn.basedialog.base.view.BaseView;
+
 import butterknife.ButterKnife;
 
 /**
  * Created by liancl on 2017/8/23.
  */
 
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity <T extends BasePresenter>extends Activity implements BaseView{
 
+    public T mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -20,10 +24,31 @@ public abstract class BaseActivity extends Activity {
         beforeCreatView();
         setContentView(setLayoutId());
         ButterKnife.bind(this);
+        mPresenter=getPresenter();
         initView();
         initIntentData();
         initData();
         initViewListener();
+
+
+    }
+
+    protected abstract T getPresenter();
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mPresenter != null) {
+            mPresenter.dechView();
+        }
     }
 
     public Context getContext(){
@@ -41,5 +66,28 @@ public abstract class BaseActivity extends Activity {
 
     protected abstract void initView();
 
+    @Override
+    public void stateError() {
 
+    }
+
+    @Override
+    public void stateEmpty() {
+
+    }
+
+    @Override
+    public void stateLoading() {
+
+    }
+
+    @Override
+    public void stateSuccess() {
+
+    }
+
+    @Override
+    public void showErrorMsg(String msg) {
+
+    }
 }

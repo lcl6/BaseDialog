@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialog.adapter.mvp.MvpListAdapter;
 import com.lcl6.cn.basedialog.base.activity.BaseActivity;
+import com.lcl6.cn.basedialog.base.presnenter.BasePresenter;
 import com.lcl6.cn.basedialog.bean.JsoupBean;
 import com.lcl6.cn.basedialog.mvp.presenter.NewsPresenter;
 import com.lcl6.cn.basedialog.mvp.view.NewsView;
@@ -21,15 +22,22 @@ import butterknife.BindView;
  * Created by liancl on 2017/8/23.
  */
 
-public class MvpActivity  extends BaseActivity implements NewsView{
+public class MvpActivity  extends BaseActivity<BasePresenter> implements NewsView{
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
     MvpListAdapter mAdapter;
+    NewsPresenter mNewsPresenter;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, MvpActivity.class);
         context.startActivity(starter);
+    }
+
+    @Override
+    protected BasePresenter getPresenter() {
+        mNewsPresenter= new NewsPresenter(this);
+        return mNewsPresenter;
     }
 
     @Override
@@ -40,12 +48,9 @@ public class MvpActivity  extends BaseActivity implements NewsView{
     @Override
     protected void initData() {
         initPostData();
-
     }
     private void initPostData() {
-        NewsPresenter newsPresenter = new NewsPresenter(this);
-        newsPresenter.getData();
-
+        mNewsPresenter.getData();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.lcl6.cn.basedialog.mvp.presenter;
 
+import com.lcl6.cn.basedialog.base.presnenter.BasePresenter;
 import com.lcl6.cn.basedialog.bean.JsoupBean;
 import com.lcl6.cn.basedialog.mvp.model.NewsModel;
 import com.lcl6.cn.basedialog.mvp.model.impl.NewsModelImpl;
@@ -11,7 +12,7 @@ import java.util.List;
  * Created by liancl on 2017/8/23.
  */
 
-public class NewsPresenter {
+public class NewsPresenter extends BasePresenter<NewsModel> {
 
     NewsModel mNewsModel;
     NewsView mNewsView;

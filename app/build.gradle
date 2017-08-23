@@ -25,25 +25,24 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
+    compile "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
     compile project(':basedialogl')// banner
     compile project(':utils')// banner
-
     // butterknife
-    compile 'com.jakewharton:butterknife:8.6.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
     //网络爬虫
-    compile 'org.jsoup:jsoup:1.9.2'
+    compile "org.jsoup:jsoup:$rootProject.jsoupVersion"
 
     compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
     compile project(path: ':component')
 
-    compile 'com.github.bumptech.glide:glide:4.0.0'
-    compile 'com.android.support:support-v4:25.3.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
+    compile "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+
+    //内存泄漏检查工具
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanaryVersion"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.leakcanaryVersion"
 
 }
