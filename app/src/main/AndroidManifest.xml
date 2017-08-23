@@ -36,7 +36,8 @@
 
 
 
-
+        <activity android:name=".WidgetActivity">
+        </activity>
     </application>
 
 </manifest>
