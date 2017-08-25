@@ -5,7 +5,9 @@ import android.os.Message;
 import android.util.Log;
 
 import com.lcl6.cn.basedialog.base.manager.NetWorkManager;
+import com.lcl6.cn.basedialog.base.manager.observel.RxObservable;
 import com.lcl6.cn.basedialog.bean.JsoupBean;
+import com.lcl6.cn.basedialog.constant.Constant;
 import com.lcl6.cn.basedialog.mvp.model.NewsModel;
 import com.lcl6.cn.component.net.RetrofitManager;
 
@@ -17,7 +19,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -25,7 +26,6 @@ import okhttp3.HttpUrl;
 import okhttp3.ResponseBody;
 
 import static com.lcl6.cn.basedialog.api.Api.GANK_DOMAIN_NAME;
-import static com.lcl6.cn.basedialogl.BaseDialog.TAG;
 
 /**
  * Created by liancl on 2017/8/23.
@@ -39,18 +39,19 @@ public class NewsModelImpl implements NewsModel {
         if (httpUrl2 == null) { //可以在 App 运行时随意切换某个接口的 BaseUrl
             RetrofitManager.getInstance().putDomain(GANK_DOMAIN_NAME, "http://gank.io");
         }
-        NetWorkManager.getInstance().getTwoApiService()
+        NetWorkManager.getInstance()
+                .getTwoApiService()
                 .getData(10, 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ResponseBody>() {
+                .subscribe(new RxObservable<ResponseBody>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
+                    protected void onRxComplete() {
 
                     }
 
                     @Override
-                    public void onNext(ResponseBody response) {
+                    protected void onRxNext(ResponseBody response) {
                         try {
                             String string = response.string();
                             JSONObject jsonObject = new JSONObject(string);
@@ -70,18 +71,15 @@ public class NewsModelImpl implements NewsModel {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    protected void onRxSubscribe(Disposable d) {
 
-                        Log.e(TAG, "onError: " );
                     }
-
                     @Override
-                    public void onComplete() {
-
+                    protected void onRxError(Throwable e) {
+                        Log.e(Constant.TAG, "onError: " );
                     }
                 });
 
@@ -128,9 +126,6 @@ public class NewsModelImpl implements NewsModel {
 //                }
 //            }
 //        }).start();
-
-
-
     }
 
 
