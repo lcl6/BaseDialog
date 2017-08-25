@@ -52,7 +52,7 @@ public class ManagerActivity extends AppCompatActivity {
     @BindView(R.id.et_global_url)
     EditText mGlobalUrl;
 
-    private ProgressDialog mProgressDialog;
+
     private ChangeListener mListener;
 
     public static void start(Context context) {
@@ -65,7 +65,7 @@ public class ManagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manager);
         ButterKnife.bind(this);
 
-        mProgressDialog = new ProgressDialog(this);
+//        mProgressDialog = new ProgressDialog(this);
         mUrl1.setSelection(mUrl1.getText().toString().length());
         initListener();
     }
@@ -203,6 +203,7 @@ public class ManagerActivity extends AppCompatActivity {
     }
 
     private <T> ObservableTransformer<T, T> getDefaultTransformer() {
+         final ProgressDialog  mProgressDialog = new ProgressDialog(this);
         return new ObservableTransformer<T, T>() {
             @Override
             public ObservableSource<T> apply(Observable<T> upstream) {
