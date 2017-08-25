@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next,R.id.tv_jsoup,R.id.tv_mvp,R.id.tv_widget})
+    @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next,R.id.tv_jsoup,R.id.tv_mvp,R.id.tv_widget,R.id.tv_retrofit})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.tv_cumston:
@@ -84,12 +84,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.tv_mvp://跳转mvp界面
                 MvpActivity.start(getContext());
                 break;
-
-
             case R.id.tv_widget://自定义界面
                 WidgetActivity.start(getContext());
                 break;
-
+            case R.id.tv_retrofit://网络管理器
+                ManagerActivity.start(getContext());
+                break;
         }
     }
 

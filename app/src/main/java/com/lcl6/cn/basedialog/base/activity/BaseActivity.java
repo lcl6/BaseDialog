@@ -1,12 +1,12 @@
 package com.lcl6.cn.basedialog.base.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
-import com.lcl6.cn.basedialog.base.view.BaseView;
 import com.lcl6.cn.basedialog.base.presnenter.RxPresenter;
+import com.lcl6.cn.basedialog.base.view.BaseView;
 
 import butterknife.ButterKnife;
 
@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
  * Created by liancl on 2017/8/23.
  */
 
-public abstract class BaseActivity <T extends RxPresenter>extends Activity implements BaseView{
+public abstract class BaseActivity <T extends RxPresenter>extends AppCompatActivity implements BaseView{
 
     public T mPresenter;
 
