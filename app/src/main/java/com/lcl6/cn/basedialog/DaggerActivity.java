@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.lcl6.cn.basedialog.constant.Constant;
 import com.lcl6.cn.basedialog.di.bean.ClassA;
+import com.lcl6.cn.basedialog.di.bean.ClassB;
 import com.lcl6.cn.basedialog.di.component.DaggerClassAComponent;
 import com.lcl6.cn.basedialog.di.model.ModuleA;
 import com.lcl6.cn.component.base.activity.BaseActivity;
@@ -22,6 +23,9 @@ public class DaggerActivity extends BaseActivity {
 
     @Inject
     ClassA classA;
+
+    @Inject
+    ClassB classB;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, DaggerActivity.class);
@@ -50,6 +54,13 @@ public class DaggerActivity extends BaseActivity {
 
         Log.e(Constant.TAG, "initData:a "+a );
         Log.e(Constant.TAG, "initData:b "+b);
+        int a1 = classB.getA();
+        ClassA classA = classB.getClassA();
+        Log.e(Constant.TAG, "initData:a1 "+a1);
+        int a2 = classA.getA();
+        int b1 = classA.getB();
+        Log.e(Constant.TAG, "initData:a2 "+a2 );
+        Log.e(Constant.TAG, "initData:b2"+b1);
 
     }
 

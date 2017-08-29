@@ -1,5 +1,8 @@
 package com.lcl6.cn.basedialog.di.model;
 
+import com.lcl6.cn.basedialog.di.bean.ClassA;
+import com.lcl6.cn.basedialog.di.bean.ClassB;
+
 import javax.inject.Named;
 
 import dagger.Module;
@@ -28,6 +31,17 @@ public class ModuleA {
     @Named("b")
     int provideIntB(){
         return b;
+    }
+
+    /**第二种写法*/
+    @Provides
+    ClassA provideClassA(@Named("a")int a,@Named("b")int b){
+        return new ClassA(a,b);
+    }
+
+    @Provides
+    ClassB provideClassB(@Named("a")int a, @Named("b")int b){
+        return new ClassB(new ClassA(a,b),a);
     }
 
 }
