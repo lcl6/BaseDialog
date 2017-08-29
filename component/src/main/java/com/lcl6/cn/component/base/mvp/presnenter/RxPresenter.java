@@ -1,6 +1,7 @@
-package com.lcl6.cn.basedialog.base.presnenter;
+package com.lcl6.cn.component.base.mvp.presnenter;
 
-import com.lcl6.cn.basedialog.base.view.BaseView;
+
+import com.lcl6.cn.component.base.mvp.view.BaseView;
 
 /**
  * Created by liancl on 2017/8/23.

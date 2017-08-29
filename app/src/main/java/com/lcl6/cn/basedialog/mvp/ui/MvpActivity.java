@@ -8,10 +8,10 @@ import android.widget.LinearLayout;
 
 import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialog.adapter.mvp.MvpListAdapter;
-import com.lcl6.cn.basedialog.base.activity.BaseActivity;
 import com.lcl6.cn.basedialog.bean.JsoupBean;
 import com.lcl6.cn.basedialog.mvp.contract.NewsContract;
 import com.lcl6.cn.basedialog.mvp.presenter.NewsPresenter;
+import com.lcl6.cn.component.base.activity.BaseActivity;
 
 import java.util.List;
 

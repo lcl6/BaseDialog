@@ -29,6 +29,12 @@ dependencies {
     compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     compile "com.android.support:design:$rootProject.supportLibraryVersion"
     provided "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    compile "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.rxlifecycleVersion"
+    compile "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.rxlifecycleVersion"
+    // butterknife
+    provided "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
     compile project(':utils')
 
 }

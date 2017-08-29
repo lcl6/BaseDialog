@@ -1,10 +1,10 @@
 package com.lcl6.cn.basedialog.mvp.presenter;
 
-import com.lcl6.cn.basedialog.base.presnenter.RxPresenter;
 import com.lcl6.cn.basedialog.bean.JsoupBean;
 import com.lcl6.cn.basedialog.mvp.contract.NewsContract;
 import com.lcl6.cn.basedialog.mvp.model.NewsModel;
 import com.lcl6.cn.basedialog.mvp.model.impl.NewsModelImpl;
+import com.lcl6.cn.component.base.mvp.presnenter.RxPresenter;
 
 import java.util.List;
 

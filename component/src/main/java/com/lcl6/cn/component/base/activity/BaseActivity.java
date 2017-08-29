@@ -1,20 +1,21 @@
-package com.lcl6.cn.basedialog.base.activity;
+package com.lcl6.cn.component.base.activity;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.lcl6.cn.basedialog.base.presnenter.RxPresenter;
-import com.lcl6.cn.basedialog.base.view.BaseView;
+import com.lcl6.cn.component.base.mvp.presnenter.RxPresenter;
+import com.lcl6.cn.component.base.mvp.view.BaseView;
 
 import butterknife.ButterKnife;
+
 
 /**
  * Created by liancl on 2017/8/23.
  */
 
-public abstract class BaseActivity <T extends RxPresenter>extends AppCompatActivity implements BaseView{
+public abstract class BaseActivity<T extends RxPresenter>extends AppCompatActivity implements BaseView {
 
     public T mPresenter;
 

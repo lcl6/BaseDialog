@@ -1,4 +1,4 @@
-package com.lcl6.cn.basedialog.base.view;
+package com.lcl6.cn.component.base.mvp.view;
 
 /**
  * Created by liancl on 2017/8/23.
