@@ -38,7 +38,8 @@
         </activity>
         <activity android:name=".ManagerActivity">
         </activity>
-
+        <activity android:name=".DaggerActivity">
+        </activity>
 
     </application>
 

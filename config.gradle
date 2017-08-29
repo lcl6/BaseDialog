@@ -38,4 +38,5 @@ ext{
     componentVersion = '1.2.16'
 
     rxlifecycleVersion = '2.1.0'
+    dagger2Version= '2.11'
 }

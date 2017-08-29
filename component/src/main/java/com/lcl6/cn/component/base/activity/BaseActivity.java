@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
  * Created by liancl on 2017/8/23.
  */
 
-public abstract class BaseActivity<T extends RxPresenter>extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity<T extends RxPresenter> extends AppCompatActivity implements BaseView {
 
     public T mPresenter;
 
@@ -25,7 +25,7 @@ public abstract class BaseActivity<T extends RxPresenter>extends AppCompatActivi
         beforeCreatView();
         setContentView(setLayoutId());
         ButterKnife.bind(this);
-        mPresenter=getPresenter();
+        mPresenter = getPresenter();
         initView();
         initIntentData();
         initData();
@@ -50,20 +50,25 @@ public abstract class BaseActivity<T extends RxPresenter>extends AppCompatActivi
         }
     }
 
-    public Context getContext(){
+    public Context getContext() {
         return this;
     }
+
     protected abstract int setLayoutId();
 
-    protected  void initIntentData(){}
+    protected void beforeCreatView() {
+    }
 
-    protected  void beforeCreatView(){ }
+    protected abstract void initView();
 
-    protected  void initViewListener(){}
+    protected void initIntentData() {
+    }
 
     protected abstract void initData();
 
-    protected abstract void initView();
+    protected void initViewListener() {
+    }
+
 
     @Override
     public void stateError() {
