@@ -3,4 +3,38 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#ff00ff"
+            android:text="沉浸状态栏黑色字体"
+            />
+        <TextView
+            android:id="@+id/tv_status_white"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#0000ff"
+            android:text="沉浸状态栏白色字体"
+            />
+        <TextView
+            android:id="@+id/tv_status_height"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#00ffff"
+            android:text="获取状态栏的高度"
+            />
+    </LinearLayout>
+
 </LinearLayout>

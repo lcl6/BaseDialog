@@ -8,6 +8,8 @@
     <color name="main_title_bg">#47A3F6</color>
     <color name="main_receive_tablayout"> #47A3F6</color>
 
+    <color name="qmui_config_color_separator">#DEE0E2</color>
+    <color name="qmui_config_color_transparent">#00000000</color>
 
 
 </resources>
