@@ -35,6 +35,42 @@
             android:background="#00ffff"
             android:text="获取状态栏的高度"
             />
+
+        <TextView
+            android:id="@+id/tv_fade_in"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#fff"
+            android:text="fade进退场动画"
+            />
+        <TextView
+            android:id="@+id/tv_slide_in"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#fff"
+            android:text="slide进退场动画"
+            />
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_float"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:text="我是漂浮的view"
+            android:background="#c4c4c4"
+            />
+
+    </RelativeLayout>
 
 </LinearLayout>
