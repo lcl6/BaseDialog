@@ -40,6 +40,11 @@
         </activity>
         <activity android:name=".DaggerActivity">
         </activity>
+        <activity android:name=".DaggerScopActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            >
+        </activity>
 
     </application>
 

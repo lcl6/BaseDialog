@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next,R.id.tv_jsoup,R.id.tv_mvp,R.id.tv_widget,R.id.tv_retrofit,R.id.tv_dagger})
+    @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next,R.id.tv_jsoup,R.id.tv_mvp,R.id.tv_widget,R.id.tv_retrofit,R.id.tv_dagger,R.id.tv_dagger_scop})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.tv_cumston:
@@ -90,10 +90,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.tv_retrofit://网络管理器
                 ManagerActivity.start(getContext());
                 break;
-            case R.id.tv_dagger://网络管理器
+            case R.id.tv_dagger://dagger
                 DaggerActivity.start(getContext());
                 break;
-
+            case R.id.tv_dagger_scop://dagger scop
+                DaggerScopActivity.start(getContext());
+                break;
         }
     }
 
