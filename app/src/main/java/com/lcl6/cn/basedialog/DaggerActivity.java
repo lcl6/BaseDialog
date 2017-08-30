@@ -57,6 +57,9 @@ public class DaggerActivity extends BaseActivity {
                 .moduleA(new ModuleA(2,3))
                 .build()
                 .inject(this);
+
+        //测试单例
+//        App.getClassAComponent().inject(App.getInstance());
     }
     @Override
     protected void initData() {
@@ -71,7 +74,7 @@ public class DaggerActivity extends BaseActivity {
         int a2 = classA.getA();
         int b1 = classA.getB();
         Log.e(Constant.TAG, "initData:a2 "+a2 );
-        Log.e(Constant.TAG, "initData:b2"+b1);
+        Log.e(Constant.TAG, "initData:b2 "+b1);
 
     }
 

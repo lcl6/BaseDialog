@@ -4,6 +4,7 @@ import com.lcl6.cn.basedialog.di.bean.ClassA;
 import com.lcl6.cn.basedialog.di.bean.ClassB;
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -39,9 +40,10 @@ public class ModuleA {
         return new ClassA(a,b);
     }
 
+    @Singleton
     @Provides
-    ClassB provideClassB(@Named("a")int a, @Named("b")int b){
-        return new ClassB(new ClassA(a,b),a);
+    ClassB provideClassB(ClassA classA, @Named("b")int b){
+        return new ClassB(classA,b);
     }
 
 }
