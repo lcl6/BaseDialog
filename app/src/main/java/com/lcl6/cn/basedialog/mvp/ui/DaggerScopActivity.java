@@ -1,18 +1,17 @@
-package com.lcl6.cn.basedialog;
+package com.lcl6.cn.basedialog.mvp.ui;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialog.adapter.EdtextAdapter;
-import com.lcl6.cn.basedialog.app.App;
 import com.lcl6.cn.basedialog.di.bean.MyClassB;
-import com.lcl6.cn.basedialog.di.component.DaggerActivityComponent;
-import com.lcl6.cn.basedialog.di.model.ActivityModule;
+import com.lcl6.cn.basedialog.mvp.contract.DaggerScopContract;
+import com.lcl6.cn.basedialog.mvp.presenter.DaggerScopPresent;
 import com.lcl6.cn.component.adapter.BaseRecyclerViewAdapter;
 import com.lcl6.cn.component.base.activity.BaseActivity;
-import com.lcl6.cn.component.base.mvp.presnenter.RxPresenter;
 import com.lcl6.cn.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ import butterknife.BindView;
  * Created by liancl on 2017/8/30.
  */
 
-public class DaggerScopActivity extends BaseActivity {
+public class DaggerScopActivity extends BaseActivity<DaggerScopPresent>  implements DaggerScopContract.View{
 
     @Inject
     MyClassB classB;
@@ -37,14 +36,16 @@ public class DaggerScopActivity extends BaseActivity {
     EdtextAdapter mAdapter;
 
     List<String> mlist;
+    DaggerScopPresent daggerScopPresent;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, DaggerScopActivity.class);
         context.startActivity(starter);
     }
     @Override
-    protected RxPresenter getPresenter() {
-        return null;
+    protected DaggerScopPresent getPresenter() {
+        daggerScopPresent= new DaggerScopPresent();
+        return daggerScopPresent;
     }
 
     @Override
@@ -69,11 +70,7 @@ public class DaggerScopActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        DaggerActivityComponent.builder().activityModule(new ActivityModule(2)).appComponent(App.getAppComponent()).build().inject(this);
-        for (int i = 0; i < 20; i++) {
-            mlist.add("你好");
-        }
-        mAdapter.notifyDataSetChanged();
+        daggerScopPresent.getData();
     }
 
     @Override
@@ -89,4 +86,12 @@ public class DaggerScopActivity extends BaseActivity {
 
         }
     }
+
+    @Override
+    public void showContent(List<String> list) {
+        mlist.clear();
+        mlist.addAll(list);
+        mAdapter.notifyDataSetChanged();
+    }
+
 }

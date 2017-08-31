@@ -1,6 +1,6 @@
 package com.lcl6.cn.basedialog.di.component;
 
-import com.lcl6.cn.basedialog.DaggerScopActivity;
+import com.lcl6.cn.basedialog.mvp.ui.DaggerScopActivity;
 import com.lcl6.cn.basedialog.di.model.ActivityModule;
 import com.lcl6.cn.basedialog.di.scop.PerActivity;
 
