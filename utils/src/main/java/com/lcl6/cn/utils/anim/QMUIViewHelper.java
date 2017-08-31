@@ -1,4 +1,4 @@
-package com.lcl6.cn.component.base.toplayout;
+package com.lcl6.cn.utils.anim;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -31,9 +31,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import static android.icu.lang.UCharacterEnums.ECharacterDirection.LEFT_TO_RIGHT;
-import static android.icu.lang.UCharacterEnums.ECharacterDirection.RIGHT_TO_LEFT;
 
 /**
  * @author cginechen

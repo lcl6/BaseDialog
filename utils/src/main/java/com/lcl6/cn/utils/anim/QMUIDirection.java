@@ -1,4 +1,4 @@
-package com.lcl6.cn.component.base.toplayout;
+package com.lcl6.cn.utils.anim;
 
 /**
  * 定义了从左到右，从上到下，从右到左，从下到上四个方向的类

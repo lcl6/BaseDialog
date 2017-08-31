@@ -15,9 +15,9 @@ import com.lcl6.cn.basedialog.di.component.DaggerClassAComponent;
 import com.lcl6.cn.basedialog.di.model.ModuleA;
 import com.lcl6.cn.component.base.activity.BaseActivity;
 import com.lcl6.cn.component.base.mvp.presnenter.RxPresenter;
-import com.lcl6.cn.component.base.toplayout.QMUIDirection;
-import com.lcl6.cn.component.base.toplayout.QMUIViewHelper;
 import com.lcl6.cn.utils.ToastUtils;
+import com.lcl6.cn.utils.anim.QMUIDirection;
+import com.lcl6.cn.utils.anim.QMUIViewHelper;
 import com.lcl6.cn.utils.statusbar.QMUIStatusBarHelper;
 
 import javax.inject.Inject;
