@@ -9,11 +9,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lcl6.cn.basedialog.mvp.ui.DaggerScopActivity;
+import com.lcl6.cn.basedialog.mvp.ui.MvpActivity;
 import com.lcl6.cn.basedialog.widget.dialog.CustomButtomDialog;
 import com.lcl6.cn.basedialog.widget.dialog.CustomDialog;
 import com.lcl6.cn.basedialog.widget.dialog.CustomLeftDialog;
 import com.lcl6.cn.basedialog.widget.dialog.CustomRightDialog;
-import com.lcl6.cn.basedialog.mvp.ui.MvpActivity;
+import com.lcl6.cn.component.base.toplayout.QMUITopBar;
 import com.lcl6.cn.utils.ToastUtils;
 import com.lcl6.cn.utils.Utils;
 
@@ -37,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tv_jsoup)
     TextView mTextJsoup;
 
-
-
+    @BindView(R.id.topbar)
+    QMUITopBar mTopBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Utils.init(getContext());
         ButterKnife.bind(this);
+        initTopBar();
+    }
+
+    private void initTopBar() {
+        mTopBar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        mTopBar.setTitle("title");
+
     }
 
 

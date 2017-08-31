@@ -14,8 +14,10 @@ import java.util.List;
 public class DaggerScopModelImpl implements DaggerScopModel {
 
     List<String> mList = new ArrayList<>();
+
     @Override
     public void getData(final LoadCompleteListener listener) {
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -24,7 +26,7 @@ public class DaggerScopModelImpl implements DaggerScopModel {
                 }
                 listener.onComplete(mList);
             }
-        },100);
+        },1000);
 
 //        HttpUrl httpUrl2 = RetrofitManager.getInstance().fetchDomain(GANK_DOMAIN_NAME);
 //        if (httpUrl2 == null) { //可以在 App 运行时随意切换某个接口的 BaseUrl
