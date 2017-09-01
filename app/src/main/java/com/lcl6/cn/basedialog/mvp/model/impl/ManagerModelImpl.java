@@ -10,6 +10,8 @@ import com.lcl6.cn.component.net.util.TransformerUtil;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import okhttp3.HttpUrl;
@@ -24,6 +26,10 @@ import static com.lcl6.cn.basedialog.api.Api.GITHUB_DOMAIN_NAME;
  */
 
 public class ManagerModelImpl implements ManagerModel {
+    @Inject
+    public ManagerModelImpl() {
+    }
+
     @Override
     public void requestTabaoData(LoadCompleteListener listener) {
 

@@ -10,9 +10,11 @@ import com.lcl6.cn.component.base.mvp.presnenter.RxPresenter;
  */
 
 public class ManagerPresenter extends RxPresenter<ManagerContract.View> implements ManagerContract.Presenter {
+//    @Inject
     ManagerModelImpl managerModel;
+
     public ManagerPresenter() {
-        managerModel = new ManagerModelImpl();
+        this.managerModel = new ManagerModelImpl();
     }
 
     @Override
