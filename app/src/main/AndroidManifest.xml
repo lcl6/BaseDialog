@@ -36,7 +36,7 @@
         </activity>
         <activity android:name=".WidgetActivity">
         </activity>
-        <activity android:name=".ManagerActivity">
+        <activity android:name=".mvp.ui.ManagerActivity">
         </activity>
         <activity android:name=".DaggerActivity">
         </activity>

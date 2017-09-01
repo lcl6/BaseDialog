@@ -1,7 +1,9 @@
 package com.lcl6.cn.basedialog.di.model;
 
+import com.lcl6.cn.basedialog.app.App;
 import com.lcl6.cn.basedialog.base.manager.NetWorkManager;
 import com.lcl6.cn.basedialog.di.bean.MyClassA;
+import com.lcl6.cn.component.net.RetrofitManager;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -17,10 +19,12 @@ import dagger.Provides;
 public class AppModule {
     private int a;
     private int b;
+    private App app;
 
-    public AppModule(int a, int b) {
+    public AppModule(int a, int b,App app) {
         this.a = a;
         this.b = b;
+        this.app = app;
     }
     @Provides
     @Named("a")
@@ -44,6 +48,18 @@ public class AppModule {
     NetWorkManager provideNetWorkManager(){
         return new NetWorkManager();
     }
+
+    @Singleton
+    @Provides
+    App provideApp(){
+        return app;
+    }
+    @Singleton
+    @Provides
+    RetrofitManager provideRetrofitManager(){
+        return new RetrofitManager();
+    }
+
 
 
 

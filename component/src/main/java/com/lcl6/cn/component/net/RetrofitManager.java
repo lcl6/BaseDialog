@@ -34,7 +34,7 @@ public class RetrofitManager {
     private static boolean DEPENDENCY_OKHTTP;
     private List<UrlChangeListener> mListeners = new ArrayList<>();
     private UrlParser mUrlParser;
-    private static RetrofitManager mInstance;
+//    private static RetrofitManager mInstance;
 
     static {
         boolean hasDependency;
@@ -47,7 +47,7 @@ public class RetrofitManager {
         DEPENDENCY_OKHTTP = hasDependency;
     }
 
-    private RetrofitManager() {
+    public RetrofitManager() {
         if (!DEPENDENCY_OKHTTP) { //使用本管理器必须依赖 Okhttp
             throw new IllegalStateException("Must be dependency Okhttp");
         }
@@ -63,16 +63,16 @@ public class RetrofitManager {
     }
 
 
-    public static RetrofitManager getInstance() {
-        if (mInstance == null) {
-            synchronized (RetrofitManager.class) {
-                if (mInstance == null) {
-                    mInstance = new RetrofitManager();
-                }
-            }
-        }
-        return mInstance;
-    }
+//    public static RetrofitManager getInstance() {
+//        if (mInstance == null) {
+//            synchronized (RetrofitManager.class) {
+//                if (mInstance == null) {
+//                    mInstance = new RetrofitManager();
+//                }
+//            }
+//        }
+//        return mInstance;
+//    }
 
 
     /**

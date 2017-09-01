@@ -24,7 +24,7 @@ public class App extends Application {
 //    @Inject
 //    ClassB classB;
     private static ClassAComponent classAComponent;
-    private static App instance;
+//    private static App instance;
     private static AppComponent appComponent;
     @Override
     public void onCreate() {
@@ -35,19 +35,19 @@ public class App extends Application {
             return;
         }
         LeakCanary.install(this);
-        instance=this;
+//        instance=this;
 //        classAComponent = DaggerClassAComponent.builder().moduleA(new ModuleA(2, 3)).build();
 //        classAComponent.inject(this);
 //
-        appComponent = DaggerAppComponent.builder().appModule(new AppModule(2, 3)).build();
+        appComponent = DaggerAppComponent.builder().appModule(new AppModule(2, 3,this)).build();
         appComponent.inject(this);
 
     }
 
 
-    public static App getInstance(){
-        return instance;
-    }
+//    public static App getInstance(){
+//        return instance;
+//    }
 
     public static AppComponent getAppComponent(){
         return appComponent;

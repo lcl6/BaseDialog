@@ -35,9 +35,10 @@ public class NewsModelImpl implements NewsModel {
      List<JsoupBean> mJsoupList = new ArrayList<>();
     @Override
     public void getData(final LoadCompleteListener listener) {
-        HttpUrl httpUrl2 = RetrofitManager.getInstance().fetchDomain(GANK_DOMAIN_NAME);
+        RetrofitManager retrofitManager = App.getAppComponent().getRetrofitManager();
+        HttpUrl httpUrl2 = retrofitManager.fetchDomain(GANK_DOMAIN_NAME);
         if (httpUrl2 == null) { //可以在 App 运行时随意切换某个接口的 BaseUrl
-            RetrofitManager.getInstance().putDomain(GANK_DOMAIN_NAME, "http://gank.io");
+            retrofitManager.putDomain(GANK_DOMAIN_NAME, "http://gank.io");
         }
         App.getAppComponent().getNetWorkManager()
                 .getTwoApiService()

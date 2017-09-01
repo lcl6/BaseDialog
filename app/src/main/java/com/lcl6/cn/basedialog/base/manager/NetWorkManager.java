@@ -3,7 +3,7 @@ package com.lcl6.cn.basedialog.base.manager;
 import com.lcl6.cn.basedialog.api.OneApiService;
 import com.lcl6.cn.basedialog.api.ThreeApiService;
 import com.lcl6.cn.basedialog.api.TwoApiService;
-import com.lcl6.cn.component.net.RetrofitManager;
+import com.lcl6.cn.basedialog.app.App;
 
 import java.util.concurrent.TimeUnit;
 
@@ -39,7 +39,7 @@ public class NetWorkManager {
 
 
     public NetWorkManager() {
-        this.mOkHttpClient = RetrofitManager.getInstance().with(new OkHttpClient.Builder()) //RetrofitUrlManager 初始化
+        this.mOkHttpClient = App.getAppComponent().getRetrofitManager().with(new OkHttpClient.Builder()) //RetrofitUrlManager 初始化
                 .readTimeout(5, TimeUnit.SECONDS)
                 .connectTimeout(5, TimeUnit.SECONDS)
                 .build();

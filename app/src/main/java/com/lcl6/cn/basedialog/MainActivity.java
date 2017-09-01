@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lcl6.cn.basedialog.mvp.ui.DaggerScopActivity;
+import com.lcl6.cn.basedialog.mvp.ui.ManagerActivity;
 import com.lcl6.cn.basedialog.mvp.ui.MvpActivity;
 import com.lcl6.cn.basedialog.widget.dialog.CustomButtomDialog;
 import com.lcl6.cn.basedialog.widget.dialog.CustomDialog;
