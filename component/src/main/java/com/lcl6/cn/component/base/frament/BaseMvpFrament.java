@@ -1,8 +1,5 @@
 package com.lcl6.cn.component.base.frament;
 
-import android.os.Bundle;
-import android.view.View;
-
 import com.lcl6.cn.component.base.mvp.presnenter.RxPresenter;
 import com.lcl6.cn.component.base.mvp.view.BaseView;
 
@@ -18,10 +15,6 @@ public abstract class BaseMvpFrament<T extends RxPresenter> extends LazyFragment
     }
 
     public abstract int getLayoutId();
-    @Override
-    protected void findViews(View view, Bundle savedInstanceState) {
-
-    }
 
     @Override
     public void showErrorMsg(String msg) {

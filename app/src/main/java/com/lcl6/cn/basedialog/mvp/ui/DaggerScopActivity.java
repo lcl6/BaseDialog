@@ -11,7 +11,7 @@ import com.lcl6.cn.basedialog.di.bean.MyClassB;
 import com.lcl6.cn.basedialog.mvp.contract.DaggerScopContract;
 import com.lcl6.cn.basedialog.mvp.presenter.DaggerScopPresent;
 import com.lcl6.cn.component.adapter.BaseRecyclerViewAdapter;
-import com.lcl6.cn.component.base.activity.BaseActivity;
+import com.lcl6.cn.component.base.activity.BaseMvpActivity;
 import com.lcl6.cn.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import butterknife.BindView;
  * Created by liancl on 2017/8/30.
  */
 
-public class DaggerScopActivity extends BaseActivity<DaggerScopPresent>  implements DaggerScopContract.View{
+public class DaggerScopActivity extends BaseMvpActivity<DaggerScopPresent> implements DaggerScopContract.View{
 
     @Inject
     MyClassB classB;

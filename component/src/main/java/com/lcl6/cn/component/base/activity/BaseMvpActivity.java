@@ -12,10 +12,11 @@ import butterknife.ButterKnife;
 
 
 /**
+ * mvp的基类
  * Created by liancl on 2017/8/23.
  */
 
-public abstract class BaseActivity<T extends RxPresenter> extends AppCompatActivity implements BaseView {
+public abstract class BaseMvpActivity<T extends RxPresenter> extends AppCompatActivity implements BaseView {
 
     public T mPresenter;
 

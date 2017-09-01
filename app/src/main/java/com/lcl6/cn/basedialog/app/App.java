@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.lcl6.cn.basedialog.di.bean.MyClassA;
 import com.lcl6.cn.basedialog.di.component.AppComponent;
-import com.lcl6.cn.basedialog.di.component.ClassAComponent;
 import com.lcl6.cn.basedialog.di.component.DaggerAppComponent;
 import com.lcl6.cn.basedialog.di.model.AppModule;
 import com.lcl6.cn.utils.Utils;
@@ -23,7 +22,7 @@ public class App extends Application {
     MyClassA myClassAl;
 //    @Inject
 //    ClassB classB;
-    private static ClassAComponent classAComponent;
+//    private static ClassAComponent classAComponent;
 //    private static App instance;
     private static AppComponent appComponent;
     @Override
@@ -53,8 +52,8 @@ public class App extends Application {
         return appComponent;
     }
 
-    public static ClassAComponent getClassAComponent(){
-        return classAComponent;
-    }
+//    public static ClassAComponent getClassAComponent(){
+//        return classAComponent;
+//    }
 
 }

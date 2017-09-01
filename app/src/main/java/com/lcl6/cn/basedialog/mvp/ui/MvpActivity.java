@@ -11,7 +11,7 @@ import com.lcl6.cn.basedialog.adapter.mvp.MvpListAdapter;
 import com.lcl6.cn.basedialog.bean.JsoupBean;
 import com.lcl6.cn.basedialog.mvp.contract.NewsContract;
 import com.lcl6.cn.basedialog.mvp.presenter.NewsPresenter;
-import com.lcl6.cn.component.base.activity.BaseActivity;
+import com.lcl6.cn.component.base.activity.BaseMvpActivity;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import butterknife.BindView;
  * Created by liancl on 2017/8/23.
  */
 
-public class MvpActivity  extends BaseActivity<NewsPresenter> implements NewsContract.View{
+public class MvpActivity  extends BaseMvpActivity<NewsPresenter> implements NewsContract.View{
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 

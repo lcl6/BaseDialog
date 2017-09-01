@@ -16,7 +16,7 @@ import com.lcl6.cn.basedialog.di.bean.ClassB;
 import com.lcl6.cn.basedialog.di.component.ClassAComponent;
 import com.lcl6.cn.basedialog.di.component.DaggerClassAComponent;
 import com.lcl6.cn.basedialog.di.model.ModuleA;
-import com.lcl6.cn.component.base.activity.BaseActivity;
+import com.lcl6.cn.component.base.activity.BaseMvpActivity;
 import com.lcl6.cn.component.base.mvp.presnenter.RxPresenter;
 import com.lcl6.cn.utils.ToastUtils;
 import com.lcl6.cn.utils.anim.QMUIDirection;
@@ -32,7 +32,7 @@ import butterknife.OnClick;
  * Created by liancl on 2017/8/29.
  */
 
-public class DaggerActivity extends BaseActivity {
+public class DaggerActivity extends BaseMvpActivity {
     @Inject
     ClassA classA;
     @Inject

@@ -13,7 +13,7 @@ import com.lcl6.cn.basedialog.app.App;
 import com.lcl6.cn.basedialog.di.component.AppComponent;
 import com.lcl6.cn.basedialog.mvp.contract.ManagerContract;
 import com.lcl6.cn.basedialog.mvp.presenter.ManagerPresenter;
-import com.lcl6.cn.component.base.activity.BaseActivity;
+import com.lcl6.cn.component.base.activity.BaseMvpActivity;
 import com.lcl6.cn.component.net.UrlChangeListener;
 import com.lcl6.cn.utils.ToastUtils;
 
@@ -29,7 +29,7 @@ import okhttp3.HttpUrl;
  * Created by liancl on 2017/8/25.
  */
 
-public class ManagerActivity extends BaseActivity<ManagerPresenter> implements ManagerContract.View {
+public class ManagerActivity extends BaseMvpActivity<ManagerPresenter> implements ManagerContract.View {
 
     @BindView(R.id.et_url1)
     EditText mUrl1;
