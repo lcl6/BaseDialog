@@ -26,12 +26,14 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         super.onCreate(savedInstanceState);
         beforeCreatView();
         setContentView(setLayoutId());
+        afterCreat(savedInstanceState);
         mUnbinder = ButterKnife.bind(this);
         initView();
         initIntentData();
         initData();
         initViewListener();
     }
+
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -49,6 +51,9 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     protected abstract int setLayoutId();
 
     protected void beforeCreatView() {
+    }
+    protected void afterCreat(Bundle savedInstanceState){
+
     }
 
     protected abstract void initView();
