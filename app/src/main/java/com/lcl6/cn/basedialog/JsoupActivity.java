@@ -2,10 +2,8 @@ package com.lcl6.cn.basedialog;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +12,7 @@ import android.widget.LinearLayout;
 import com.lcl6.cn.basedialog.adapter.JsoupAdapter;
 import com.lcl6.cn.basedialog.bean.JsoupBean;
 import com.lcl6.cn.component.adapter.BaseRecyclerViewAdapter;
+import com.lcl6.cn.component.base.activity.BaseActivity;
 import com.lcl6.cn.utils.Utils;
 
 import org.jsoup.Jsoup;
@@ -26,47 +25,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-
-import static com.lcl6.cn.utils.Utils.getContext;
 
 /**
  * 测试网络爬虫
  * Created by liancl on 2017/8/17.
  */
 
-public class JsoupActivity extends AppCompatActivity {
+public class JsoupActivity extends BaseActivity {
 
     public static final String TAG="result";
     List<JsoupBean> mJsoupList;
     @BindView(R.id.rv_jsoup)
     RecyclerView mJsoupRecyclerView;
     JsoupAdapter mJsoupAdapter;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jsoup);
+    protected int setLayoutId() {
+        return R.layout.activity_jsoup;
+    }
+
+    @Override
+    protected void initView() {
         Utils.init(getContext());
-        ButterKnife.bind(this);
         mJsoupList = new ArrayList<>();
         initRecyclerView();
-        initData();
-
-        initListener();
     }
-
-    private void initListener() {
-        if(mJsoupAdapter!=null){
-            mJsoupAdapter.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<JsoupBean>() {
-                @Override
-                public void onItemClick(RecyclerView.ViewHolder viewHolder, JsoupBean item, int position) {
-
-                }
-            });
-
-        }
-    }
-
     private void initRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayout.VERTICAL);
@@ -89,8 +72,22 @@ public class JsoupActivity extends AppCompatActivity {
         }
     };
 
-    //获取数据
-    private void initData() {
+    @Override
+    protected void initViewListener() {
+        super.initViewListener();
+        if(mJsoupAdapter!=null){
+            mJsoupAdapter.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<JsoupBean>() {
+                @Override
+                public void onItemClick(RecyclerView.ViewHolder viewHolder, JsoupBean item, int position) {
+
+                }
+            });
+
+        }
+    }
+
+    @Override
+    protected void initData() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -129,8 +126,8 @@ public class JsoupActivity extends AppCompatActivity {
             }
         }).start();
 
-
     }
+
 
     public static void start(Context context){
         Intent intent = new Intent();

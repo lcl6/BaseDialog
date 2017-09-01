@@ -2,24 +2,24 @@ package com.lcl6.cn.component.base.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.FrameLayout;
 
-import com.lcl6.cn.component.base.mvp.presnenter.RxPresenter;
-import com.lcl6.cn.component.base.mvp.view.BaseView;
+import com.lcl6.cn.component.R;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-
 /**
- *
- * Created by liancl on 2017/8/23.
+ * 无mvp的基类
+ * Created by liancl on 2017/9/1.
  */
 
-public abstract class BaseMvpActivity<T extends RxPresenter> extends RxAppCompatActivity implements BaseView {
-
-    public T mPresenter;
+public abstract class BaseActivity extends RxAppCompatActivity {
     Unbinder mUnbinder;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,29 +27,19 @@ public abstract class BaseMvpActivity<T extends RxPresenter> extends RxAppCompat
         beforeCreatView();
         setContentView(setLayoutId());
         mUnbinder = ButterKnife.bind(this);
-        mPresenter = getPresenter();
         initView();
         initIntentData();
         initData();
         initViewListener();
     }
 
-    protected abstract T getPresenter();
-
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (mPresenter != null) {
-            mPresenter.attachView(this);
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mPresenter != null) {
-            mPresenter.dechView();
-        }
+    public void setContentView(@LayoutRes int layoutResID) {
+        View view = getLayoutInflater().inflate(R.layout.activity_base, null);
+        super.setContentView(view);
+        FrameLayout frameLayout = (FrameLayout)view.findViewById(R.id.fl_contain);
+        View childView = LayoutInflater.from(this).inflate(layoutResID, null);
+        frameLayout.addView(childView,0);
     }
 
     public Context getContext() {
@@ -71,35 +61,9 @@ public abstract class BaseMvpActivity<T extends RxPresenter> extends RxAppCompat
     protected void initViewListener() {
     }
 
-
     @Override
-    public void stateError() {
-
-    }
-
-    @Override
-    public void stateEmpty() {
-
-    }
-
-    @Override
-    public void stateLoading() {
-
-    }
-
-    @Override
-    public void stateSuccess() {
-
-    }
-
-    @Override
-    public void showErrorMsg(String msg) {
-
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
+    protected void onDestroy() {
+        super.onDestroy();
         mUnbinder.unbind();
     }
 }
