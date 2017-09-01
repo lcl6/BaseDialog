@@ -19,26 +19,26 @@ import static com.lcl6.cn.basedialog.api.Api.APP_DEFAULT_DOMAIN;
  */
 
 public class NetWorkManager {
-    private static NetWorkManager mInstance;
+//    private static NetWorkManager mInstance;
     private OkHttpClient mOkHttpClient;
     private Retrofit mRetrofit;
     private OneApiService mOneApiService;
     private TwoApiService mTwoApiService;
     private ThreeApiService mThreeApiService;
 
-    public static NetWorkManager getInstance() {
-        if (mInstance == null) {
-            synchronized (NetWorkManager.class) {
-                if (mInstance == null) {
-                    mInstance = new NetWorkManager();
-                }
-            }
-        }
-        return mInstance;
-    }
+//    public static NetWorkManager getInstance() {
+//        if (mInstance == null) {
+//            synchronized (NetWorkManager.class) {
+//                if (mInstance == null) {
+//                    mInstance = new NetWorkManager();
+//                }
+//            }
+//        }
+//        return mInstance;
+//    }
 
 
-    private NetWorkManager() {
+    public NetWorkManager() {
         this.mOkHttpClient = RetrofitManager.getInstance().with(new OkHttpClient.Builder()) //RetrofitUrlManager 初始化
                 .readTimeout(5, TimeUnit.SECONDS)
                 .connectTimeout(5, TimeUnit.SECONDS)

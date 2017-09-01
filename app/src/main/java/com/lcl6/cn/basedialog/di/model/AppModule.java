@@ -1,9 +1,10 @@
 package com.lcl6.cn.basedialog.di.model;
 
+import com.lcl6.cn.basedialog.base.manager.NetWorkManager;
 import com.lcl6.cn.basedialog.di.bean.MyClassA;
-import com.lcl6.cn.basedialog.di.scop.PerApplication;
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -32,10 +33,16 @@ public class AppModule {
         return b;
     }
 
-    @PerApplication
+    @Singleton
     @Provides
     MyClassA provideMyClassA(@Named("a")int a ,@Named("b")int b){
         return new MyClassA(a,b);
+    }
+
+    @Singleton
+    @Provides
+    NetWorkManager provideNetWorkManager(){
+        return new NetWorkManager();
     }
 
 

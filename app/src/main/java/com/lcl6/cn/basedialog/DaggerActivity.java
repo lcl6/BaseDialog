@@ -1,5 +1,6 @@
 package com.lcl6.cn.basedialog;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -8,9 +9,11 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
+import com.lcl6.cn.basedialog.app.App;
 import com.lcl6.cn.basedialog.constant.Constant;
 import com.lcl6.cn.basedialog.di.bean.ClassA;
 import com.lcl6.cn.basedialog.di.bean.ClassB;
+import com.lcl6.cn.basedialog.di.component.ClassAComponent;
 import com.lcl6.cn.basedialog.di.component.DaggerClassAComponent;
 import com.lcl6.cn.basedialog.di.model.ModuleA;
 import com.lcl6.cn.component.base.activity.BaseActivity;
@@ -37,7 +40,6 @@ public class DaggerActivity extends BaseActivity {
     @BindView(R.id.tv_float)
     TextView mFloatView;
 
-
     public static void start(Context context) {
         Intent starter = new Intent(context, DaggerActivity.class);
         context.startActivity(starter);
@@ -53,10 +55,14 @@ public class DaggerActivity extends BaseActivity {
     }
     @Override
     protected void initView() {
-        DaggerClassAComponent.builder()
-                .moduleA(new ModuleA(2,3))
-                .build()
-                .inject(this);
+        ClassAComponent classAComponent = DaggerClassAComponent.builder()
+                .appComponent(App.getAppComponent())
+                .moduleA(new ModuleA(2, 3, this))
+                .build();
+//                .inject(this);
+        classAComponent.inject(this);
+        Activity activity = classAComponent.getActivity();
+        Log.e(Constant.TAG, activity.getLocalClassName() );
 
         //测试单例
 //        App.getClassAComponent().inject(App.getInstance());

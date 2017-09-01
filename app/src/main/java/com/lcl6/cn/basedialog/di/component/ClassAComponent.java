@@ -1,9 +1,10 @@
 package com.lcl6.cn.basedialog.di.component;
 
+import android.app.Activity;
+
 import com.lcl6.cn.basedialog.DaggerActivity;
 import com.lcl6.cn.basedialog.di.model.ModuleA;
-
-import javax.inject.Singleton;
+import com.lcl6.cn.basedialog.di.scop.PerActivity;
 
 import dagger.Component;
 
@@ -11,9 +12,12 @@ import dagger.Component;
  * Created by liancl on 2017/8/29.
  */
 
-@Singleton
-@Component(modules = ModuleA.class)
+//@Singleton
+@PerActivity
+@Component(dependencies = AppComponent.class,modules = ModuleA.class)
 public interface ClassAComponent {
+    Activity getActivity();
+
     void inject(DaggerActivity activity);
 //    void inject(App app);
 }

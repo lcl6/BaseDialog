@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.lcl6.cn.basedialog.base.manager.NetWorkManager;
+import com.lcl6.cn.basedialog.app.App;
 import com.lcl6.cn.basedialog.base.manager.observel.RxObservable;
 import com.lcl6.cn.basedialog.bean.JsoupBean;
 import com.lcl6.cn.basedialog.constant.Constant;
@@ -39,7 +39,7 @@ public class NewsModelImpl implements NewsModel {
         if (httpUrl2 == null) { //可以在 App 运行时随意切换某个接口的 BaseUrl
             RetrofitManager.getInstance().putDomain(GANK_DOMAIN_NAME, "http://gank.io");
         }
-        NetWorkManager.getInstance()
+        App.getAppComponent().getNetWorkManager()
                 .getTwoApiService()
                 .getData(10, 1)
                 .subscribeOn(Schedulers.io())

@@ -1,10 +1,12 @@
 package com.lcl6.cn.basedialog.di.model;
 
+import android.app.Activity;
+
 import com.lcl6.cn.basedialog.di.bean.ClassA;
 import com.lcl6.cn.basedialog.di.bean.ClassB;
+import com.lcl6.cn.basedialog.di.scop.PerActivity;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -16,10 +18,12 @@ import dagger.Provides;
 public class ModuleA {
     private int a;
     private int b;
+    private Activity activity;
 
-    public ModuleA(int a, int b) {
+    public ModuleA(int a, int b, Activity activity) {
         this.a = a;
         this.b = b;
+        this.activity = activity;
     }
 
     @Provides
@@ -40,10 +44,15 @@ public class ModuleA {
         return new ClassA(a,b);
     }
 
-    @Singleton
+    @PerActivity
     @Provides
     ClassB provideClassB(ClassA classA, @Named("b")int b){
         return new ClassB(classA,b);
+    }
+
+    @Provides
+    Activity provideActivity(){
+        return activity;
     }
 
 }

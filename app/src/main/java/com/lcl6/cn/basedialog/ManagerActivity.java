@@ -4,15 +4,15 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.lcl6.cn.basedialog.base.manager.NetWorkManager;
+import com.lcl6.cn.basedialog.app.App;
+import com.lcl6.cn.component.base.activity.BaseActivity;
+import com.lcl6.cn.component.base.mvp.presnenter.RxPresenter;
 import com.lcl6.cn.component.net.RetrofitManager;
 import com.lcl6.cn.component.net.UrlChangeListener;
 
@@ -41,7 +41,7 @@ import static com.lcl6.cn.basedialog.api.Api.GITHUB_DOMAIN_NAME;
  * Created by liancl on 2017/8/25.
  */
 
-public class ManagerActivity extends AppCompatActivity {
+public class ManagerActivity extends BaseActivity {
 
     @BindView(R.id.et_url1)
      EditText mUrl1;
@@ -59,14 +59,31 @@ public class ManagerActivity extends AppCompatActivity {
         Intent starter = new Intent(context, ManagerActivity.class);
         context.startActivity(starter);
     }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manager);
-        ButterKnife.bind(this);
 
-//        mProgressDialog = new ProgressDialog(this);
+    @Override
+    protected RxPresenter getPresenter() {
+        return null;
+    }
+
+    @Override
+    protected int setLayoutId() {
+        return R.layout.activity_manager;
+    }
+
+    @Override
+    protected void initView() {
+        ButterKnife.bind(this);
         mUrl1.setSelection(mUrl1.getText().toString().length());
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initViewListener() {
+        super.initViewListener();
         initListener();
     }
 
@@ -75,9 +92,6 @@ public class ManagerActivity extends AppCompatActivity {
         //如果有需要可以注册监听器,当一个 Url 的 BaseUrl 被新的 Url 替代,则会回调这个监听器,调用时间是在接口请求服务器之前
         RetrofitManager.getInstance().registerUrlChangeListener(mListener);
         //如果你已经确定了最终的 BaseUrl ,不需要在动态改变 BaseUrl ,请 RetrofitUrlManager.getInstance().setRun(false);
-
-
-
     }
 
     @OnClick({R.id.bt_request1, R.id.bt_request2,R.id.bt_request3})
@@ -88,8 +102,7 @@ public class ManagerActivity extends AppCompatActivity {
                 if (httpUrl == null || !httpUrl.toString().equals(mUrl1.getText().toString())) { //可以在 App 运行时随意切换某个接口的 BaseUrl
                     RetrofitManager.getInstance().putDomain(GITHUB_DOMAIN_NAME, mUrl1.getText().toString());
                 }
-                NetWorkManager
-                        .getInstance()
+                App.getAppComponent().getNetWorkManager()
                         .getOneApiService()
                         .getUsers(1, 10)
                         .compose(ManagerActivity.this.<ResponseBody>getDefaultTransformer())
@@ -100,8 +113,7 @@ public class ManagerActivity extends AppCompatActivity {
                 if (httpUrl2 == null || !httpUrl2.toString().equals(mUrl2.getText().toString())) { //可以在 App 运行时随意切换某个接口的 BaseUrl
                     RetrofitManager.getInstance().putDomain(GANK_DOMAIN_NAME, mUrl2.getText().toString());
                 }
-                NetWorkManager
-                        .getInstance()
+                App.getAppComponent().getNetWorkManager()
                         .getTwoApiService()
                         .getData(10, 1)
                         .compose(ManagerActivity.this.<ResponseBody>getDefaultTransformer())
@@ -113,8 +125,7 @@ public class ManagerActivity extends AppCompatActivity {
                 if (httpUrl3 == null || !httpUrl3.toString().equals(mUrl3.getText().toString())) { //可以在 App 运行时随意切换某个接口的 BaseUrl
                     RetrofitManager.getInstance().putDomain(DOUBAN_DOMAIN_NAME, mUrl3.getText().toString());
                 }
-                NetWorkManager
-                        .getInstance()
+                App.getAppComponent().getNetWorkManager()
                         .getThreeApiService()
                         .getBook(1220562)
                         .compose(ManagerActivity.this.<ResponseBody>getDefaultTransformer())
@@ -125,8 +136,7 @@ public class ManagerActivity extends AppCompatActivity {
 
     // 请求默认 BaseUrl，请求的接口没有配置 DomainHeader，所以只受全局 BaseUrl的影响
     public void btnRequestDefault(View view) {
-        NetWorkManager
-                .getInstance()
+        App.getAppComponent().getNetWorkManager()
                 .getOneApiService()
                 .requestDefault()
                 .compose(this.<ResponseBody>getDefaultTransformer())
