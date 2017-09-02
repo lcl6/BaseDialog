@@ -71,6 +71,8 @@ public abstract class BaseMvpActivity<T extends RxPresenter> extends BaseActivit
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        mUnbinder.unbind();
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
+        }
     }
 }
