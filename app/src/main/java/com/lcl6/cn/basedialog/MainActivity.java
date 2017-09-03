@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
                 dialogLeft.show();
                 break;
             case R.id.tv_next:
-//                SecondActivity.start(getContext());
-                ToastUtils.showShortSafe("显示短图示");
+                SecondActivity.start(getContext());
+//                ToastUtils.showShortSafe("显示短图示");
                 break;
             case R.id.tv_jsoup://跳转网络爬虫界面
                 JsoupActivity.start(getContext());
