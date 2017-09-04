@@ -92,6 +92,7 @@ public class DaggerScopActivity extends BaseMvpActivity<DaggerScopPresent> imple
         mlist.clear();
         mlist.addAll(list);
         mAdapter.notifyDataSetChanged();
+        onLoadSuccessStatus();
     }
 
 }

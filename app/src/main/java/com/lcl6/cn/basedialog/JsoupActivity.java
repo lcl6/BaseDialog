@@ -65,6 +65,7 @@ public class JsoupActivity extends BaseActivity {
             super.handleMessage(msg);
             switch (msg.what){
                 case 1:
+                    onLoadSuccessStatus();
                     mJsoupAdapter.setData(mJsoupList);
                     mJsoupAdapter.notifyDataSetChanged();
                     break;

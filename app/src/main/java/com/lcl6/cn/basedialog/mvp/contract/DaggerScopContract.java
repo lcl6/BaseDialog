@@ -13,6 +13,7 @@ public interface DaggerScopContract {
 
     interface View extends BaseView{
         void showContent(List<String> list);
+
     }
 
     interface Present extends BasePresenter<View>{

@@ -6,6 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="styleNetworkStateView">@style/NetworkStateViewTheme</item>
+    </style>
+    <style name="NetworkStateViewTheme" parent="NetworkStateView.Style">
+        <item name="nsvTextSize">16sp</item>
     </style>
 
 

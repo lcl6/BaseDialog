@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/title_layout"/>
+    <include layout="@layout/view_network_state" />
     <FrameLayout
         android:id="@+id/fl_contain"
         android:layout_width="match_parent"
