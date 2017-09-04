@@ -62,8 +62,8 @@ public class DaggerScopActivity extends BaseMvpActivity<DaggerScopPresent> imple
     }
 
     private void initRecyclerView() {
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        mAdapter = new EdtextAdapter(getContext());
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        mAdapter = new EdtextAdapter(this);
         mAdapter.setData(mlist);
         mRecyclerView.setAdapter(mAdapter);
     }

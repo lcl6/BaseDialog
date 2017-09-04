@@ -22,7 +22,9 @@ public class DaggerScopPresent extends RxPresenter<DaggerScopContract.View> impl
         daggerScopModel.getData(new DaggerScopModel.LoadCompleteListener() {
             @Override
             public void onComplete(List<String> list) {
-                mView.showContent(list);
+                if(mView!=null){
+                    mView.showContent(list);
+                }
             }
         });
     }

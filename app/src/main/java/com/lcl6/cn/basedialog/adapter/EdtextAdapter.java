@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -37,7 +36,7 @@ public class EdtextAdapter extends BaseRecyclerViewAdapter<String> {
     }
     class EditextHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.ed_intput)
-        EditText input;
+        TextView input;
         @BindView(R.id.tv_pos)
         TextView textViewposition;
         @BindView(R.id.lin_item)
