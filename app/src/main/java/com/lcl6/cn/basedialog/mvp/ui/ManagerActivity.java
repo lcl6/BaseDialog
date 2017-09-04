@@ -71,7 +71,7 @@ public class ManagerActivity extends BaseMvpActivity<ManagerPresenter> implement
 
     @Override
     protected void initData() {
-
+        onLoadSuccessStatus();
     }
 
     @Override

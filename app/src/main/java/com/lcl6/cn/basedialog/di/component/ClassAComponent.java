@@ -2,7 +2,7 @@ package com.lcl6.cn.basedialog.di.component;
 
 import android.app.Activity;
 
-import com.lcl6.cn.basedialog.mvp.ui.DaggerActivity;
+import com.lcl6.cn.basedialog.DaggerActivity;
 import com.lcl6.cn.basedialog.di.model.ModuleA;
 import com.lcl6.cn.basedialog.di.scop.PerActivity;
 

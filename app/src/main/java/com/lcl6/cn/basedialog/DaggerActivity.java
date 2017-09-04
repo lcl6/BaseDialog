@@ -1,4 +1,4 @@
-package com.lcl6.cn.basedialog.mvp.ui;
+package com.lcl6.cn.basedialog;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
-import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialog.app.App;
 import com.lcl6.cn.basedialog.constant.Constant;
 import com.lcl6.cn.basedialog.di.bean.ClassA;
@@ -17,8 +16,7 @@ import com.lcl6.cn.basedialog.di.bean.ClassB;
 import com.lcl6.cn.basedialog.di.component.ClassAComponent;
 import com.lcl6.cn.basedialog.di.component.DaggerClassAComponent;
 import com.lcl6.cn.basedialog.di.model.ModuleA;
-import com.lcl6.cn.component.base.activity.BaseMvpActivity;
-import com.lcl6.cn.component.base.mvp.presnenter.RxPresenter;
+import com.lcl6.cn.component.base.activity.BaseActivity;
 import com.lcl6.cn.utils.ToastUtils;
 import com.lcl6.cn.utils.anim.QMUIDirection;
 import com.lcl6.cn.utils.anim.QMUIViewHelper;
@@ -33,7 +31,7 @@ import butterknife.OnClick;
  * Created by liancl on 2017/8/29.
  */
 
-public class DaggerActivity extends BaseMvpActivity {
+public class DaggerActivity extends BaseActivity {
     @Inject
     ClassA classA;
     @Inject
@@ -44,10 +42,6 @@ public class DaggerActivity extends BaseMvpActivity {
     public static void start(Context context) {
         Intent starter = new Intent(context, DaggerActivity.class);
         context.startActivity(starter);
-    }
-    @Override
-    protected RxPresenter getPresenter() {
-        return null;
     }
 
     @Override
@@ -83,6 +77,7 @@ public class DaggerActivity extends BaseMvpActivity {
         Log.e(Constant.TAG, "initData:a2 "+a2 );
         Log.e(Constant.TAG, "initData:b2 "+b1);
 
+        onLoadSuccessStatus();
     }
 
     @OnClick({R.id.tv_status,R.id.tv_status_white,R.id.tv_status_height,R.id.tv_fade_in, R.id.tv_slide_in})

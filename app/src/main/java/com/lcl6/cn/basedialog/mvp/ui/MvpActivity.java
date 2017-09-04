@@ -65,5 +65,6 @@ public class MvpActivity  extends BaseMvpActivity<NewsPresenter> implements News
     public void showContent(List<JsoupBean> list) {
         mAdapter.setData(list);
         mAdapter.notifyDataSetChanged();
+        onLoadSuccessStatus();
     }
 }

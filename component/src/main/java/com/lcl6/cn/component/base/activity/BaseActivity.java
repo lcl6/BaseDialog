@@ -36,7 +36,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements  Netwo
         initIntentData();
         initData();
         initViewListener();
-        initNetWork();
+
     }
 
     /**初始化网络的状态*/
@@ -54,6 +54,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements  Netwo
         mNetworkStateView= (NetworkStateView)view.findViewById(R.id.nsv_state_view);
         View childView = LayoutInflater.from(this).inflate(layoutResID, null);
         frameLayout.addView(childView,0);
+        initNetWork();
     }
 
     public Context getContext() {

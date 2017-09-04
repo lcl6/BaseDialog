@@ -38,7 +38,7 @@
         </activity>
         <activity android:name=".mvp.ui.ManagerActivity">
         </activity>
-        <activity android:name=".mvp.ui.DaggerActivity">
+        <activity android:name=".DaggerActivity">
         </activity>
         <activity android:name=".mvp.ui.DaggerScopActivity"
             android:configChanges="orientation|keyboardHidden"
