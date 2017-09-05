@@ -275,7 +275,6 @@ public class QMUIStatusBarHelper {
      * API19之前透明状态栏：获取设置透明状态栏的system ui visibility的值，这是部分有提供接口的rom使用的
      * http://stackoverflow.com/questions/21865621/transparent-status-bar-before-4-4-kitkat
      *
-     * @return
      */
     public static Integer getStatusBarAPITransparentValue(Context context) {
         if (sTransparentValue != null) {
@@ -311,7 +310,6 @@ public class QMUIStatusBarHelper {
     /**
      * Android6.0是否可以启用 window.setStatusBarColor(Color.TRANSPARENT);
      *
-     * @return
      */
     public static boolean supportTransclentStatusBar6() {
         return !(QMUIDeviceHelper.isZUKZ1() || QMUIDeviceHelper.isZTKC2016());
@@ -321,7 +319,6 @@ public class QMUIStatusBarHelper {
      * 获取状态栏的高度
      *
      * @param context
-     * @return
      */
     public static int getStatusbarHeight(Context context) {
         if (sStatusbarHeight == -1) {
