@@ -58,7 +58,6 @@ public class DaggerActivity extends BaseActivity {
         classAComponent.inject(this);
         Activity activity = classAComponent.getActivity();
         Log.e(Constant.TAG, activity.getLocalClassName() );
-
         //测试单例
 //        App.getClassAComponent().inject(App.getInstance());
     }
@@ -108,6 +107,4 @@ public class DaggerActivity extends BaseActivity {
 
         }
     }
-
-
 }

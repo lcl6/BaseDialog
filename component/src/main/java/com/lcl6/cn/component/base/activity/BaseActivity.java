@@ -80,7 +80,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
         mTitleBar.setLeftClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                backFinish();
             }
         });
         mTitleBar.setTitle("标题");
@@ -94,7 +94,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
             public void performAction(View view) {
                 ToastUtils.showShort("点击了s收藏");
                 mCollectView.setImageResource(R.drawable.ic_refresh);
-//                mTitleBar.setTitle(mIsSelected ? "文章详情\n朋友圈" : "帖子详情");
+//                mTitleBar.setTitle( "文章详情\n朋友圈" );
 //                mIsSelected = !mIsSelected;
             }
         });
@@ -107,6 +107,11 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
         });
 
 
+    }
+
+    /**点击返回按钮*/
+    public void backFinish(){
+        finish();
     }
 
     /**获取titlebar*/
