@@ -12,6 +12,7 @@ import com.lcl6.cn.basedialog.mvp.contract.DaggerScopContract;
 import com.lcl6.cn.basedialog.mvp.presenter.DaggerScopPresent;
 import com.lcl6.cn.component.adapter.BaseRecyclerViewAdapter;
 import com.lcl6.cn.component.base.activity.BaseMvpActivity;
+import com.lcl6.cn.component.widget.title.TitleBar;
 import com.lcl6.cn.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -55,7 +56,9 @@ public class DaggerScopActivity extends BaseMvpActivity<DaggerScopPresent> imple
 
     @Override
     protected void initView() {
-
+        TitleBar titleBar = getTitleBar();
+        titleBar.removeAllActions();
+        titleBar.setLeftText("");
         mlist=new ArrayList<>();
 
         initRecyclerView();
