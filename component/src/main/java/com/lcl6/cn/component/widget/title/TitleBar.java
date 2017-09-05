@@ -106,6 +106,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         addView(mDividerView, new LayoutParams(LayoutParams.MATCH_PARENT, 1));
     }
 
+    /**设置状态栏*/
     public void setImmersive(boolean immersive) {
         mImmersive = immersive;
         if (mImmersive) {
@@ -115,39 +116,40 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         }
     }
 
+    /**设置状态栏的高度*/
     public void setHeight(int height) {
         mHeight = height;
         setMeasuredDimension(getMeasuredWidth(), mHeight);
     }
-
+    /**设置状态栏返回的图片*/
     public void setLeftImageResource(int resId) {
         mLeftText.setCompoundDrawablesWithIntrinsicBounds(resId, 0, 0, 0);
     }
-
+    /**设置状态栏返回点击事件*/
     public void setLeftClickListener(OnClickListener l) {
         mLeftText.setOnClickListener(l);
     }
-
+    /**设置状态栏左边的文字*/
     public void setLeftText(CharSequence title) {
         mLeftText.setText(title);
     }
-
+    /**设置状态栏左边的文字*/
     public void setLeftText(int resid) {
         mLeftText.setText(resid);
     }
-
+    /**设置状态栏左边的文字大小*/
     public void setLeftTextSize(float size) {
         mLeftText.setTextSize(size);
     }
-
+    /**设置状态栏左边的文字颜色*/
     public void setLeftTextColor(int color) {
         mLeftText.setTextColor(color);
     }
-
+    /**设置状态栏左边的文字是否可见*/
     public void setLeftVisible(boolean visible) {
         mLeftText.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
-
+    /**设置状态栏标题*/
     public void setTitle(CharSequence title) {
         int index = title.toString().indexOf("\n");
         if (index > 0) {
@@ -162,7 +164,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
             }
         }
     }
-
+    /**设置状态栏标题*/
     private void setTitle(CharSequence title, CharSequence subTitle, int orientation) {
         mCenterLayout.setOrientation(orientation);
         mCenterText.setText(title);
@@ -170,35 +172,35 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         mSubTitleText.setText(subTitle);
         mSubTitleText.setVisibility(View.VISIBLE);
     }
-
+    /**设置状态栏标题点击时间*/
     public void setCenterClickListener(OnClickListener l) {
         mCenterLayout.setOnClickListener(l);
     }
-
+    /**设置状态栏标题*/
     public void setTitle(int resid) {
         setTitle(getResources().getString(resid));
     }
-
+    /**设置状态栏标题颜色*/
     public void setTitleColor(int resid) {
         mCenterText.setTextColor(resid);
     }
-
+    /**设置状态栏标题大小*/
     public void setTitleSize(float size) {
         mCenterText.setTextSize(size);
     }
-
+    /**设置状态栏子标题背景*/
     public void setTitleBackground(int resid) {
         mCenterText.setBackgroundResource(resid);
     }
-
+    /**设置状态栏子标题颜色*/
     public void setSubTitleColor(int resid) {
         mSubTitleText.setTextColor(resid);
     }
-
+    /**设置状态栏子标题大小*/
     public void setSubTitleSize(float size) {
         mSubTitleText.setTextSize(size);
     }
-
+    /**设置状态栏自定义标题*/
     public void setCustomTitle(View titleView) {
         if (titleView == null) {
             mCenterText.setVisibility(View.VISIBLE);
@@ -216,28 +218,23 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
             mCenterText.setVisibility(View.GONE);
         }
     }
-
+    /**设置状态栏分割线背景*/
     public void setDivider(Drawable drawable) {
         mDividerView.setBackgroundDrawable(drawable);
     }
-
+    /**设置状态栏分割线颜色*/
     public void setDividerColor(int color) {
         mDividerView.setBackgroundColor(color);
     }
-
+    /**设置状态栏分割线高度*/
     public void setDividerHeight(int dividerHeight) {
         mDividerView.getLayoutParams().height = dividerHeight;
     }
-
+    /**设置状态栏右边文字的颜色*/
     public void setActionTextColor(int colorResId) {
         mActionTextColor = colorResId;
     }
-
-    /**
-     * Function to set a click listener for Title TextView
-     *
-     * @param listener the onClickListener
-     */
+    /**设置状态栏标题的点击事件*/
     public void setOnTitleClickListener(OnClickListener listener) {
         mCenterText.setOnClickListener(listener);
     }
@@ -250,32 +247,19 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
             action.performAction(view);
         }
     }
-
-    /**
-     * Adds a list of {@link Action}s.
-     * @param actionList the actions to add
-     */
+    /**添加右边的扩展view*/
     public void addActions(ActionList actionList) {
         int actions = actionList.size();
         for (int i = 0; i < actions; i++) {
             addAction(actionList.get(i));
         }
     }
-
-    /**
-     * Adds a new {@link Action}.
-     * @param action the action to add
-     */
+    /**添加右边的扩展view*/
     public View addAction(Action action) {
         final int index = mRightLayout.getChildCount();
         return addAction(action, index);
     }
-
-    /**
-     * Adds a new {@link Action} at the specified index.
-     * @param action the action to add
-     * @param index the position at which to add the action
-     */
+    /**添加右边的扩展view*/
     public View addAction(Action action, int index) {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
                 LayoutParams.MATCH_PARENT);
@@ -285,6 +269,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     }
 
     /**
+     * 移除右边所有的view
      * Removes all action views from this action bar
      */
     public void removeAllActions() {
@@ -292,6 +277,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     }
 
     /**
+     * 移除某个view
      * Remove a action from the action bar.
      * @param index position of action to remove
      */
@@ -300,6 +286,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     }
 
     /**
+     * 移除某个view
      * Remove a action from the action bar.
      * @param action The action to remove
      */
@@ -352,6 +339,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         return view;
     }
 
+    /**根据action 获取view*/
     public View getViewByAction(Action action) {
         View view = findViewWithTag(action);
         return view;

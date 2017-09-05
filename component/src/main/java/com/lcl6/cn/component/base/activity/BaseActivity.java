@@ -8,16 +8,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.lcl6.cn.component.R;
 import com.lcl6.cn.component.widget.net.NetworkStateView;
 import com.lcl6.cn.component.widget.title.TitleBar;
-import com.lcl6.cn.utils.SdkUtil;
 import com.lcl6.cn.utils.ToastUtils;
+import com.lcl6.cn.utils.statusbar.QMUIStatusBarHelper;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
@@ -73,25 +71,8 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
     }
 
     private void initTitle() {
-        boolean isImmersive = false;
-        if (SdkUtil.hasKitKat() && !SdkUtil.hasLollipop()) {
-            isImmersive = true;
-            //透明状态栏
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            //透明导航栏
-//                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        } else if (SdkUtil.hasLollipop()) {
-            Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-            isImmersive = true;
-        }
-        mTitleBar.setImmersive(isImmersive);
+        boolean immeisve = QMUIStatusBarHelper.immeisve(this);
+        mTitleBar.setImmersive(immeisve);
         mTitleBar.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.colorPrimary));
         mTitleBar.setLeftText("返回");
         mTitleBar.setLeftTextColor(Color.WHITE);
@@ -128,10 +109,17 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
 
     }
 
+    /**获取titlebar*/
     public TitleBar getTitleBar(){
         return mTitleBar;
     }
-
+    /**隐藏titlebar*/
+    public void setTitleBarGone(){
+        if (mTitleBar == null) {
+            return;
+        }
+        mTitleBar.setVisibility(View.GONE);
+    }
 
     public Context getContext() {
         return this;
