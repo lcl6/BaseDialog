@@ -21,4 +21,16 @@
         android:text="@string/app_custom"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="---------------以下是自定义控件---------------"
+        />
+
+    <com.lcl6.cn.basedialog.widget.CircleText
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+
 </LinearLayout>
