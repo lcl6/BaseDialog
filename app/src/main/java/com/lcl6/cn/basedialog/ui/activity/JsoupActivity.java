@@ -1,4 +1,4 @@
-package com.lcl6.cn.basedialog;
+package com.lcl6.cn.basedialog.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.LinearLayout;
 
+import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialog.adapter.JsoupAdapter;
 import com.lcl6.cn.basedialog.bean.JsoupBean;
 import com.lcl6.cn.component.adapter.BaseRecyclerViewAdapter;

@@ -12,6 +12,8 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+
 /**
  * 懒加载的fragment
  * Created by zhouL on 2017/3/1.
@@ -86,25 +88,23 @@ public abstract class LazyFragment extends RxFragment implements IFragmentBackPr
     }
 
     private void init(View view, @Nullable Bundle savedInstanceState){
-        startCreate();
+        ButterKnife.bind(this,view);
+        beforeCreate();
         beforeFindViews(view);
-        findViews(view, savedInstanceState);
-        setListeners(view);
+        initView(view, savedInstanceState);
         initData(view);
-        endCreate();
+        initViewListener(view);
     }
 
-    protected void startCreate() {}
+    protected void beforeCreate() {}
 
     protected void beforeFindViews(View view) {}
 
-    protected abstract void findViews(View view, Bundle savedInstanceState);
+    protected abstract void initView(View view, Bundle savedInstanceState);
 
     protected void initData(View view) {}
 
-    protected void endCreate() {}
-
-    protected void setListeners(View view){}
+    protected void initViewListener(View view){}
 
     /** 配置是否使用懒加载（默认使用，可重写） */
     protected boolean configIsLazyLoad(){

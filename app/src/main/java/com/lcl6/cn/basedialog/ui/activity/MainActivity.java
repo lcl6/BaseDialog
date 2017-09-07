@@ -1,4 +1,4 @@
-package com.lcl6.cn.basedialog;
+package com.lcl6.cn.basedialog.ui.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialog.mvp.ui.DaggerScopActivity;
 import com.lcl6.cn.basedialog.mvp.ui.ManagerActivity;
 import com.lcl6.cn.basedialog.mvp.ui.MvpActivity;
@@ -52,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next,R.id.tv_jsoup,R.id.tv_mvp,R.id.tv_widget,R.id.tv_retrofit,R.id.tv_dagger,R.id.tv_dagger_scop})
+    @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next,R.id.tv_jsoup,R.id.tv_mvp
+            ,R.id.tv_widget,R.id.tv_retrofit,R.id.tv_dagger,R.id.tv_dagger_scop,R.id.tv_viewpage})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.tv_cumston:
@@ -94,6 +96,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.tv_dagger_scop://dagger scop
                 DaggerScopActivity.start(getContext());
                 break;
+            case R.id.tv_viewpage://测试viewpager
+                ViewPagerActivity.start(getContext());
+                break;
+
+
         }
     }
 

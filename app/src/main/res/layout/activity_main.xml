@@ -98,15 +98,15 @@
                 android:gravity="center"
                 android:text="dagger scop界面"
                 />
+        <TextView
+            android:id="@+id/tv_viewpage"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="测试viewpager"
+            />
 
-            <LinearLayout
-                android:id="@+id/lin_loading"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="vertical"
-                />
-            </LinearLayout>
-
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

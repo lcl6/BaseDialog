@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:name=".app.App"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SecondActivity">
+        <activity android:name=".ui.activity.SecondActivity">
         </activity>
         <activity android:name=".keyboard.KeyBoardActivity"
             android:windowSoftInputMode="adjustPan"
@@ -30,15 +30,15 @@
 
         </activity>
 
-        <activity android:name=".JsoupActivity">
+        <activity android:name=".ui.activity.JsoupActivity">
         </activity>
         <activity android:name=".mvp.ui.MvpActivity">
         </activity>
-        <activity android:name=".WidgetActivity">
+        <activity android:name=".ui.activity.WidgetActivity">
         </activity>
         <activity android:name=".mvp.ui.ManagerActivity">
         </activity>
-        <activity android:name=".DaggerActivity">
+        <activity android:name=".ui.activity.DaggerActivity">
         </activity>
         <activity android:name=".mvp.ui.DaggerScopActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -46,7 +46,7 @@
             android:windowSoftInputMode="adjustPan"
             >
         </activity>
-
+        <activity android:name=".ui.activity.ViewPagerActivity"/>
     </application>
 
 </manifest>

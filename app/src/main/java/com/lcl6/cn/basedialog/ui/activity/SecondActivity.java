@@ -1,4 +1,4 @@
-package com.lcl6.cn.basedialog;
+package com.lcl6.cn.basedialog.ui.activity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -11,9 +11,8 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
+import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.component.widget.PickDateTimeDialog;
-
-import butterknife.OnClick;
 
 /**
  * Created by liancl on 2017/6/19.

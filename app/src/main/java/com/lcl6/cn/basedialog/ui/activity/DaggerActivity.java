@@ -1,4 +1,4 @@
-package com.lcl6.cn.basedialog;
+package com.lcl6.cn.basedialog.ui.activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
+import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialog.app.App;
 import com.lcl6.cn.basedialog.constant.Constant;
 import com.lcl6.cn.basedialog.di.bean.ClassA;

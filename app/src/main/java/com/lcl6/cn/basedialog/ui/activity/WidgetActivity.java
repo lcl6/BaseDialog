@@ -1,4 +1,4 @@
-package com.lcl6.cn.basedialog;
+package com.lcl6.cn.basedialog.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialog.constant.Constant;
 import com.lcl6.cn.component.base.activity.BaseActivity;
 
