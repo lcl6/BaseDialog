@@ -2,7 +2,6 @@ package com.lcl6.cn.basedialog.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -11,17 +10,23 @@ import android.util.AttributeSet;
  * Created by liancl on 2017/8/21
  */
 
-public class CircleText extends android.support.v7.widget.AppCompatTextView {
+public class CircleText extends android.support.v7.widget.AppCompatTextView implements Runnable{
     public CircleText(Context context) {
         super(context);
+        init();
     }
 
     public CircleText(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
     public CircleText(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    private void init() {
     }
 
     @Override
@@ -43,7 +48,7 @@ public class CircleText extends android.support.v7.widget.AppCompatTextView {
 //        canvas.drawBitmap(bitmap,0,0,paint);
 
         //自定义矩形 并设置颜色
-        paint.setColor((Color.parseColor("#009688")));
+//        paint.setColor((Color.parseColor("#009688")));
 
 
         //第一种写法
@@ -86,12 +91,146 @@ public class CircleText extends android.support.v7.widget.AppCompatTextView {
 //        canvas.drawCircle(100,100,100,paint);
 
         //bitmap 着色
-//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.aaa);
-//        BitmapShader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.MIRROR, Shader.TileMode.MIRROR);//CLAMP  拉伸  REPEAT 重复  MIRROR  镜像
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avater);
+//        BitmapShader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);//CLAMP  拉伸  REPEAT 重复  MIRROR  镜像
 //        paint.setShader(bitmapShader);
-//        canvas.drawRoundRect(10,10,300,300,10,10,paint);
+//        canvas.drawRoundRect(10,10,300,300,20,20,paint);
 //        canvas.drawCircle(100,100,100,paint);
 
+        //混合着色
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.composites);
+//        Shader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+//
+//        Bitmap bitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.composited);
+//        Shader shader2 = new BitmapShader(bitmap2, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+//
+//        Shader composeShader = new ComposeShader(bitmapShader, shader2, PorterDuff.Mode.DST_OUT);
+//        paint.setShader(composeShader);
+//        canvas.drawCircle(300, 300, 300, paint);
+//        canvas.drawRoundRect(10,10,300,300,20,20,paint);
+//        canvas.drawCircle(100,100,100,paint);
 
+        //
+
+//        Bitmap rectBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.composites);
+////        Paint paint1 = new Paint();
+////        canvas.drawBitmap(rectBitmap,0,0,paint1);
+//
+//        Bitmap circleBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.composited);
+////        Paint paint2 = new Paint();
+////        canvas.drawBitmap(circleBitmap,0,0,paint2);
+//        int saved = canvas.saveLayer(null, null, Canvas.ALL_SAVE_FLAG);
+//        Xfermode xfermode = new PorterDuffXfermode(PorterDuff.Mode.DST_IN);
+//        canvas.drawBitmap(rectBitmap, 0, 0, paint); // 画方
+//        paint.setXfermode(xfermode); // 设置 Xfermode
+//        canvas.drawBitmap(circleBitmap, 0, 0, paint); // 画圆
+//        paint.setXfermode(null); // 用完及时清除 Xfermode
+//        canvas.restoreToCount(saved);
+
+        //图形的轮廓设置效果
+//        PathEffect dashPathEffect = new DashPathEffect(new float[]{10, 5}, 10);
+//        paint.setPathEffect(dashPathEffect);
+//        paint.setColor(Color.BLUE);
+//        paint.setStyle(Paint.Style.STROKE);
+//        canvas.drawCircle(300, 300, 300, paint);
+
+        //把所有的直角变为拐角
+//        Path path = new Path();
+//        path.lineTo(300,300);
+//        path.lineTo(400,300);
+//        path.lineTo(400,500);
+//        paint.setColor(Color.BLUE);
+//        paint.setStrokeWidth(10);
+//        paint.setStyle(Paint.Style.STROKE);
+//        CornerPathEffect cornerPathEffect = new CornerPathEffect(20);
+//        paint.setPathEffect(cornerPathEffect);
+//        canvas.drawPath(path,paint);
+
+
+//        //把线条随机的偏离
+//        Path path = new Path();
+//        path.lineTo(300,300);
+//        path.lineTo(400,300);
+//        path.lineTo(400,500);
+//        paint.setColor(Color.BLUE);
+//        paint.setStrokeWidth(10);
+//        paint.setStyle(Paint.Style.STROKE);
+//        PathEffect cornerPathEffect = new DiscretePathEffect(20,5);
+//        paint.setPathEffect(cornerPathEffect);
+//        canvas.drawPath(path,paint);
+
+//        Path path = new Path();
+//        path.lineTo(300,300);
+//        path.lineTo(400,300);
+//        path.lineTo(400,500);
+//        paint.setColor(Color.BLUE);
+//        paint.setStrokeWidth(10);
+//        paint.setStyle(Paint.Style.STROKE);
+//        PathEffect cornerPathEffect = new DashPathEffect(new float[]{20, 10, 5, 10}, 0);
+//        paint.setPathEffect(cornerPathEffect);
+//        canvas.drawPath(path,paint);
+
+        //设置线头的形状
+//        paint.setStrokeCap(Paint.Cap.SQUARE);
+//        paint.setStrokeWidth(20);
+//        paint.setColor(Color.parseColor("#ff0000"));
+//        canvas.drawLine(0,0,200,200,paint);
+
+        //设置拐角的形状
+//        Path path = new Path();
+//        path.lineTo(200,200);
+//        path.lineTo(400,0);
+//        paint.setColor(Color.parseColor("#ff0000"));
+//        paint.setStrokeWidth(30);
+//        paint.setStyle(Paint.Style.STROKE);
+//        paint.setStrokeJoin(Paint.Join.ROUND);
+//        canvas.drawPath(path,paint);
+
+//        //给文字加层阴影 在文字下方附加效果
+//        paint.setShadowLayer(10,10,10, Color.RED);
+//        paint.setTextSize(60);
+//        canvas.drawText("你好文字",80,300,paint);
+
+
+
+
+
+////        //给图片加层阴影 在文字上方附加效果
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avater);
+//        //SOLID  在外层产生一层阴影效果而不影响图像本身
+//        //NORMAL 整个图片周围出项阴影效果
+//        //OUTER  原本的图片变透明 外界产生一层阴影
+//        //INNER  可以看见阴影在色块的内部，有种淡淡的浮雕感。
+//        paint.setMaskFilter(new BlurMaskFilter(80, BlurMaskFilter.Blur.INNER));
+//        setLayerType(LAYER_TYPE_SOFTWARE, null);
+////        paint.setTextSize(60);
+////        canvas.drawText("你好文字",80,300,paint);
+//        canvas.drawBitmap(bitmap,100,100,paint);
+
+
+//////        //给图片加层阴影 在文字上方附加效之浮雕效果
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avater);
+//        //   float[] direction 光源的方向 , float ambient 环境光的强度（0-1）, float specular 炫光的系数, float blurRadius 应用光线的范围,
+//        paint.setMaskFilter(new EmbossMaskFilter(new float[]{0,1,1},0.2f,60,20));
+//        setLayerType(LAYER_TYPE_SOFTWARE, null);
+////        paint.setTextSize(60);
+////        canvas.drawText("你好文字",80,300,paint);
+//        canvas.drawBitmap(bitmap,100,100,paint);
+
+
+        //设置中间的横线
+//        paint.setStrikeThruText(true);
+        //设置下划线
+        paint.setUnderlineText(true);
+        paint.setTextSize(60);
+        CharSequence text = getText();
+        canvas.drawText(text+"",100,200,paint);
+
+
+
+    }
+
+    @Override
+    public void run() {
     }
 }

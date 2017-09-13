@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.lcl6.cn.basedialog.widget.CircleText
@@ -31,7 +33,18 @@
 
     <com.lcl6.cn.basedialog.widget.CircleText
         android:layout_marginTop="20dp"
+        android:visibility="visible"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="200dp"
+        android:text="你是生活"
 
+        />
+
+    <com.lcl6.cn.basedialog.widget.UnderLineTextView
+        android:layout_marginTop="20dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        app:under_height="20"
+        />
 </LinearLayout>

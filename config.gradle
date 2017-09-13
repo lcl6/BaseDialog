@@ -31,7 +31,7 @@ ext{
     okhttpVersion = '3.8.1'
     constraintVersion = '1.0.2'
     butterknifeVersion = '8.6.0'
-    glideVersion = '4.0.0'
+    glideVersion = '4.1.1'
     jsoupVersion = '1.9.2'
     leakcanaryVersion = '1.5'
     supportLibraryVersion = '26.0.0-alpha1'
