@@ -30,7 +30,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
 
     private NetworkStateView mNetworkStateView;
 
-    private Unbinder mUnbinder;
+    public Unbinder mUnbinder;
     private TitleBar mTitleBar;
     private ImageView mCollectView;
 
@@ -152,7 +152,9 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mUnbinder.unbind();
+        if(mUnbinder!=null){
+            mUnbinder.unbind();
+        }
     }
 
     @Override
@@ -209,5 +211,6 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
         }
         mNetworkStateView.showNoNetwork();
     }
+
 
 }

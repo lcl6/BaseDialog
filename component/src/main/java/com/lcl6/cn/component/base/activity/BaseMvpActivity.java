@@ -6,8 +6,6 @@ import android.support.annotation.Nullable;
 import com.lcl6.cn.component.base.mvp.presnenter.RxPresenter;
 import com.lcl6.cn.component.base.mvp.view.BaseView;
 
-import butterknife.Unbinder;
-
 
 /**
  *
@@ -17,7 +15,6 @@ import butterknife.Unbinder;
 public abstract class BaseMvpActivity<T extends RxPresenter> extends BaseActivity implements BaseView {
 
     public T mPresenter;
-    Unbinder mUnbinder;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         mPresenter = getPresenter();
@@ -37,10 +34,10 @@ public abstract class BaseMvpActivity<T extends RxPresenter> extends BaseActivit
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         if (mPresenter != null) {
             mPresenter.dechView();
         }
+        super.onDestroy();
     }
 
     @Override

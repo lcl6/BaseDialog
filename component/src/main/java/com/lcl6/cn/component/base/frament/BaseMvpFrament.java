@@ -1,5 +1,8 @@
 package com.lcl6.cn.component.base.frament;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
 import com.lcl6.cn.component.base.mvp.presnenter.RxPresenter;
 import com.lcl6.cn.component.base.mvp.view.BaseView;
 
@@ -8,7 +11,7 @@ import com.lcl6.cn.component.base.mvp.view.BaseView;
  */
 
 public abstract class BaseMvpFrament<T extends RxPresenter> extends LazyFragment implements BaseView {
-
+    public T mPresenter;
     @Override
     protected int getAbsLayoutId() {
         return getLayoutId();
@@ -16,6 +19,14 @@ public abstract class BaseMvpFrament<T extends RxPresenter> extends LazyFragment
 
     public abstract int getLayoutId();
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mPresenter = getPresenter();
+    }
+
+    protected abstract T getPresenter();
     @Override
     public void showErrorMsg(String msg) {
 
@@ -39,5 +50,23 @@ public abstract class BaseMvpFrament<T extends RxPresenter> extends LazyFragment
     @Override
     public void stateSuccess() {
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (mPresenter != null) {
+            mPresenter.dechView();
+        }
+
+        super.onDestroyView();
+
+    }
+
+    @Override
+    protected void onFragmentResume() {
+        super.onFragmentResume();
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
+        }
     }
 }

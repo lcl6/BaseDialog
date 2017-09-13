@@ -13,6 +13,7 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * 懒加载的fragment
@@ -36,11 +37,13 @@ public abstract class LazyFragment extends RxFragment implements IFragmentBackPr
     /** 是否从OnPause离开 */
     private boolean isOnPauseOut = false;
 
-
+    Unbinder mUnbinder;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(getAbsLayoutId(), container, false);
+        View inflate = inflater.inflate(getAbsLayoutId(), container, false);
+        mUnbinder = ButterKnife.bind(this, inflate);
+        return inflate;
     }
 
     @LayoutRes
@@ -73,6 +76,9 @@ public abstract class LazyFragment extends RxFragment implements IFragmentBackPr
         super.onDestroyView();
         isLoadComplete = false;// fragment被回收时重置加载状态
         mParentView = null;
+        if(mUnbinder!=null){
+            mUnbinder.unbind();
+        }
     }
 
     @Override
@@ -207,5 +213,10 @@ public abstract class LazyFragment extends RxFragment implements IFragmentBackPr
     @Override
     public boolean onPressBack() {
         return false;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

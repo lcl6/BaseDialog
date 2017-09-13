@@ -3,7 +3,9 @@ package com.lcl6.cn.basedialog.widget;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 
 /**
@@ -29,6 +31,7 @@ public class CircleText extends android.support.v7.widget.AppCompatTextView impl
     private void init() {
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -223,8 +226,14 @@ public class CircleText extends android.support.v7.widget.AppCompatTextView impl
         //设置下划线
         paint.setUnderlineText(true);
         paint.setTextSize(60);
-        CharSequence text = getText();
-        canvas.drawText(text+"",100,200,paint);
+        String text = getText().toString();
+        int length = text.length();
+        float advance = paint.getRunAdvance(text, 0, length, 0, length, false, length);
+        int offsetX=100;
+        int offsetY=200;
+        canvas.drawText(text, offsetX, offsetY, paint);
+        canvas.drawLine(offsetX + advance, offsetY - 50, offsetX + advance, offsetY + 10, paint);
+
 
 
 
