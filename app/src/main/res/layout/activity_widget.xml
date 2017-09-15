@@ -37,7 +37,6 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:text="你是生活"
-
         />
 
     <com.lcl6.cn.basedialog.widget.UnderLineTextView
@@ -45,6 +44,24 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:gravity="center"
+        android:visibility="gone"
         app:under_height="20"
         />
+    <com.lcl6.cn.basedialog.widget.MyLinearlayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/avater"
+            />
+    </com.lcl6.cn.basedialog.widget.MyLinearlayout>
+
+    <com.lcl6.cn.basedialog.widget.anima.MyAnimateImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/avater"/>
+
 </LinearLayout>

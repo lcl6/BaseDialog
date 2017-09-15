@@ -224,17 +224,37 @@ public class CircleText extends android.support.v7.widget.AppCompatTextView impl
         //设置中间的横线
 //        paint.setStrikeThruText(true);
         //设置下划线
-        paint.setUnderlineText(true);
-        paint.setTextSize(60);
-        String text = getText().toString();
-        int length = text.length();
-        float advance = paint.getRunAdvance(text, 0, length, 0, length, false, length);
-        int offsetX=100;
-        int offsetY=200;
-        canvas.drawText(text, offsetX, offsetY, paint);
-        canvas.drawLine(offsetX + advance, offsetY - 50, offsetX + advance, offsetY + 10, paint);
+//        paint.setUnderlineText(true);
+//        paint.setTextSize(60);
+//        String text = getText().toString();
+//        int length = text.length();
+//        float advance = paint.getRunAdvance(text, 0, length, 0, length, false, length);
+//        int offsetX=100;
+//        int offsetY=200;
+//        canvas.drawText(text, offsetX, offsetY, paint);
+//        canvas.drawLine(offsetX + advance, offsetY - 50, offsetX + advance, offsetY + 10, paint);
 
+//
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avater);
+//        canvas.save();
+//        //要显示的范围
+//        canvas.clipRect(100,100, 200, 200);
+//        canvas.drawBitmap(bitmap,100,100,paint);
+//        canvas.restore();
 
+//        //对图片进行压缩
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avater);
+//        canvas.save();
+//        canvas.scale(2f,2f,bitmap.getWidth()/2,bitmap.getHeight()/2);
+//        canvas.drawBitmap(bitmap,100,100,paint);
+//        canvas.restore();
+
+//        //错切
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avater);
+//        canvas.save();
+//        canvas.skew(0.5f,0f);
+//        canvas.drawBitmap(bitmap,100,100,paint);
+//        canvas.restore();
 
 
     }
