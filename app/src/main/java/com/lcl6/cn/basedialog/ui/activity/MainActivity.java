@@ -16,7 +16,6 @@ import com.lcl6.cn.basedialog.widget.dialog.CustomButtomDialog;
 import com.lcl6.cn.basedialog.widget.dialog.CustomDialog;
 import com.lcl6.cn.basedialog.widget.dialog.CustomLeftDialog;
 import com.lcl6.cn.basedialog.widget.dialog.CustomRightDialog;
-import com.lcl6.cn.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,12 +38,17 @@ public class MainActivity extends AppCompatActivity {
     TextView mTextJsoup;
 
 
+    String a=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Utils.init(getContext());
+
         ButterKnife.bind(this);
+
+        a.toString();
+
+
     }
 
     @Override

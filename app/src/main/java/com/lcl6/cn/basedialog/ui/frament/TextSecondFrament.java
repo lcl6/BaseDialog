@@ -70,6 +70,7 @@ public class TextSecondFrament extends LazyFragment {
     }
 
     private void initDoubleClick() {
+        Observable<Integer> debounce = integerObservable.debounce(1000, TimeUnit.MILLISECONDS);
         integerObservable.buffer(integerObservable.debounce(1000,TimeUnit.MILLISECONDS))
                 .map(new Function<List<Integer>, Integer>() {
                     @Override
