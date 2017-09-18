@@ -15,7 +15,7 @@ import com.lcl6.cn.utils.DensityUtils;
  * Created by liancl on 2017/8/4.
  */
 
-public class TrigonView extends TextView {
+public class TrigonView extends android.support.v7.widget.AppCompatTextView {
     //无参
     public TrigonView(Context context) {
         super(context);

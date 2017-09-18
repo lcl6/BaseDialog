@@ -13,7 +13,6 @@ import com.lcl6.cn.utils.ReflectUtils;
 
 /**
  * 可设置底线宽度的TabLayout
- * Created by zhouL on 2017/5/11.
  */
 public class FreeTabLayout extends TabLayout{
     public FreeTabLayout(Context context) {
