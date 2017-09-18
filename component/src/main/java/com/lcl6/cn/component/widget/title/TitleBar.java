@@ -29,15 +29,21 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
 
     private TextView mLeftText;
     private LinearLayout mRightLayout;
+    /**title 布局*/
     private LinearLayout mCenterLayout;
+    /**标题文字*/
     private TextView mCenterText;
+    /**子标题*/
     private TextView mSubTitleText;
+    /**自定义的中间的title 布局*/
     private View mCustomCenterView;
+    /**底下的分割线*/
     private View mDividerView;
-
+    /**是否开启沉浸状态栏*/
     private boolean mImmersive;
-
+    /**屏幕的宽度*/
     private int mScreenWidth;
+    /**状态栏的高度*/
     private int mStatusBarHeight;
     private int mActionPadding;
     private int mOutPadding;
@@ -394,7 +400,6 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     /**
      * 计算状态栏高度高度
      * getStatusBarHeight
-     * @return
      */
     public static int getStatusBarHeight() {
         return getInternalDimensionSize(Resources.getSystem(), STATUS_BAR_HEIGHT_RES_NAME);
