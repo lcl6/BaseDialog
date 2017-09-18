@@ -5,9 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
@@ -18,7 +20,7 @@ import com.lcl6.cn.basedialog.R;
  * Created by liancl on 2017/8/21
  */
 
-public class CircleText extends android.support.v7.widget.AppCompatTextView implements Runnable{
+public class CircleText extends android.support.v7.widget.AppCompatTextView {
     public CircleText(Context context) {
         super(context);
         init();
@@ -268,6 +270,7 @@ public class CircleText extends android.support.v7.widget.AppCompatTextView impl
 
     }
     boolean changtoleft=false;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int dx=100;
@@ -280,11 +283,28 @@ public class CircleText extends android.support.v7.widget.AppCompatTextView impl
         if(width1<=0){
             changtoleft=false;
         }
-        animate().xBy(changtoleft?-dx:dx).setDuration(500);
-        return super.onTouchEvent(event);
-    }
+        //xby 不断递增 或者递减
+        //LinearInterpolator 匀速
+        // AccelerateInterpolator 持续加速
+        // DecelerateInterpolator 持续减速至0
+        // AnticipateInterpolator 刚刚开始的时候回拉
+        // OvershootInterpolator 回拉加反弹
+        // BounceInterpolator 在目标处弹跳
+        //CycleInterpolator 不到终点就回弹
+        //PathInterpolator  自定义path
+//        animate().xBy(changtoleft?-dx:dx).setDuration(500).setInterpolator(new CycleInterpolator(0.5f));
 
-    @Override
-    public void run() {
+
+        //注意 最后一定要回到 1,1   完成时间 中间不能重复
+//        Path path = new Path();
+//        path.lineTo(0.25f,0.25f);
+//        path.moveTo(0.25f,1.5f);
+//        path.lineTo(1,1);
+//        animate().xBy(changtoleft?-dx:dx).setDuration(500).setInterpolator(new PathInterpolator(path));
+
+        Path path = new Path();
+        path.lineTo(1,1);
+        animate().xBy(changtoleft?-dx:dx).setDuration(500).setInterpolator(new FastOutLinearInInterpolator());
+        return super.onTouchEvent(event);
     }
 }

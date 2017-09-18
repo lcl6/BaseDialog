@@ -64,12 +64,4 @@ public abstract class BaseMvpActivity<T extends RxPresenter> extends BaseActivit
     public void showErrorMsg(String msg) {
 
     }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if (mUnbinder != null) {
-            mUnbinder.unbind();
-        }
-    }
 }
