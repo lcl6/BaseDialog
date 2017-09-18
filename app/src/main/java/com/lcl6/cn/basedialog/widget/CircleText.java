@@ -1,12 +1,18 @@
 package com.lcl6.cn.basedialog.widget;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+
+import com.lcl6.cn.basedialog.R;
 
 /**
  * Created by liancl on 2017/8/21
@@ -257,6 +263,25 @@ public class CircleText extends android.support.v7.widget.AppCompatTextView impl
 //        canvas.restore();
 
 
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avater);
+        canvas.drawBitmap(bitmap,0,0,paint);
+
+    }
+    boolean changtoleft=false;
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int dx=100;
+        ViewGroup parent = (ViewGroup) getParent();
+        int width = parent.getWidth();
+        int width1 = (int) getX();
+        if(width1>=width-getWidth()){
+            changtoleft=true;
+        }
+        if(width1<=0){
+            changtoleft=false;
+        }
+        animate().xBy(changtoleft?-dx:dx).setDuration(500);
+        return super.onTouchEvent(event);
     }
 
     @Override
