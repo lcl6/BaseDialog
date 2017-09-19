@@ -1,4 +1,4 @@
-package com.lcl6.cn.basedialog.ui.activity.evaluator;
+package com.lcl6.cn.basedialog.widget.anima.evaluator;
 
 import android.animation.TypeEvaluator;
 import android.graphics.Color;
