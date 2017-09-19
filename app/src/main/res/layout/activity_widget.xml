@@ -76,6 +76,9 @@
                 android:layout_width="300dp"
                 android:layout_height="300dp"/>
 
+            <com.lcl6.cn.basedialog.widget.anima.EvaluatorAnimateView
+                android:layout_width="300dp"
+                android:layout_height="300dp"/>
 
 
         </LinearLayout>
