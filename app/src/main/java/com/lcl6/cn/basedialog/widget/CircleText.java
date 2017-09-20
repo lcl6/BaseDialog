@@ -1,16 +1,19 @@
 package com.lcl6.cn.basedialog.widget;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Camera;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
+import android.graphics.Point;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 
@@ -21,6 +24,9 @@ import com.lcl6.cn.basedialog.R;
  */
 
 public class CircleText extends android.support.v7.widget.AppCompatTextView {
+    //旋转的角度
+    private float degree;
+
     public CircleText(Context context) {
         super(context);
         init();
@@ -258,18 +264,95 @@ public class CircleText extends android.support.v7.widget.AppCompatTextView {
 //        canvas.restore();
 
 //        //错切
-//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avater);
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.maps);
 //        canvas.save();
-//        canvas.skew(0.5f,0f);
-//        canvas.drawBitmap(bitmap,100,100,paint);
+//        canvas.skew(0f,0f);
+//        canvas.drawBitmap(bitmap,10,10,paint);
+//        canvas.restore();
+
+        // 画一个bitmap
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avater);
+//        canvas.drawBitmap(bitmap,0,0,paint);
+
+//        //使用camera 做三维变换
+//        Camera camera = new Camera();
+//        camera.save();
+////        camera.setLocation(0,0,20);
+//        camera.rotateX(30);
+//
+//        canvas.translate(centerX,centerY);
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.maps);
+//        camera.applyToCanvas(canvas);
+//        camera.restore();
+//
+//        canvas.save();
+//        canvas.translate(-centerX,-centerY);
+//        canvas.drawBitmap(bitmap,pointX,poinY,paint);
 //        canvas.restore();
 
 
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avater);
-        canvas.drawBitmap(bitmap,0,0,paint);
+
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.maps);
+//        Matrix matrix = new Matrix();
+//        float[] pointsSrc = {left, top, right, top, left, bottom, right, bottom};
+//        float[] pointsDst = {left - 10, top + 50, right + 120, top - 90, left + 20, bottom + 30, right + 20, bottom + 60};
+//
+//        matrix.reset();
+//        matrix.setPolyToPoly(pointsSrc,0,pointsDst,0,4);
+//        canvas.save();
+//        canvas.concat(matrix);
+//        canvas.drawBitmap(bitmap,0,0,paint);
+//        canvas.restore();
+
+
+        Point point = new Point(200, 50);
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.maps);
+        int bitmapWidth = bitmap.getWidth();
+        int bitmapHeight = bitmap.getHeight();
+
+        int centerX = point.x + bitmapWidth / 2;
+        int centerY = point.y + bitmapHeight / 2;
+
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        float newZ = - displayMetrics.density * 6;
+
+        Camera camera = new Camera();
+        Matrix matrix = new Matrix();
+
+
+        camera.setLocation(0, 0, newZ);
+        camera.save();
+        matrix.reset();
+
+        camera.rotateX(getDegree());
+        camera.getMatrix(matrix);
+        camera.restore();
+        matrix.preTranslate(-centerX, -centerY);
+        matrix.postTranslate(centerX, centerY);
+        canvas.save();
+        canvas.concat(matrix);
+        canvas.drawBitmap(bitmap, point.x, point.y,paint);
+        canvas.restore();
+
 
     }
+//    float left=20;
+//    float top=10;
+//    float right=200;
+//    float bottom=200;
+
     boolean changtoleft=false;
+
+    public float getDegree() {
+        return degree;
+    }
+
+    public void setDegree(float degree) {
+        this.degree = degree;
+        invalidate();
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -302,9 +385,15 @@ public class CircleText extends android.support.v7.widget.AppCompatTextView {
 //        path.lineTo(1,1);
 //        animate().xBy(changtoleft?-dx:dx).setDuration(500).setInterpolator(new PathInterpolator(path));
 
-        Path path = new Path();
-        path.lineTo(1,1);
-        animate().xBy(changtoleft?-dx:dx).setDuration(500).setInterpolator(new FastOutLinearInInterpolator());
+//        Path path = new Path();
+//        path.lineTo(1,1);
+//        animate().xBy(changtoleft?-dx:dx).setDuration(500).setInterpolator(new FastOutLinearInInterpolator());
+
+
+        ObjectAnimator degreeAnimator= ObjectAnimator.ofFloat(this, "degree", 0, 360);
+        degreeAnimator.setDuration(2000);
+        degreeAnimator.start();
+
         return super.onTouchEvent(event);
     }
 }
