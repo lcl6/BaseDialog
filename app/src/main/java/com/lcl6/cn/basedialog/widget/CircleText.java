@@ -328,8 +328,8 @@ public class CircleText extends android.support.v7.widget.AppCompatTextView {
         camera.rotateX(getDegree());
         camera.getMatrix(matrix);
         camera.restore();
-        matrix.preTranslate(-centerX, -centerY);
-        matrix.postTranslate(centerX, centerY);
+        matrix.preTranslate(-centerX, -centerY);//这个方法表示移回零点
+        matrix.postTranslate(centerX, centerY);//这个表示移回原点
         canvas.save();
         canvas.concat(matrix);
         canvas.drawBitmap(bitmap, point.x, point.y,paint);
