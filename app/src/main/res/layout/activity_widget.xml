@@ -41,7 +41,7 @@
             <com.lcl6.cn.basedialog.widget.CircleText
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <com.lcl6.cn.basedialog.widget.UnderLineTextView
                 android:layout_width="100dp"
@@ -65,7 +65,8 @@
             <com.lcl6.cn.basedialog.widget.anima.MyAnimateImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/avater" />
+                android:src="@drawable/avater"
+                android:visibility="gone"/>
 
             <com.lcl6.cn.basedialog.widget.anima.ObjectAnimateView
                 android:layout_width="300dp"
@@ -74,7 +75,14 @@
 
             <com.lcl6.cn.basedialog.widget.anima.EvaluatorAnimateView
                 android:layout_width="300dp"
-                android:layout_height="300dp" />
+                android:layout_height="300dp"
+                android:visibility="gone"
+                />
+            <com.lcl6.cn.basedialog.widget.anima.view.RoatXImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                />
+
 
 
         </LinearLayout>
