@@ -27,7 +27,9 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
 
     private static final String STATUS_BAR_HEIGHT_RES_NAME = "status_bar_height";
 
+    /**左边返回按钮的文字*/
     private TextView mLeftText;
+    /**右边的布局*/
     private LinearLayout mRightLayout;
     /**title 布局*/
     private LinearLayout mCenterLayout;
@@ -46,8 +48,11 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     /**状态栏的高度*/
     private int mStatusBarHeight;
     private int mActionPadding;
+    /**设置右边的pading*/
     private int mOutPadding;
+    /**右边文字的颜色*/
     private int mActionTextColor;
+    /**title 的高度*/
     private int mHeight;
 
     public TitleBar(Context context) {
