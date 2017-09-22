@@ -13,18 +13,20 @@ import android.graphics.Point;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 import com.lcl6.cn.basedialog.R;
+import com.lcl6.cn.basedialog.constant.Constant;
 
 /**
  * 沿着x轴旋转的控件
  * Created by liancl on 2017/9/20.
  */
 
-public class RoatXImageView extends View {
+public class RoatXImageView extends View{
 
     Paint paint=  new Paint();
 
@@ -32,6 +34,9 @@ public class RoatXImageView extends View {
     Camera camera = new Camera();
     private float degree;
     ObjectAnimator degreeAnimator;
+    ObjectAnimator centerdegreeAnimator;
+    int centerdegree;
+
 
     public RoatXImageView(Context context) {
         super(context);
@@ -54,13 +59,20 @@ public class RoatXImageView extends View {
         this.degree = degree;
         invalidate();
     }
+
+    public int getCenterdegree() {
+        return centerdegree;
+    }
+
+    public void setCenterdegree(int centerdegree) {
+        this.centerdegree = centerdegree;
+        invalidate();
+    }
+
     {
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         float newZ = - displayMetrics.density * 6;
         camera.setLocation(0, 0, newZ);
-
-
-
     }
 
     @Override
@@ -80,7 +92,7 @@ public class RoatXImageView extends View {
         int height = bheight / 2 + point.y;
         //画书的上半页
         canvas.save();
-        canvas.clipRect( point.x, point.y, point.x+bwidth,point.y+bheight/2);
+        canvas.clipRect(point.x, point.y, point.x+bwidth,point.y+bheight/2);
         canvas.drawBitmap(bitmap, point.x, point.y, paint);
         canvas.restore();
 
@@ -115,13 +127,33 @@ public class RoatXImageView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        degreeAnimator= ObjectAnimator.ofFloat(this, "degree", 0, 180);
+        degreeAnimator= ObjectAnimator.ofFloat(this, "degree", 0, 90);
         degreeAnimator.setInterpolator(new LinearInterpolator());
-        degreeAnimator.setDuration(4000);
+        degreeAnimator.setDuration(2000);
         degreeAnimator.setRepeatMode(ValueAnimator.REVERSE);
-        degreeAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        degreeAnimator.setRepeatCount(ValueAnimator.RESTART);
         degreeAnimator.start();
 
+
+//        centerdegreeAnimator= ObjectAnimator.ofInt(this, "centerdegree", 0, 360);
+//        centerdegreeAnimator.setInterpolator(new LinearInterpolator());
+//        centerdegreeAnimator.setDuration(2000);
+//        centerdegreeAnimator.setRepeatMode(ValueAnimator.REVERSE);
+//        centerdegreeAnimator.setRepeatCount(ValueAnimator.INFINITE);
+//        centerdegreeAnimator.start();
+        Log.e(Constant.TAG, "RoatXImageView 的onTouchEvent: " );
         return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.e(Constant.TAG, "RoatXImageView 的dispatchTouchEvent: " );
+        return super.dispatchTouchEvent(ev);
+    }
+
+
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
     }
 }

@@ -2,14 +2,20 @@ package com.lcl6.cn.basedialog.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialog.constant.Constant;
+import com.lcl6.cn.basedialog.widget.anima.view.RoatXImageView;
 import com.lcl6.cn.component.base.activity.BaseActivity;
 
 import java.util.concurrent.TimeUnit;
@@ -40,6 +46,14 @@ public class WidgetActivity extends BaseActivity {
     @BindView(R.id.tv_result)
     TextView tvResult;
     private CompositeDisposable mCompositeDisposable;
+
+
+    @BindView(R.id.lin_my)
+    ViewGroup mLinOut;
+    @BindView(R.id.rximage)
+    RoatXImageView mIamge;
+
+
 
     public static void start(Context context) {
         Intent starter = new Intent(context, WidgetActivity.class);
@@ -131,8 +145,56 @@ public class WidgetActivity extends BaseActivity {
         }).subscribeOn(Schedulers.io());
     }
 
+
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initData() {
+        mIamge.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Log.e(Constant.TAG, "mIamge setOnTouchListener: " );
+                return false;
+            }
+        });
+
+//        mIamge.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.e(Constant.TAG, "mIamge setOnClickListener: " );
+//            }
+//        });
+
+//        mLinOut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.e(Constant.TAG, "mLinOut setOnClickListener: " );
+//            }
+//        });
+
+//        mLinOut.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View v) {
+//                Log.e(Constant.TAG, "mLinOut setOnLongClickListener: " );
+//                return false;
+//            }
+//        });
+
+
+    }
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.e(Constant.TAG, "activity 的dispatchTouchEvent: " );
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.e(Constant.TAG, "activity 的onTouchEvent: " );
+        return super.onTouchEvent(event);
 
     }
 
