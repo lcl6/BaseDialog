@@ -32,37 +32,40 @@ public class NetworkStateView extends LinearLayout {
     private static final int STATE_NETWORK_ERROR = 2;
     private static final int STATE_NO_NETWORK = 3;
     private static final int STATE_EMPTY = 4;
-
     //布局添加位置
     private static final int VIEW_POSITION = 0;
-
+    /**加载布局的id*/
     private int mLoadingViewId;
-
+    /**错误布局的id*/
     private int mErrorViewId;
+    /**错误图片布局的id*/
     private int mErrorImageId;
+    /**错误描述*/
     private String mErrorText;
-
+    /**没有网络的布局*/
     private int mNoNetworkViewId;
+    /**没有网络的图片id*/
     private int mNoNetworkImageId;
+    /**没有网络的文字描述*/
     private String mNoNetworkText;
-
+    /**空数据的布局*/
     private int mEmptyViewId;
+    /**空数据的图片id*/
     private int mEmptyImageId;
+    /**空数据的文字*/
     private String mEmptyText;
-
+    /**重新刷新的id*/
     private int mRefreshViewId;
-
+    /**text的颜色*/
     private int mTextColor;
+    /**大小*/
     private int mTextSize;
-
     private View mLoadingView;
     private View mErrorView;
     private View mNoNetworkView;
     private View mEmptyView;
-
     private LayoutInflater mInflater;
     private ViewGroup.LayoutParams params;
-
     private OnRefreshListener mRefreshListener;
 
     public NetworkStateView(@NonNull Context context) {
