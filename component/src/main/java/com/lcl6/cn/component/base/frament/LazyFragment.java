@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -42,6 +44,7 @@ public abstract class LazyFragment extends RxFragment implements IFragmentBackPr
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View inflate = inflater.inflate(getAbsLayoutId(), container, false);
         mUnbinder = ButterKnife.bind(this, inflate);
+        EventBus.getDefault().register(this);
         return inflate;
     }
 
@@ -75,6 +78,7 @@ public abstract class LazyFragment extends RxFragment implements IFragmentBackPr
         super.onDestroyView();
         isLoadComplete = false;// fragment被回收时重置加载状态
         mParentView = null;
+        EventBus.getDefault().unregister(this);
         if(mUnbinder!=null){
             mUnbinder.unbind();
         }

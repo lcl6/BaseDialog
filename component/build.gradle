@@ -40,6 +40,8 @@ dependencies {
     // butterknife
     provided "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+    //eventbus
+    compile "org.greenrobot:eventbus:$rootProject.eventVersion"
 
     compile project(':utils')
 

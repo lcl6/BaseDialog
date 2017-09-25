@@ -18,6 +18,8 @@ import com.lcl6.cn.utils.ToastUtils;
 import com.lcl6.cn.utils.statusbar.QMUIStatusBarHelper;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -41,6 +43,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
         setContentView(setLayoutId());
         afterCreat(savedInstanceState);
         mUnbinder = ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
         initView();
         initIntentData();
         initData();
@@ -152,6 +155,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
         if(mUnbinder!=null){
             mUnbinder.unbind();
         }
