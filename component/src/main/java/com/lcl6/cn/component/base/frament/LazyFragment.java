@@ -17,7 +17,6 @@ import butterknife.Unbinder;
 
 /**
  * 懒加载的fragment
- * Created by zhouL on 2017/3/1.
  */
 
 public abstract class LazyFragment extends RxFragment implements IFragmentBackPressed{

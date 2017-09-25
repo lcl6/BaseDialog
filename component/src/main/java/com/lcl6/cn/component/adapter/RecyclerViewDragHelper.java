@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by liancl on 2017/8/2.
+ * 拖拽的帮助类
  */
 
 public class RecyclerViewDragHelper<T> {

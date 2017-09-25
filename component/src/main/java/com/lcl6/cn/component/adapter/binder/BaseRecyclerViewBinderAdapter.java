@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by liancl on 2017/8/7.
+ * binder 适配器
+ *
  */
 
 public class BaseRecyclerViewBinderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{

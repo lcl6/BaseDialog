@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by liancl on 2017/8/4.
+ * binder
  */
 
 public abstract class RecyclerBinder<T>{

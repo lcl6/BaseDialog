@@ -1,7 +1,6 @@
 package com.lcl6.cn.utils;
 
 import android.app.Service;
-import android.content.Context;
 import android.os.Vibrator;
 
 /**
@@ -13,11 +12,10 @@ public class VibratorUtil {
 
     /**
      * 震动手机
-     * @param context 上下文
      * @param milliseconds 震动时间（毫秒）
      */
-    public static Vibrator vibrate(Context context, long milliseconds) {
-        Vibrator vibrator = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
+    public static Vibrator vibrate( long milliseconds) {
+        Vibrator vibrator = (Vibrator) Utils.getContext().getSystemService(Service.VIBRATOR_SERVICE);
         if (vibrator != null){
             vibrator.vibrate(milliseconds);
         }
@@ -26,12 +24,11 @@ public class VibratorUtil {
 
     /**
      * 震动手机
-     * @param context 上下文
      * @param pattern 自定义震动模式 数组中数字的含义依次是[静止时长，震动时长，静止时长，震动时长...] 时长的单位是毫秒
      * @param isRepeat 是否反复震动，如果是true，反复震动，如果是false，只震动一次
      */
-    public static Vibrator vibrate(Context context, long[] pattern, boolean isRepeat) {
-        Vibrator vibrator = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
+    public static Vibrator vibrate(long[] pattern, boolean isRepeat) {
+        Vibrator vibrator = (Vibrator) Utils.getContext().getSystemService(Service.VIBRATOR_SERVICE);
         if (vibrator != null){
             vibrator.vibrate(pattern, isRepeat ? 1 : -1);
         }
@@ -49,8 +46,8 @@ public class VibratorUtil {
     }
 
     /** 手机硬件是否有震动器 */
-    public static boolean hasVibrator(Context context){
-        Vibrator vibrator = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
+    public static boolean hasVibrator(){
+        Vibrator vibrator = (Vibrator) Utils.getContext().getSystemService(Service.VIBRATOR_SERVICE);
         return vibrator != null && vibrator.hasVibrator();
     }
 }

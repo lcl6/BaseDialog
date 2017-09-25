@@ -13,7 +13,6 @@ import com.lcl6.cn.utils.DensityUtils;
 import com.lcl6.cn.utils.ScreenUtils;
 
 /**
- * Created by liancl on 2017/8/7.
  */
 
 public abstract class BaseSimpleLoadMoreRecyclerViewAdapter<T> extends BaseLoadMoreRecyclerViewAdapter<T>{
@@ -76,8 +75,8 @@ public abstract class BaseSimpleLoadMoreRecyclerViewAdapter<T> extends BaseLoadM
             return;
         }
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
-        layoutParams.width = ScreenUtils.getScreenWidth(getContext());
-        layoutParams.height = DensityUtils.dp2px(getContext(), 40);
+        layoutParams.width = ScreenUtils.getScreenWidth();
+        layoutParams.height = DensityUtils.dp2px( 40);
 
         holder.itemView.setBackgroundColor(ContextCompat.getColor(getContext(), mFinishBackgroundColor));
 
@@ -93,8 +92,8 @@ public abstract class BaseSimpleLoadMoreRecyclerViewAdapter<T> extends BaseLoadM
             return;
         }
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
-        layoutParams.width = ScreenUtils.getScreenWidth(getContext());
-        layoutParams.height = DensityUtils.dp2px(getContext(), 40);
+        layoutParams.width = ScreenUtils.getScreenWidth();
+        layoutParams.height = DensityUtils.dp2px( 40);
 
         holder.itemView.setBackgroundColor(ContextCompat.getColor(getContext(), mLoadFailBackgroundColor));
 
@@ -110,8 +109,8 @@ public abstract class BaseSimpleLoadMoreRecyclerViewAdapter<T> extends BaseLoadM
             return;
         }
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
-        layoutParams.width = ScreenUtils.getScreenWidth(getContext());
-        layoutParams.height = DensityUtils.dp2px(getContext(), 40);
+        layoutParams.width = ScreenUtils.getScreenWidth();
+        layoutParams.height = DensityUtils.dp2px( 40);
 
         holder.itemView.setBackgroundColor(ContextCompat.getColor(getContext(), mLoadingMoreBackgroundColor));
 

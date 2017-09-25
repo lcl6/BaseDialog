@@ -6,6 +6,7 @@ import com.lcl6.cn.component.base.mvp.view.BaseView;
 import java.lang.ref.WeakReference;
 
 /**
+ * base presenter
  * Created by liancl on 2017/8/23.
  */
 

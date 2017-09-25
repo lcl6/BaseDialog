@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by liancl on 2017/8/2.
+ * 待头部的RecyclerView适配器
  */
 
 public abstract class BaseHeadRecyclerViewAdapter<H, T> extends BaseRecyclerViewAdapter<T>{

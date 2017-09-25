@@ -1,6 +1,5 @@
 package com.lcl6.cn.utils;
 
-import android.content.Context;
 import android.util.TypedValue;
 
 /**
@@ -11,38 +10,34 @@ public class DensityUtils {
 
     /**
      * dp转px
-     * @param context 上下文
      * @param dpValue dp值
      */
-    public static int dp2px(Context context, float dpValue) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, context.getResources().getDisplayMetrics());
+    public static int dp2px( float dpValue) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, Utils.getContext().getResources().getDisplayMetrics());
     }
 
     /**
      * sp转px
-     * @param context 上下文
      * @param spValue sp值
      */
-    public static int sp2px(Context context, float spValue) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, context.getResources().getDisplayMetrics());
+    public static int sp2px( float spValue) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, Utils.getContext().getResources().getDisplayMetrics());
     }
 
     /**
      * px转dp
-     * @param context 上下文
      * @param pxValue px值
      */
-    public static float px2dp(Context context, float pxValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
+    public static float px2dp( float pxValue) {
+        final float scale = Utils.getContext().getResources().getDisplayMetrics().density;
         return (pxValue / scale);
     }
 
     /**
      * px转sp
-     * @param context 上下文
      * @param pxValue px值
      */
-    public static float px2sp(Context context, float pxValue) {
-        return (pxValue / context.getResources().getDisplayMetrics().scaledDensity);
+    public static float px2sp(float pxValue) {
+        return (pxValue / Utils.getContext().getResources().getDisplayMetrics().scaledDensity);
     }
 }
