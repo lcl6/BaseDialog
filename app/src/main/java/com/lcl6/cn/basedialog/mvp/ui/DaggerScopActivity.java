@@ -37,15 +37,13 @@ public class DaggerScopActivity extends BaseMvpActivity<DaggerScopPresent> imple
     EdtextAdapter mAdapter;
 
     List<String> mlist;
-    DaggerScopPresent daggerScopPresent;
-
     public static void start(Context context) {
         Intent starter = new Intent(context, DaggerScopActivity.class);
         context.startActivity(starter);
     }
     @Override
     protected DaggerScopPresent getPresenter() {
-        daggerScopPresent= new DaggerScopPresent();
+        DaggerScopPresent daggerScopPresent= new DaggerScopPresent();
         return daggerScopPresent;
     }
 
@@ -73,7 +71,7 @@ public class DaggerScopActivity extends BaseMvpActivity<DaggerScopPresent> imple
 
     @Override
     protected void initData() {
-        daggerScopPresent.getData();
+        mPresenter.getData();
     }
 
     @Override

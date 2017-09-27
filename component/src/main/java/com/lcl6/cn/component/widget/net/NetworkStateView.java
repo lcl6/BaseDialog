@@ -98,7 +98,7 @@ public class NetworkStateView extends LinearLayout {
         mRefreshViewId = typedArray.getResourceId(R.styleable.NetworkStateView_nsvRefreshImage, NO_ID);
 
         mTextColor = typedArray.getColor(R.styleable.NetworkStateView_nsvTextColor, 0x8a000000);
-        mTextSize = typedArray.getDimensionPixelSize(R.styleable.NetworkStateView_nsvTextSize, DensityUtils.dp2px(context,14));
+        mTextSize = typedArray.getDimensionPixelSize(R.styleable.NetworkStateView_nsvTextSize, DensityUtils.dp2px(14));
 
         typedArray.recycle();
 

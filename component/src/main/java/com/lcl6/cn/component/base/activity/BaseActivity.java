@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.lcl6.cn.component.R;
+import com.lcl6.cn.component.event.TextEvent;
 import com.lcl6.cn.component.widget.net.NetworkStateView;
 import com.lcl6.cn.component.widget.title.TitleBar;
 import com.lcl6.cn.utils.ToastUtils;
@@ -19,6 +20,7 @@ import com.lcl6.cn.utils.statusbar.QMUIStatusBarHelper;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -216,5 +218,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
         mNetworkStateView.showNoNetwork();
     }
 
-
+    @Subscribe
+    public void onEvent(TextEvent event) {
+    }
 }
