@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lcl6.cn.component.event.TextEvent;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -221,5 +223,8 @@ public abstract class LazyFragment extends RxFragment implements IFragmentBackPr
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+    @Subscribe
+    public void onEvent(TextEvent event) {
     }
 }

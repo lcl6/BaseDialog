@@ -26,4 +26,23 @@
         android:text="测试双击"
         />
 
+
+    <TextView
+        android:id="@+id/tv_click_time"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:text="测试定时器"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_click_first"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:text="throttleFirst"
+        />
 </LinearLayout>
