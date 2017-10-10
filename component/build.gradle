@@ -42,9 +42,8 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
     //eventbus
     compile "org.greenrobot:eventbus:$rootProject.eventVersion"
-
     compile project(':utils')
-
+    compile files('lib/disklrucache-2.0.2.jar')
 }
 //添加
 publish {

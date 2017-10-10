@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next,R.id.tv_jsoup,R.id.tv_mvp
-            ,R.id.tv_widget,R.id.tv_retrofit,R.id.tv_dagger,R.id.tv_dagger_scop,R.id.tv_viewpage})
+            ,R.id.tv_widget,R.id.tv_retrofit,R.id.tv_dagger,R.id.tv_dagger_scop,R.id.tv_viewpage,R.id.tv_lru})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.tv_cumston:
@@ -103,8 +103,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.tv_viewpage://测试viewpager
                 ViewPagerActivity.start(getContext());
                 break;
-
-
+            case R.id.tv_lru://测试二级缓存
+                LruActivity.start(getContext());
+                break;
         }
     }
 
