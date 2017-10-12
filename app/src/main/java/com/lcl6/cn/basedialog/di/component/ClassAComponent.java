@@ -2,9 +2,10 @@ package com.lcl6.cn.basedialog.di.component;
 
 import android.app.Activity;
 
-import com.lcl6.cn.basedialog.ui.activity.DaggerActivity;
+import com.lcl6.cn.basedialog.app.App;
 import com.lcl6.cn.basedialog.di.model.ModuleA;
 import com.lcl6.cn.basedialog.di.scop.PerActivity;
+import com.lcl6.cn.basedialog.ui.activity.DaggerActivity;
 
 import dagger.Component;
 
@@ -19,5 +20,5 @@ public interface ClassAComponent {
     Activity getActivity();
 
     void inject(DaggerActivity activity);
-//    void inject(App app);
+    void inject(App app);
 }

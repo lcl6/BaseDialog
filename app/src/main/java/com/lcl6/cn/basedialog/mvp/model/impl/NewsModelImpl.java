@@ -32,7 +32,7 @@ import static com.lcl6.cn.basedialog.api.Api.GANK_DOMAIN_NAME;
  */
 
 public class NewsModelImpl implements NewsModel {
-     List<JsoupBean> mJsoupList = new ArrayList<>();
+    List<JsoupBean> mJsoupList = new ArrayList<>();
     @Override
     public void getData(final LoadCompleteListener listener) {
         RetrofitManager retrofitManager = App.getAppComponent().getRetrofitManager();
@@ -48,6 +48,11 @@ public class NewsModelImpl implements NewsModel {
                 .subscribe(new RxObservable<ResponseBody>() {
                     @Override
                     protected void onRxComplete() {
+
+                    }
+
+                    @Override
+                    protected void onRxSubscribe(Disposable d) {
 
                     }
 
@@ -72,11 +77,6 @@ public class NewsModelImpl implements NewsModel {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                    }
-
-                    @Override
-                    protected void onRxSubscribe(Disposable d) {
-
                     }
                     @Override
                     protected void onRxError(Throwable e) {
@@ -143,4 +143,5 @@ public class NewsModelImpl implements NewsModel {
             }
         }
     };
+
 }

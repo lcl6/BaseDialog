@@ -8,11 +8,10 @@ public class ClassA {
     private int a;
     private int b;
 //    @Inject
-//    public ClassA(@Named("a") int a,@Named("b") int b) {
+//    public ClassA(@Named("a") int a, @Named("b") int b) {
 //        this.a = a;
 //        this.b = b;
 //    }
-
 
     public ClassA(int a, int b) {
         this.a = a;

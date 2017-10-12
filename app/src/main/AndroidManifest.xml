@@ -35,7 +35,9 @@
 
         <activity android:name=".ui.activity.JsoupActivity">
         </activity>
-        <activity android:name=".mvp.ui.MvpActivity">
+        <activity android:name=".mvp.ui.MvpActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            >
         </activity>
         <activity android:name=".ui.activity.WidgetActivity">
         </activity>

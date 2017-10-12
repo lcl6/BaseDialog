@@ -39,7 +39,7 @@ public class AppModule {
 
     @Singleton
     @Provides
-    MyClassA provideMyClassA(@Named("a")int a ,@Named("b")int b){
+    MyClassA provideMyClassA(@Named("a")int a , @Named("b")int b){
         return new MyClassA(a,b);
     }
 

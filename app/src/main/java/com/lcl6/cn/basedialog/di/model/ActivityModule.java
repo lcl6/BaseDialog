@@ -3,6 +3,7 @@ package com.lcl6.cn.basedialog.di.model;
 import com.lcl6.cn.basedialog.di.bean.MyClassA;
 import com.lcl6.cn.basedialog.di.bean.MyClassB;
 import com.lcl6.cn.basedialog.di.scop.PerActivity;
+import com.lcl6.cn.basedialog.mvp.model.impl.NewsModelImpl;
 
 import dagger.Module;
 import dagger.Provides;
@@ -28,5 +29,8 @@ public class ActivityModule {
         return new MyClassB(classA,c);
     }
 
-
+    @Provides
+    public NewsModelImpl privoidNewsModelImpl(){
+        return new NewsModelImpl();
+    }
 }

@@ -8,15 +8,19 @@ import com.lcl6.cn.component.base.mvp.presnenter.RxPresenter;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by liancl on 2017/8/23.
  */
 
 public class NewsPresenter extends RxPresenter<NewsContract.View> implements NewsContract.Presenter {
 
-    NewsModel mNewsModel;
+    @Inject
+    NewsModelImpl mNewsModel;
+
+    @Inject
     public NewsPresenter() {
-        mNewsModel=new NewsModelImpl();
     }
 
     @Override
