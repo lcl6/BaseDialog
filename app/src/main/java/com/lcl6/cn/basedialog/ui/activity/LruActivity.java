@@ -132,58 +132,6 @@ public class LruActivity  extends BaseActivity{
 
     }
 
-//
-//    class BitmapWorkerTask extends AsyncTask<Object, Void, Bitmap> {
-//        private String imageUrl;
-//        DiskLruCache.Snapshot snapShot = null;
-//        private FileInputStream fileInputStream;
-//        private FileDescriptor fileDescriptor;
-//        Bitmap bitmap = null;
-//        @Override
-//        protected Bitmap doInBackground(Object... params) {
-//            imageUrl = (String) params[0];
-//            String key = LruUtils.hashKeyForDisk(imageUrl);
-//            try {
-//                snapShot = mDiskLruInstance.get(key);
-//                if (snapShot == null) {
-//                    // 如果没有找到对应的缓存，则准备从网络上请求数据，并写入缓存
-//                    LruUtils.addDiskCache(mDiskLruInstance,imageUrl);
-//                    snapShot = mDiskLruInstance.get(key);
-//                }
-//                if (snapShot != null) {
-//                    fileInputStream = (FileInputStream) snapShot.getInputStream(0);
-//                    fileDescriptor = fileInputStream.getFD();
-//                }
-//                // 将缓存数据解析成Bitmap对象
-//                if (fileDescriptor != null) {
-//                    bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor);
-//                }
-//                if(bitmap!=null){
-//                    LruUtils.addBitmapToMemeryCache(mLruCache,imageUrl,bitmap);
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                return null;
-//            }finally {
-//                if (fileDescriptor == null && fileInputStream != null) {
-//                    try {
-//                        fileInputStream.close();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//            return bitmap;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Bitmap bitmap) {
-//            super.onPostExecute(bitmap);
-//            mTaskCollection.remove(this);
-//            mLruImage.setImageBitmap(bitmap);
-//        }
-//    }
-
     @OnClick({R.id.btn_click})
     public void onClick(View v){
         switch (v.getId()){

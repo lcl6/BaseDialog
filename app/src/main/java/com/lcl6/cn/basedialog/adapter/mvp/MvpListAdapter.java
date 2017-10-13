@@ -25,7 +25,6 @@ public class MvpListAdapter extends BaseRecyclerViewAdapter<JsoupBean> {
     public MvpListAdapter(Context context) {
         super(context);
     }
-
     @Override
     protected void onBind(RecyclerView.ViewHolder holder, int position) {
         JsoupBean item = getItem(position);

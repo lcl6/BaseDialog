@@ -10,6 +10,10 @@ import android.os.Environment;
 import android.util.LruCache;
 
 import com.jakewharton.disklrucache.DiskLruCache;
+import com.lcl6.cn.component.base.activity.BaseActivity;
+import com.lcl6.cn.component.base.frament.LazyFragment;
+import com.trello.rxlifecycle2.android.ActivityEvent;
+import com.trello.rxlifecycle2.android.FragmentEvent;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -195,26 +199,16 @@ public class LruUtils {
     }
 
 
-    public static void getDiskBitmapTask(final DiskLruCache diskLruCache, final String imgKey, final Listener listener){
-        Observable.create(new ObservableOnSubscribe<Bitmap>() {
-            @Override
-            public void subscribe(@NonNull ObservableEmitter<Bitmap> e) throws Exception {
-                String key = hashKeyForDisk(imgKey); // 通过md5加密了这个URL，生成一个key
-                Bitmap bitmap = null;
-                DiskLruCache.Snapshot snapShot = diskLruCache.get(key);
-                if (snapShot != null) {
-                    InputStream is = snapShot.getInputStream(0);
-                    bitmap = BitmapFactory.decodeStream(is);
-                }
-                if(bitmap==null){
-                    e.onError(new Throwable("bitmap is null "));
-                    e.onComplete();
-                    return;
-                }
-                e.onNext(bitmap);
-                e.onComplete();
-            }
-        }).subscribeOn(Schedulers.io())
+    /**
+     * 获取磁盘图片  在activity中调用  防止内存泄漏
+     * @param diskLruCache 磁盘缓存
+     * @param imgKey 图片的key
+     * @param listener 回调
+     */
+    public static void getDiskBitmapTask(BaseActivity context,final DiskLruCache diskLruCache, final String imgKey, final Listener listener){
+        Observable<Bitmap> bitmapObservable = getDiskBitmapObservable(diskLruCache, imgKey);
+        bitmapObservable.subscribeOn(Schedulers.io())
+                .compose(context.<Bitmap>bindUntilEvent(ActivityEvent.DESTROY))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Bitmap>() {
                     @Override
@@ -234,10 +228,66 @@ public class LruUtils {
                     public void onComplete() {
                     }
                 });
-
-
-
     }
+
+    /**
+     * 获取磁盘图片 在frament中调用  防止内存泄漏
+     * @param diskLruCache 磁盘缓存
+     * @param imgKey 图片的key
+     * @param listener 回调
+     */
+    public static void getDiskBitmapTask(LazyFragment context, final DiskLruCache diskLruCache, final String imgKey, final Listener listener){
+        Observable<Bitmap> bitmapObservable = getDiskBitmapObservable(diskLruCache, imgKey);
+        bitmapObservable.subscribeOn(Schedulers.io())
+                .compose(context.<Bitmap>bindUntilEvent(FragmentEvent.DESTROY))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Bitmap>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Bitmap bitmap) {
+                        listener.onSuccess(bitmap);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        listener.onNoDiskCacha();
+                    }
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+    }
+
+    /***
+     * 获取bitmap observerable
+     * @param diskLruCache 磁盘缓存
+     * @param imgKey 图片的key
+     */
+    public static Observable<Bitmap>  getDiskBitmapObservable( final DiskLruCache diskLruCache, final String imgKey){
+        return Observable.create(new ObservableOnSubscribe<Bitmap>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<Bitmap> e) throws Exception {
+                String key = hashKeyForDisk(imgKey); // 通过md5加密了这个URL，生成一个key
+                Bitmap bitmap = null;
+                DiskLruCache.Snapshot snapShot = diskLruCache.get(key);
+                if (snapShot != null) {
+                    InputStream is = snapShot.getInputStream(0);
+                    bitmap = BitmapFactory.decodeStream(is);
+                }
+                if (bitmap == null) {
+                    e.onError(new Throwable("bitmap is null "));
+                    e.onComplete();
+                    return;
+                }
+                e.onNext(bitmap);
+                e.onComplete();
+            }
+        });
+    }
+
     public interface Listener{
         void onSuccess(Bitmap bitmap);
         void onNoDiskCacha();
