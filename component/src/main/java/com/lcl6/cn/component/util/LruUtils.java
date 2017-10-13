@@ -6,7 +6,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.LruCache;
 
@@ -22,6 +21,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
@@ -187,46 +195,53 @@ public class LruUtils {
     }
 
 
-    public static class GetDiskBitmapTask extends AsyncTask<String, Integer, Bitmap> {
-        private final Listener listener;
-        private DiskLruCache mDiskLruCache;
-        public GetDiskBitmapTask(DiskLruCache cache,Listener listener) {
-            mDiskLruCache = cache;
-            this.listener=listener;
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... urls) {
-            String key = hashKeyForDisk(urls[0]); // 通过md5加密了这个URL，生成一个key
-            Bitmap bitmap = null;
-            try {
-                DiskLruCache.Snapshot snapShot = mDiskLruCache.get(key);
+    public static void getDiskBitmapTask(final DiskLruCache diskLruCache, final String imgKey, final Listener listener){
+        Observable.create(new ObservableOnSubscribe<Bitmap>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<Bitmap> e) throws Exception {
+                String key = hashKeyForDisk(imgKey); // 通过md5加密了这个URL，生成一个key
+                Bitmap bitmap = null;
+                DiskLruCache.Snapshot snapShot = diskLruCache.get(key);
                 if (snapShot != null) {
                     InputStream is = snapShot.getInputStream(0);
                     bitmap = BitmapFactory.decodeStream(is);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+                if(bitmap==null){
+                    e.onError(new Throwable("bitmap is null "));
+                    e.onComplete();
+                    return;
+                }
+                e.onNext(bitmap);
+                e.onComplete();
             }
-            return bitmap;
-        }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Bitmap>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                    }
 
-        @Override
-        protected void onPostExecute(Bitmap result) {
-            if(result==null){
-                listener.onNoDiskCacha();
-                return;
-            }
-            listener.onSuccess(result);
-        }
+                    @Override
+                    public void onNext(@NonNull Bitmap bitmap) {
+                        listener.onSuccess(bitmap);
+                    }
 
-        public interface Listener{
-            void onSuccess(Bitmap bitmap);
-            void onNoDiskCacha();
-        }
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        listener.onNoDiskCacha();
+                    }
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+
+
 
     }
-
+    public interface Listener{
+        void onSuccess(Bitmap bitmap);
+        void onNoDiskCacha();
+    }
 
     /**
      * 建立HTTP请求，并获取Bitmap对象。

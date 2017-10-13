@@ -72,22 +72,16 @@ public class LruActivity  extends BaseActivity{
     private void loadBitmap(final String mImgPath) {
         Bitmap bitmapFromMemery = LruUtils.getBitmapFromMemery(mLruCache, mImgPath);
         if(bitmapFromMemery==null){
-            AsyncTask<String, Integer, Bitmap> getDiskBitmapTask = new LruUtils.GetDiskBitmapTask(mDiskLruInstance, new LruUtils.GetDiskBitmapTask.Listener() {
+            LruUtils.getDiskBitmapTask(mDiskLruInstance, mImgPath, new LruUtils.Listener() {
                 @Override
                 public void onSuccess(Bitmap bitmap) {
                     mLruImage.setImageBitmap(bitmap);
                 }
                 @Override
                 public void onNoDiskCacha() {
-//                    BitmapWorkerTask bitmapWorkerTask = new BitmapWorkerTask();
-//                    mTaskCollection.add(bitmapWorkerTask);
-//                    bitmapWorkerTask.execute(mImgPath);
                     initWorkTask();
-
                 }
             });
-            mTaskCollection.add(getDiskBitmapTask);
-            getDiskBitmapTask.execute(mImgPath);
         }else {
             mLruImage.setImageBitmap(bitmapFromMemery);
         }
