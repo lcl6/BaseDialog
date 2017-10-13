@@ -72,7 +72,7 @@ public class LruActivity  extends BaseActivity{
     private void loadBitmap(final String mImgPath) {
         Bitmap bitmapFromMemery = LruUtils.getBitmapFromMemery(mLruCache, mImgPath);
         if(bitmapFromMemery==null){
-            LruUtils.getDiskBitmapTask(mDiskLruInstance, mImgPath, new LruUtils.Listener() {
+            LruUtils.getDiskBitmapTask(this,mDiskLruInstance, mImgPath, new LruUtils.Listener() {
                 @Override
                 public void onSuccess(Bitmap bitmap) {
                     mLruImage.setImageBitmap(bitmap);
