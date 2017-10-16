@@ -21,7 +21,6 @@ public interface AppComponent {
     MyClassA getClassA();
     NetWorkManager getNetWorkManager();
     App getContext();  // 提供App的Context
-
     RetrofitManager getRetrofitManager();
 
 }

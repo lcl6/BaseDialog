@@ -12,10 +12,16 @@ import android.widget.TextView;
 import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialog.app.App;
 import com.lcl6.cn.basedialog.constant.Constant;
+import com.lcl6.cn.basedialog.di.bean.Car;
 import com.lcl6.cn.basedialog.di.bean.ClassA;
 import com.lcl6.cn.basedialog.di.bean.ClassB;
+import com.lcl6.cn.basedialog.di.bean.Man;
 import com.lcl6.cn.basedialog.di.component.ClassAComponent;
 import com.lcl6.cn.basedialog.di.component.DaggerClassAComponent;
+import com.lcl6.cn.basedialog.di.component.DaggerManComponent;
+import com.lcl6.cn.basedialog.di.component.ManComponent;
+import com.lcl6.cn.basedialog.di.component.SonComponent;
+import com.lcl6.cn.basedialog.di.model.CarMoudule;
 import com.lcl6.cn.basedialog.di.model.ModuleA;
 import com.lcl6.cn.component.base.activity.BaseActivity;
 import com.lcl6.cn.utils.ToastUtils;
@@ -23,7 +29,11 @@ import com.lcl6.cn.utils.anim.QMUIDirection;
 import com.lcl6.cn.utils.anim.QMUIViewHelper;
 import com.lcl6.cn.utils.statusbar.QMUIStatusBarHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.inject.Provider;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -39,6 +49,12 @@ public class DaggerActivity extends BaseActivity {
     ClassB classB;
     @BindView(R.id.tv_float)
     TextView mFloatView;
+
+
+//    @Inject
+//    Car mCar;
+        @Inject
+    Provider<Car> carProvide;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, DaggerActivity.class);
@@ -61,6 +77,11 @@ public class DaggerActivity extends BaseActivity {
         Log.e(Constant.TAG, activity.getLocalClassName() );
         //测试单例
 //        App.getClassAComponent().inject(App.getInstance());
+
+        ManComponent build = DaggerManComponent.builder().carMoudule(new CarMoudule()).build();
+        build.inject(new Man());
+        SonComponent.Builder builder = build.sonComponent();
+
     }
     @Override
     protected void initData() {
@@ -77,6 +98,15 @@ public class DaggerActivity extends BaseActivity {
         Log.e(Constant.TAG, "initData:a2 "+a2 );
         Log.e(Constant.TAG, "initData:b2 "+b1);
 
+        List<Car> list = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+//            list.add(mCar);
+            list.add(carProvide.get());
+        }
+        for (Car car : list) {
+            Log.e(Constant.TAG, car.toString());
+        }
         onLoadSuccessStatus();
     }
 
