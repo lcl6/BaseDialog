@@ -13,12 +13,16 @@ import com.lcl6.cn.component.util.MultiClickSubscribe;
 import com.lcl6.cn.utils.ToastUtils;
 import com.lcl6.cn.utils.time.CountDownTimerUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
@@ -88,7 +92,7 @@ public class TextSecondFrament extends LazyFragment {
     protected void initData(View view) {
         super.initData(view);
     }
-    @OnClick({R.id.tv_content,R.id.tv_click_time,R.id.tv_click_first})
+    @OnClick({R.id.tv_content,R.id.tv_click_time,R.id.tv_click_first,R.id.tv_click_buffer})
     public void onCLick(View v){
         switch (v.getId()){
             case R.id.tv_content:
@@ -120,9 +124,35 @@ public class TextSecondFrament extends LazyFragment {
                 }else {
                     objectPublishSubject.onNext("点击一次");
                 }
+                break;
+            case R.id.tv_click_buffer:
+                final List<String> list= new ArrayList<>();
+                for (int i = 0; i < 10; i++) {
+                    list.add("s"+i);
+                }
+                Observable.fromIterable(list).
+                        flatMap(new Function<String, ObservableSource<String>>() {
+                            @Override
+                            public ObservableSource<String> apply(@NonNull final String s) throws Exception {
+                                return Observable.create(new ObservableOnSubscribe<String>() {
+                                    @Override
+                                    public void subscribe(@NonNull ObservableEmitter<String> e) throws Exception {
+                                        e.onNext(s);
+                                        e.onComplete();
+                                    }
+                                });
+                            }
+                        }).subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(@NonNull String s) throws Exception {
+                        Log.e(Constant.TAG, "accept: "+s );
+                    }
+                });
+
 
 
                 break;
+
         }
     }
 
