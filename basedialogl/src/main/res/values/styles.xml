@@ -37,8 +37,8 @@
 
 
     <style name="window_bottom_enter_out_doalog"  parent="android:Animation">
-        <item name="@android:windowEnterAnimation">@anim/anim_bottom_in</item>
-        <item name="@android:windowExitAnimation">@anim/anim_bottom_out</item>
+        <item name="android:windowEnterAnimation">@anim/anim_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_bottom_out</item>
     </style>
 
     <!-- 右进右出 -->

@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.util.LruCache;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,20 +16,25 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.jakewharton.disklrucache.DiskLruCache;
 import com.lcl6.cn.basedialog.R;
+import com.lcl6.cn.basedialog.constant.Constant;
 import com.lcl6.cn.component.base.activity.BaseActivity;
 import com.lcl6.cn.component.util.LruUtils;
 
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -137,7 +143,6 @@ public class LruActivity  extends BaseActivity{
                         if(bitmap!=null){
                             mLruImage.setImageBitmap(bitmap);
                         }
-
                     }
                 });
 
@@ -162,6 +167,33 @@ public class LruActivity  extends BaseActivity{
                                 mImageDownload.setImageDrawable(resource);
                             }
                         });
+
+
+                List<String> list= new ArrayList<>();
+                for (int i = 0; i < 10; i++) {
+                    list.add("ffff");
+                }
+                Observable.fromIterable(list).subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull String s) {
+                        Log.e(Constant.TAG,"onNext");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.e(Constant.TAG,"onError");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.e(Constant.TAG,"onComplete");
+                    }
+                });
 
                 break;
         }
