@@ -23,4 +23,19 @@
         android:id="@+id/img_click"
         android:contentDescription="@string/app_custom"
         />
+
+    <Button
+        android:id="@+id/btn_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点击下载"
+        />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/img_down"
+        android:contentDescription="@string/app_custom"
+        />
+
 </LinearLayout>

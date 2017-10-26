@@ -78,11 +78,8 @@ public class RoatXImageView extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         float newZ = - displayMetrics.density * 6;
-
-
         boolean isUseMatrix = true;//两种写法
         Matrix matrix = new Matrix();
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.maps);
@@ -102,6 +99,8 @@ public class RoatXImageView extends View{
         camera.setLocation(0, 0, newZ);
 
         camera.rotateX(getDegree());//旋转角度
+//        camera.rotateY(getDegree());
+//        camera.rotateZ(getDegree());
         if (isUseMatrix) {
             matrix.reset();
             camera.getMatrix(matrix);
@@ -120,7 +119,7 @@ public class RoatXImageView extends View{
         } else {
             canvas.translate(-width, -height);//把目标移到零点
         }
-        canvas.clipRect( point.x, point.y+bheight/2, point.x+bwidth,point.y+bheight);
+        canvas.clipRect(point.x, point.y+bheight/2, point.x+bwidth,point.y+bheight);
         canvas.drawBitmap(bitmap, point.x, point.y, paint);
         canvas.restore();
     }

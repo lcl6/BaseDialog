@@ -15,6 +15,7 @@ import com.lcl6.cn.component.R;
 import com.lcl6.cn.component.event.TextEvent;
 import com.lcl6.cn.component.widget.net.NetworkStateView;
 import com.lcl6.cn.component.widget.title.TitleBar;
+import com.lcl6.cn.component.widget.title.TitleConfig;
 import com.lcl6.cn.utils.ToastUtils;
 import com.lcl6.cn.utils.statusbar.QMUIStatusBarHelper;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
@@ -38,6 +39,10 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
     private TitleBar mTitleBar;
     private ImageView mCollectView;
 
+    /***配置*/
+    TitleConfig mTtitleConfig;
+    /**配置的bulider*/
+    TitleConfig.Buidler mBuidler;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,23 +82,29 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
 
     private void initTitle() {
         boolean immeisve = QMUIStatusBarHelper.immeisve(this);
-        mTitleBar.setImmersive(immeisve);
-        mTitleBar.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.colorPrimary));
-        mTitleBar.setLeftText("返回");
-        mTitleBar.setLeftTextColor(Color.WHITE);
-        mTitleBar.setLeftImageResource(R.drawable.ic_back);
+        mBuidler= new TitleConfig.Buidler();
+        mTtitleConfig = mBuidler
+                .setImmersive(immeisve)
+                .setLeftText("返回")
+                .setLeftVisible(true)
+                .setLeftTextColor(Color.WHITE)
+                .setLeftImageResource(R.drawable.ic_back)
+                .setTitle("标题")
+                .setDividerColor(Color.GRAY)
+                .setTitleColor(Color.WHITE)
+                .setSubTitleColor(Color.WHITE)
+                .setTitleBackground(Color.BLUE)
+                .setActionTextColor(Color.WHITE)
+                .setBackgroundColor(ContextCompat.getColor(getContext(),R.color.colorPrimary))
+                .builde();
+        mTitleBar.setTitleConfig(mTtitleConfig);
+
         mTitleBar.setLeftClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 backFinish();
             }
         });
-        mTitleBar.setTitle("标题");
-        mTitleBar.setTitleColor(Color.WHITE);
-        mTitleBar.setSubTitleColor(Color.WHITE);
-        mTitleBar.setDividerColor(Color.GRAY);
-
-        mTitleBar.setActionTextColor(Color.WHITE);
         mCollectView = (ImageView) mTitleBar.addAction(new TitleBar.ImageAction(R.drawable.ic_net_error) {
             @Override
             public void performAction(View view) {
@@ -117,6 +128,16 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
     /**点击返回按钮*/
     public void backFinish(){
         finish();
+    }
+
+    /**获取TitleConfig*/
+    public TitleConfig getTitleConfig(){
+        return mTtitleConfig;
+    }
+
+    /**获取TitleConfig  Bulider   便于子类扩展*/
+    public TitleConfig.Buidler getTitleConfigBuilder(){
+       return mBuidler;
     }
 
     /**获取titlebar*/

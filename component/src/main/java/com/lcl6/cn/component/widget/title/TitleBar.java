@@ -14,16 +14,18 @@ import android.widget.TextView;
 
 import java.util.LinkedList;
 
+import static com.lcl6.cn.component.widget.title.TitleConfig.DEFAULT_ACTION_TEXT_SIZE;
+
 /**
  * 类描述：
  * 创建人：Bob
  * 创建时间：2015/9/25 11:36
  */
 public class TitleBar extends ViewGroup implements View.OnClickListener {
-    private static final int DEFAULT_MAIN_TEXT_SIZE = 18;
-    private static final int DEFAULT_SUB_TEXT_SIZE = 12;
-    private static final int DEFAULT_ACTION_TEXT_SIZE = 15;
-    private static final int DEFAULT_TITLE_BAR_HEIGHT = 48;
+//    private static final int DEFAULT_MAIN_TEXT_SIZE = 18;
+//    private static final int DEFAULT_SUB_TEXT_SIZE = 12;
+//    private static final int DEFAULT_ACTION_TEXT_SIZE = 15;
+//    public static final int DEFAULT_TITLE_BAR_HEIGHT = 48;
 
     private static final String STATUS_BAR_HEIGHT_RES_NAME = "status_bar_height";
 
@@ -76,9 +78,40 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         }
         mActionPadding = dip2px(5);
         mOutPadding = dip2px(8);
-        mHeight = dip2px(DEFAULT_TITLE_BAR_HEIGHT);
+//        mHeight = dip2px(DEFAULT_TITLE_BAR_HEIGHT);
         initView(context);
     }
+
+    public void setTitleConfig(TitleConfig titleConfig){
+        if(titleConfig==null){
+            new Throwable("please set titleConfig first");
+            return;
+        }
+        setActionTextColor(titleConfig.getColorResId());
+        setCustomTitle(titleConfig.getTitleView());
+        setDividerColor(titleConfig.getDivideColor());
+        setDividerHeight(titleConfig.getDividerHeight());
+        setHeight(titleConfig.getTitleHeight());
+        setImmersive(titleConfig.isImmersive());
+        setLeftImageResource(titleConfig.getResBackId());
+        setLeftText(titleConfig.getCharLeftTitle());
+        setLeftText(titleConfig.getStringResId());
+        setLeftTextSize(titleConfig.getLeftTextSize());
+        setLeftTextColor(titleConfig.getLeftTextColor());
+        setLeftVisible(titleConfig.isLeftTextVsible());
+        setTitle(titleConfig.getMainTitle());
+        //这个方法先放着 带更新
+//        setTitle();
+        setTitleColor(titleConfig.getMainTitleResId());
+        setTitleSize(titleConfig.getMainTitleSize());
+        setTitleBackground(titleConfig.getMainTitleResId());
+        setSubTitleSize(titleConfig.getSubTitleTextSize());
+        addActions(titleConfig.getActionList());
+        setDivider(titleConfig.getDivideDrawable());
+        setBackgroundColor(titleConfig.getTitleBackgroundColor());
+
+    }
+
 
     private void initView(Context context) {
         mLeftText = new TextView(context);
@@ -88,7 +121,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
 
         LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
 
-        mLeftText.setTextSize(DEFAULT_ACTION_TEXT_SIZE);
+//        mLeftText.setTextSize(TitleConfig.DEFAULT_ACTION_TEXT_SIZE);
         mLeftText.setSingleLine();
         mLeftText.setGravity(Gravity.CENTER_VERTICAL);
         mLeftText.setPadding(mOutPadding + mActionPadding, 0, mOutPadding, 0);
@@ -99,12 +132,11 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         mCenterLayout.addView(mSubTitleText);
 
         mCenterLayout.setGravity(Gravity.CENTER);
-        mCenterText.setTextSize(DEFAULT_MAIN_TEXT_SIZE);
+//        mCenterText.setTextSize(TitleConfig.DEFAULT_MAIN_TEXT_SIZE);
         mCenterText.setSingleLine();
         mCenterText.setGravity(Gravity.CENTER);
         mCenterText.setEllipsize(TextUtils.TruncateAt.END);
-
-        mSubTitleText.setTextSize(DEFAULT_SUB_TEXT_SIZE);
+//        mSubTitleText.setTextSize(TitleConfig.DEFAULT_SUB_TEXT_SIZE);
         mSubTitleText.setSingleLine();
         mSubTitleText.setGravity(Gravity.CENTER);
         mSubTitleText.setEllipsize(TextUtils.TruncateAt.END);
@@ -117,8 +149,8 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         addView(mDividerView, new LayoutParams(LayoutParams.MATCH_PARENT, 1));
     }
 
-    /**设置状态栏*/
-    public void setImmersive(boolean immersive) {
+    /**设置状态栏是否沉浸*/
+    private void setImmersive(boolean immersive) {
         mImmersive = immersive;
         if (mImmersive) {
             mStatusBarHeight = getStatusBarHeight();
@@ -128,12 +160,12 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     }
 
     /**设置状态栏的高度*/
-    public void setHeight(int height) {
+    private void setHeight(int height) {
         mHeight = height;
         setMeasuredDimension(getMeasuredWidth(), mHeight);
     }
     /**设置状态栏返回的图片*/
-    public void setLeftImageResource(int resId) {
+    private void setLeftImageResource(int resId) {
         mLeftText.setCompoundDrawablesWithIntrinsicBounds(resId, 0, 0, 0);
     }
     /**设置状态栏返回点击事件*/
@@ -141,27 +173,30 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         mLeftText.setOnClickListener(l);
     }
     /**设置状态栏左边的文字*/
-    public void setLeftText(CharSequence title) {
+    private void setLeftText(CharSequence title) {
         mLeftText.setText(title);
     }
     /**设置状态栏左边的文字*/
-    public void setLeftText(int resid) {
+    private void setLeftText(String resid) {
         mLeftText.setText(resid);
     }
     /**设置状态栏左边的文字大小*/
-    public void setLeftTextSize(float size) {
+    private void setLeftTextSize(float size) {
         mLeftText.setTextSize(size);
     }
     /**设置状态栏左边的文字颜色*/
-    public void setLeftTextColor(int color) {
+    private void setLeftTextColor(int color) {
         mLeftText.setTextColor(color);
     }
     /**设置状态栏左边的文字是否可见*/
-    public void setLeftVisible(boolean visible) {
+    private void setLeftVisible(boolean visible) {
         mLeftText.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
     /**设置状态栏标题*/
-    public void setTitle(CharSequence title) {
+    private void setTitle(CharSequence title) {
+        if(title==null){
+            return;
+        }
         int index = title.toString().indexOf("\n");
         if (index > 0) {
             setTitle(title.subSequence(0, index), title.subSequence(index + 1, title.length()), LinearLayout.VERTICAL);
@@ -192,27 +227,30 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         setTitle(getResources().getString(resid));
     }
     /**设置状态栏标题颜色*/
-    public void setTitleColor(int resid) {
+    private void setTitleColor(int resid) {
         mCenterText.setTextColor(resid);
     }
     /**设置状态栏标题大小*/
-    public void setTitleSize(float size) {
+    private void setTitleSize(float size) {
         mCenterText.setTextSize(size);
     }
     /**设置状态栏子标题背景*/
-    public void setTitleBackground(int resid) {
+    private void setTitleBackground(int resid) {
+        if(resid<=0){
+            return;
+        }
         mCenterText.setBackgroundResource(resid);
     }
     /**设置状态栏子标题颜色*/
-    public void setSubTitleColor(int resid) {
+    private void setSubTitleColor(int resid) {
         mSubTitleText.setTextColor(resid);
     }
     /**设置状态栏子标题大小*/
-    public void setSubTitleSize(float size) {
+    private void setSubTitleSize(float size) {
         mSubTitleText.setTextSize(size);
     }
     /**设置状态栏自定义标题*/
-    public void setCustomTitle(View titleView) {
+    private void setCustomTitle(View titleView) {
         if (titleView == null) {
             mCenterText.setVisibility(View.VISIBLE);
             if (mCustomCenterView != null) {
@@ -230,19 +268,28 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         }
     }
     /**设置状态栏分割线背景*/
-    public void setDivider(Drawable drawable) {
+    private void setDivider(Drawable drawable) {
+        if(drawable==null){
+            return;
+        }
         mDividerView.setBackgroundDrawable(drawable);
     }
     /**设置状态栏分割线颜色*/
-    public void setDividerColor(int color) {
+    private void setDividerColor(int color) {
+        if(color==0){
+            return;
+        }
         mDividerView.setBackgroundColor(color);
     }
     /**设置状态栏分割线高度*/
-    public void setDividerHeight(int dividerHeight) {
+    private void setDividerHeight(int dividerHeight) {
+        if(dividerHeight<0){
+            return;
+        }
         mDividerView.getLayoutParams().height = dividerHeight;
     }
     /**设置状态栏右边文字的颜色*/
-    public void setActionTextColor(int colorResId) {
+    private void setActionTextColor(int colorResId) {
         mActionTextColor = colorResId;
     }
     /**设置状态栏标题的点击事件*/
@@ -259,7 +306,10 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         }
     }
     /**添加右边的扩展view*/
-    public void addActions(ActionList actionList) {
+    private void addActions(ActionList actionList) {
+        if(actionList==null){
+            return;
+        }
         int actions = actionList.size();
         for (int i = 0; i < actions; i++) {
             addAction(actionList.get(i));

@@ -3,6 +3,7 @@ package com.lcl6.cn.basedialog.ui.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -17,9 +18,16 @@ import com.lcl6.cn.basedialog.widget.dialog.CustomDialog;
 import com.lcl6.cn.basedialog.widget.dialog.CustomLeftDialog;
 import com.lcl6.cn.basedialog.widget.dialog.CustomRightDialog;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,10 +51,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.bind(this);
 
-//        a.toString();
+    }
+
+    private void initTextBack() {
+        Flowable.interval(1, TimeUnit.MILLISECONDS)
+                .onBackpressureDrop()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(@NonNull Long aLong) throws Exception {
+                        Thread.sleep(1000);
+                        Log.e("zhao", "onNext: " + aLong);
+                    }
+                });
 
 
     }

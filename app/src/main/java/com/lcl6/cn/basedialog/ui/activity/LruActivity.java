@@ -4,11 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.LruCache;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.jakewharton.disklrucache.DiskLruCache;
 import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.component.base.activity.BaseActivity;
@@ -41,6 +45,10 @@ public class LruActivity  extends BaseActivity{
 
     @BindView(R.id.img_click)
     ImageView mClickImage;
+
+    @BindView(R.id.img_down)
+    ImageView mImageDownload;
+
 
     LruCache mLruCache;//内存缓存
     DiskLruCache mDiskLruInstance;//磁盘缓存
@@ -126,13 +134,16 @@ public class LruActivity  extends BaseActivity{
                 .subscribe(new Consumer<Bitmap>() {
                     @Override
                     public void accept(@NonNull Bitmap bitmap) throws Exception {
-                        mLruImage.setImageBitmap(bitmap);
+                        if(bitmap!=null){
+                            mLruImage.setImageBitmap(bitmap);
+                        }
+
                     }
                 });
 
     }
 
-    @OnClick({R.id.btn_click})
+    @OnClick({R.id.btn_click,R.id.btn_download})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.btn_click:
@@ -141,6 +152,17 @@ public class LruActivity  extends BaseActivity{
                     return;
                 }
                 mClickImage.setImageBitmap(bitmapFromMemery);
+                break;
+            case R.id.btn_download:
+                Glide.with(this)
+                        .load("http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg")
+                        .into(new SimpleTarget<Drawable>() {
+                            @Override
+                            public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+                                mImageDownload.setImageDrawable(resource);
+                            }
+                        });
+
                 break;
         }
     }
