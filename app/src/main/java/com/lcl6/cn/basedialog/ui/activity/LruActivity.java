@@ -10,6 +10,7 @@ import android.util.Log;
 import android.util.LruCache;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -55,6 +56,10 @@ public class LruActivity  extends BaseActivity{
     @BindView(R.id.img_down)
     ImageView mImageDownload;
 
+    @BindView(R.id.tv_leak)
+    TextView mTextLeak;
+
+
 
     LruCache mLruCache;//内存缓存
     DiskLruCache mDiskLruInstance;//磁盘缓存
@@ -77,6 +82,27 @@ public class LruActivity  extends BaseActivity{
         mTaskCollection = new HashSet<>();
         mLruCache = LruUtils.initMemeryCache();
         mDiskLruInstance= LruUtils.getDiskLruInstance(getContext());
+
+//        initLeak();
+    }
+
+    private void initLeak() {
+
+        new BackgroundTask().execute();
+
+    }
+    private class BackgroundTask extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... params) {
+            // Do background work. Code omitted.
+            return "some string";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            mTextLeak.setText(result);
+        }
     }
     @Override
     protected void initData() {
@@ -86,7 +112,7 @@ public class LruActivity  extends BaseActivity{
     private void loadBitmap(final String mImgPath) {
         Bitmap bitmapFromMemery = LruUtils.getBitmapFromMemery(mLruCache, mImgPath);
         if(bitmapFromMemery==null){
-            LruUtils.getDiskBitmapTask(this,mDiskLruInstance, mImgPath, new LruUtils.Listener() {
+            LruUtils.getDiskBitmapTask(mDiskLruInstance, mImgPath, new LruUtils.Listener() {
                 @Override
                 public void onSuccess(Bitmap bitmap) {
                     mLruImage.setImageBitmap(bitmap);

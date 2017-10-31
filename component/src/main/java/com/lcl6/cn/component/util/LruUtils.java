@@ -10,9 +10,7 @@ import android.os.Environment;
 import android.util.LruCache;
 
 import com.jakewharton.disklrucache.DiskLruCache;
-import com.lcl6.cn.component.base.activity.BaseActivity;
 import com.lcl6.cn.component.base.frament.LazyFragment;
-import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.android.FragmentEvent;
 
 import java.io.BufferedInputStream;
@@ -210,10 +208,10 @@ public class LruUtils {
      * @param imgKey 图片的key
      * @param listener 回调
      */
-    public static void getDiskBitmapTask(BaseActivity context,final DiskLruCache diskLruCache, final String imgKey, final Listener listener){
+    public static void getDiskBitmapTask(final DiskLruCache diskLruCache, final String imgKey, final Listener listener){
         Observable<Bitmap> bitmapObservable = getDiskBitmapObservable(diskLruCache, imgKey);
         bitmapObservable.subscribeOn(Schedulers.io())
-                .compose(context.<Bitmap>bindUntilEvent(ActivityEvent.DESTROY))
+//                .compose(context.<Bitmap>bindUntilEvent(ActivityEvent.DESTROY))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Bitmap>() {
                     @Override

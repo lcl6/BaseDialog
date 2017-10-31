@@ -182,6 +182,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
         if(mUnbinder!=null){
             mUnbinder.unbind();
         }
+        mNetworkStateView.setOnRefreshListener(null);
     }
 
     @Override
