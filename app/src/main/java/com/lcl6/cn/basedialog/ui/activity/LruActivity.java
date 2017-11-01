@@ -81,7 +81,7 @@ public class LruActivity  extends BaseActivity{
         onLoadSuccessStatus();
         mTaskCollection = new HashSet<>();
         mLruCache = LruUtils.initMemeryCache();
-        mDiskLruInstance= LruUtils.getDiskLruInstance(getContext());
+        mDiskLruInstance= LruUtils.getDiskLruInstance(getApplicationContext());
 
 //        initLeak();
     }
@@ -178,11 +178,25 @@ public class LruActivity  extends BaseActivity{
     public void onClick(View v){
         switch (v.getId()){
             case R.id.btn_click:
-                Bitmap bitmapFromMemery = LruUtils.getBitmapFromMemery(mLruCache, mImgPath);
-                if(bitmapFromMemery==null){
-                    return;
-                }
-                mClickImage.setImageBitmap(bitmapFromMemery);
+                LruUtils.getDiskBitmapTask(mDiskLruInstance, mImgPath, new LruUtils.Listener() {
+                    @Override
+                    public void onSuccess(Bitmap bitmap) {
+                        if(bitmap==null){
+                            return;
+                        }
+                        mClickImage.setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    public void onNoDiskCacha() {
+
+                    }
+                });
+//                Bitmap bitmapFromMemery = LruUtils.getBitmapFromMemery(mLruCache, mImgPath);
+//                if(bitmapFromMemery==null){
+//                    return;
+//                }
+//                mClickImage.setImageBitmap(bitmapFromMemery);
                 break;
             case R.id.btn_download:
                 Glide.with(this)
@@ -193,8 +207,6 @@ public class LruActivity  extends BaseActivity{
                                 mImageDownload.setImageDrawable(resource);
                             }
                         });
-
-
                 List<String> list= new ArrayList<>();
                 for (int i = 0; i < 10; i++) {
                     list.add("ffff");

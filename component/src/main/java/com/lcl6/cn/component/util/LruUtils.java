@@ -194,8 +194,7 @@ public class LruUtils {
             outputStream.flush();
             outputStream.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            //e.printStackTrace();
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -349,6 +348,29 @@ public class LruUtils {
             if (editor != null) {
                 outputStream = editor.newOutputStream(0);
                 if (LruUtils.downloadUrlToStream(imageUrl, outputStream)) {
+                    editor.commit();
+                } else {
+                    editor.abort();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * 添加到磁盘中
+     * @param mDiskLruInstance 磁盘缓存
+     * @param imageUrl 图片url
+     */
+    public static void addDiskCache(DiskLruCache mDiskLruInstance,String imageUrl,Bitmap  bitmap){
+        DiskLruCache.Editor editor = null;
+        OutputStream outputStream = null;
+        try {
+            String key = hashKeyForDisk(imageUrl);
+            editor = mDiskLruInstance.edit(key);
+            if (editor != null) {
+                outputStream = editor.newOutputStream(0);
+                if (writeStream(bitmap,outputStream)) {
                     editor.commit();
                 } else {
                     editor.abort();

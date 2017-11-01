@@ -71,11 +71,10 @@ public class DaggerActivity extends BaseActivity {
                 .appComponent(App.getAppComponent())
                 .moduleA(new ModuleA(2, 3, this))
                 .build();
-//                .inject(this);
         classAComponent.inject(this);
         Activity activity = classAComponent.getActivity();
         Log.e(Constant.TAG, activity.getLocalClassName() );
-        //测试单例
+//        测试单例
 //        App.getClassAComponent().inject(App.getInstance());
 
         ManComponent build = DaggerManComponent.builder().carMoudule(new CarMoudule()).build();
