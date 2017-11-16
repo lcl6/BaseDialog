@@ -1,14 +1,18 @@
 package com.lcl6.cn.basedialog.ui.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -51,7 +55,7 @@ public class WidgetActivity extends BaseActivity {
     @BindView(R.id.lin_my)
     ViewGroup mLinOut;
     @BindView(R.id.rximage)
-    RoatXImageView mIamge;
+    RoatXImageView mapView;
 
 
 
@@ -144,42 +148,43 @@ public class WidgetActivity extends BaseActivity {
             }
         }).subscribeOn(Schedulers.io());
     }
-
-
-
-
+    private Handler handler = new Handler();
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initData() {
-        mIamge.setOnTouchListener(new View.OnTouchListener() {
+        ObjectAnimator animator1 = ObjectAnimator.ofFloat(mapView, "degreeY", 0, -45);
+        animator1.setDuration(1000);
+        animator1.setStartDelay(500);
+
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(mapView, "degreeZ", 0, 270);
+        animator2.setDuration(800);
+        animator2.setStartDelay(500);
+
+        ObjectAnimator animator3 = ObjectAnimator.ofFloat(mapView, "fixDegreeY", 0, 30);
+        animator3.setDuration(500);
+        animator3.setStartDelay(500);
+        final AnimatorSet set = new AnimatorSet();
+        set.addListener(new AnimatorListenerAdapter() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                Log.e(Constant.TAG, "mIamge setOnTouchListener: " );
-                return false;
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mapView.reset();
+                                set.start();
+                            }
+                        });
+                    }
+                }, 500);
             }
         });
+        set.playSequentially(animator1, animator2, animator3);
+        set.start();
 
-//        mIamge.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.e(Constant.TAG, "mIamge setOnClickListener: " );
-//            }
-//        });
-
-//        mLinOut.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.e(Constant.TAG, "mLinOut setOnClickListener: " );
-//            }
-//        });
-
-//        mLinOut.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                Log.e(Constant.TAG, "mLinOut setOnLongClickListener: " );
-//                return false;
-//            }
-//        });
 
 
     }

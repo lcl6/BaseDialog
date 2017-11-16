@@ -1,25 +1,21 @@
 package com.lcl6.cn.basedialog.widget.anima.view;
 
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Camera;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.support.annotation.Keep;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 
 import com.lcl6.cn.basedialog.R;
-import com.lcl6.cn.basedialog.constant.Constant;
 
 /**
  * 沿着x轴旋转的控件
@@ -27,6 +23,15 @@ import com.lcl6.cn.basedialog.constant.Constant;
  */
 
 public class RoatXImageView extends View{
+
+
+
+    //Y轴方向旋转角度
+    private float degreeY;
+    //不变的那一半，Y轴方向旋转角度
+    private float fixDegreeY;
+    //Z轴方向（平面内）旋转的角度
+    private float degreeZ;
 
     Paint paint=  new Paint();
 
@@ -78,81 +83,90 @@ public class RoatXImageView extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        float newZ = - displayMetrics.density * 6;
-        boolean isUseMatrix = true;//两种写法
-        Matrix matrix = new Matrix();
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.maps);
-        int bwidth = bitmap.getWidth();
-        int bheight = bitmap.getHeight();
-        int width = bwidth / 2 + point.x;
-        int height = bheight / 2 + point.y;
-        //画书的上半页
-        canvas.save();
-        canvas.clipRect(point.x, point.y, point.x+bwidth,point.y+bheight/2);
-        canvas.drawBitmap(bitmap, point.x, point.y, paint);
-        canvas.restore();
-
-        //画书的下半页
+        int bitmapWidth = bitmap.getWidth();
+        int bitmapHeight = bitmap.getHeight();
+        int centerX = getWidth() / 2;
+        int centerY = getHeight() / 2;
+        int x = centerX - bitmapWidth / 2;
+        int y = centerY - bitmapHeight / 2;
+//        //画变换的一半
+//        //先旋转，再裁切，再使用camera执行3D动效,**然后保存camera效果**,最后再旋转回来
         canvas.save();
         camera.save();
-        camera.setLocation(0, 0, newZ);
-
-        camera.rotateX(getDegree());//旋转角度
-//        camera.rotateY(getDegree());
-//        camera.rotateZ(getDegree());
-        if (isUseMatrix) {
-            matrix.reset();
-            camera.getMatrix(matrix);
-            matrix.postTranslate(width, height);//这个方法表示移回零点
-            matrix.preTranslate(-width, -height);//这个表示移回原点
-        } else {
-            //把目标移回原来的位置
-            canvas.translate(width, height);
-            //注意 camera和canvas结合
-            camera.applyToCanvas(canvas);
-        }
+        canvas.translate(centerX, centerY)    ;
+        //旋转270
+        canvas.rotate(-degreeZ);
+        //旋转-45
+        camera.rotateY(degreeY);
+        camera.applyToCanvas(canvas);
+        //计算裁切参数时清注意，此时的canvas的坐标系已经移动
+        canvas.clipRect(0, -centerY, centerX, centerY);
+        canvas.rotate(degreeZ);
+        canvas.translate(-centerX, -centerY);
         camera.restore();
-
-        if (isUseMatrix) {
-            canvas.concat(matrix);
-        } else {
-            canvas.translate(-width, -height);//把目标移到零点
-        }
-        canvas.clipRect(point.x, point.y+bheight/2, point.x+bwidth,point.y+bheight);
-        canvas.drawBitmap(bitmap, point.x, point.y, paint);
+        canvas.drawBitmap(bitmap, x, y, paint);
         canvas.restore();
+        //画不变换的另一半
+        canvas.save();
+        camera.save();
+        canvas.translate(centerX, centerY);
+        canvas.rotate(-degreeZ);
+        //计算裁切参数时清注意，此时的canvas的坐标系已经移动
+        canvas.clipRect(-centerX, -centerY, 0, centerY);
+        //此时的canvas的坐标系已经旋转，所以这里是rotateY
+        camera.rotateY(fixDegreeY);
+        camera.applyToCanvas(canvas);
+        canvas.rotate(degreeZ);
+        canvas.translate(-centerX, -centerY);
+        camera.restore();
+        canvas.drawBitmap(bitmap, x, y, paint);
+        canvas.restore();
+
+
+
+        Paint p1 = new Paint();
+        p1.setColor(Color.RED);
+
+        Paint p2 = new Paint();
+        p2.setColor(Color.BLUE);
+
+        canvas.translate(200,0);
+        canvas.rotate(30,100,100);
+        canvas.drawRect(0, 100, 150, 150, p1);   // p1 是红色画笔
+        canvas.drawRect(200, 200, 250, 250, p2);   // p2 是蓝色画笔
+
+
+
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        degreeAnimator= ObjectAnimator.ofFloat(this, "degree", 0, 90);
-        degreeAnimator.setInterpolator(new LinearInterpolator());
-        degreeAnimator.setDuration(2000);
-        degreeAnimator.setRepeatMode(ValueAnimator.REVERSE);
-        degreeAnimator.setRepeatCount(ValueAnimator.RESTART);
-        degreeAnimator.start();
 
-
-//        centerdegreeAnimator= ObjectAnimator.ofInt(this, "centerdegree", 0, 360);
-//        centerdegreeAnimator.setInterpolator(new LinearInterpolator());
-//        centerdegreeAnimator.setDuration(2000);
-//        centerdegreeAnimator.setRepeatMode(ValueAnimator.REVERSE);
-//        centerdegreeAnimator.setRepeatCount(ValueAnimator.INFINITE);
-//        centerdegreeAnimator.start();
-        Log.e(Constant.TAG, "RoatXImageView 的onTouchEvent: " );
-        return super.onTouchEvent(event);
+    /**
+     * 启动动画之前调用，把参数reset到初始状态
+     */
+    public void reset() {
+        degreeY = 0;
+        fixDegreeY = 0;
+        degreeZ = 0;
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.e(Constant.TAG, "RoatXImageView 的dispatchTouchEvent: " );
-        return super.dispatchTouchEvent(ev);
+    @Keep
+    public void setFixDegreeY(float fixDegreeY) {
+        this.fixDegreeY = fixDegreeY;
+        invalidate();
     }
 
-
-    @Override
-    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-        super.onScrollChanged(l, t, oldl, oldt);
+    @Keep
+    public void setDegreeY(float degreeY) {
+        this.degreeY = degreeY;
+        invalidate();
     }
+
+    @Keep
+    public void setDegreeZ(float degreeZ) {
+        this.degreeZ = degreeZ;
+        invalidate();
+    }
+
 }
