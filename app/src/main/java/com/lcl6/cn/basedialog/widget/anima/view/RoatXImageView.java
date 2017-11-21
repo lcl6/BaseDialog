@@ -13,9 +13,11 @@ import android.support.annotation.Keep;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 
 import com.lcl6.cn.basedialog.R;
+import com.lcl6.cn.basedialog.constant.Constant;
 
 /**
  * 沿着x轴旋转的控件
@@ -123,6 +125,10 @@ public class RoatXImageView extends View{
         camera.restore();
         canvas.drawBitmap(bitmap, x, y, paint);
         canvas.restore();
+        Log.e(Constant.TAG, "degreeY: "+degreeY);
+        Log.e(Constant.TAG, "degreeZ: "+degreeZ);
+        Log.e(Constant.TAG, "fixDegreeY: "+fixDegreeY);
+
 
 
 

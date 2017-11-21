@@ -1,1 +1,1 @@
-include ':app', ':basedialogl', ':utils', ':component'
+include ':app', ':basedialogl', ':utils', ':component', ':playerview'

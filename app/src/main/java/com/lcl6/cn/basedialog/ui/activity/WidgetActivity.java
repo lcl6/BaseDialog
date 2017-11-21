@@ -174,8 +174,8 @@ public class WidgetActivity extends BaseActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                mapView.reset();
-                                set.start();
+//                                mapView.reset();
+//                                set.start();
                             }
                         });
                     }
