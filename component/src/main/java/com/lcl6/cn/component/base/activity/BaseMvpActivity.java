@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.lcl6.cn.component.base.mvp.presnenter.RxPresenter;
 import com.lcl6.cn.component.base.mvp.view.BaseView;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 
 
 /**
@@ -42,26 +43,32 @@ public abstract class BaseMvpActivity<T extends RxPresenter> extends BaseActivit
 
     @Override
     public void stateError() {
-
+        onLoadErrorStatus();
     }
 
     @Override
     public void stateEmpty() {
-
+        onLoadEmptyStatus();
     }
 
     @Override
     public void stateLoading() {
 
+        onLoadingStatus();
     }
 
     @Override
     public void stateSuccess() {
-
+        onLoadSuccessStatus();
     }
 
     @Override
     public void showErrorMsg(String msg) {
 
+    }
+
+    @Override
+    public <T> LifecycleTransformer<T> bindToLife() {
+        return this.<T>bindToLifecycle();
     }
 }

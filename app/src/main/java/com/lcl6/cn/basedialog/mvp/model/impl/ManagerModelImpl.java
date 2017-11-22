@@ -2,6 +2,9 @@ package com.lcl6.cn.basedialog.mvp.model.impl;
 
 import android.util.Log;
 
+import com.lcl6.cn.basedialog.api.OneApiService;
+import com.lcl6.cn.basedialog.api.ThreeApiService;
+import com.lcl6.cn.basedialog.api.TwoApiService;
 import com.lcl6.cn.basedialog.app.App;
 import com.lcl6.cn.basedialog.di.component.AppComponent;
 import com.lcl6.cn.basedialog.mvp.model.ManagerModel;
@@ -33,8 +36,7 @@ public class ManagerModelImpl implements ManagerModel {
     @Override
     public void requestTabaoData(LoadCompleteListener listener) {
 
-        App.getAppComponent().getNetWorkManager()
-                .getOneApiService()
+        App.getAppComponent().getNetWorkManager().getRetrofit().create(OneApiService.class)
                 .requestDefault()
                 .compose(TransformerUtil.<ResponseBody>getDefaultTransformer(App.getAppComponent().getContext()))
                 .subscribe(getDefaultObserver(listener));
@@ -66,7 +68,7 @@ public class ManagerModelImpl implements ManagerModel {
             App.getAppComponent().getRetrofitManager().putDomain(GITHUB_DOMAIN_NAME, newUrl);
         }
         App.getAppComponent().getNetWorkManager()
-                .getOneApiService()
+                .getRetrofit().create(OneApiService.class)
                 .getUsers(1, 10)
                 .compose(TransformerUtil.<ResponseBody>getDefaultTransformer(App.getAppComponent().getContext()))
                 .subscribe(getDefaultObserver(listener));
@@ -80,7 +82,7 @@ public class ManagerModelImpl implements ManagerModel {
             appComponent.getRetrofitManager().putDomain(GANK_DOMAIN_NAME, newUrl);
         }
         appComponent.getNetWorkManager()
-                .getTwoApiService()
+                .getRetrofit().create(TwoApiService.class)
                 .getData(10, 1)
                 .compose(TransformerUtil.<ResponseBody>getDefaultTransformer(App.getAppComponent().getContext()))
                 .subscribe(getDefaultObserver(listener));
@@ -94,7 +96,7 @@ public class ManagerModelImpl implements ManagerModel {
             mAppComponent.getRetrofitManager().putDomain(DOUBAN_DOMAIN_NAME, newUrl);
         }
         mAppComponent.getNetWorkManager()
-              .getThreeApiService()
+                .getRetrofit().create(ThreeApiService.class)
                 .getBook(1220562)
                 .compose(TransformerUtil.<ResponseBody>getDefaultTransformer(App.getAppComponent().getContext()))
                 .subscribe(getDefaultObserver(listener));

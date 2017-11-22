@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.lcl6.cn.basedialog.api.TwoApiService;
 import com.lcl6.cn.basedialog.app.App;
 import com.lcl6.cn.basedialog.base.manager.observel.RxObservable;
 import com.lcl6.cn.basedialog.bean.JsoupBean;
@@ -41,7 +42,7 @@ public class NewsModelImpl implements NewsModel {
             retrofitManager.putDomain(GANK_DOMAIN_NAME, "http://gank.io");
         }
         App.getAppComponent().getNetWorkManager()
-                .getTwoApiService()
+                .getRetrofit().create(TwoApiService.class)
                 .getData(10, 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

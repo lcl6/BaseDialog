@@ -55,6 +55,8 @@
 
         <activity android:name=".ui.activity.LruActivity"/>
 
+        <activity android:name=".mvp.ui.VideoActivity" />
+
 
     </application>
 

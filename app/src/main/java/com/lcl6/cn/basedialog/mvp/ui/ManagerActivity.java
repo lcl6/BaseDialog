@@ -164,6 +164,7 @@ public class ManagerActivity extends BaseMvpActivity<ManagerPresenter> implement
         showResult(message);
     }
 
+
     class ChangeListener implements UrlChangeListener {
 
         @Override
