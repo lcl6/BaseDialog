@@ -36,7 +36,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Networ
     private NetworkStateView mNetworkStateView;
 
     public Unbinder mUnbinder;
-    private TitleBar mTitleBar;
+    public TitleBar mTitleBar;
     private ImageView mCollectView;
 
     /***配置*/

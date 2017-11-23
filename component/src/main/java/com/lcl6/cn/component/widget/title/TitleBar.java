@@ -109,7 +109,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         addActions(titleConfig.getActionList());
         setDivider(titleConfig.getDivideDrawable());
         setBackgroundColor(titleConfig.getTitleBackgroundColor());
-
+        removeAllActions(titleConfig.isRemoveRightView());
     }
 
 
@@ -333,8 +333,10 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
      * 移除右边所有的view
      * Removes all action views from this action bar
      */
-    public void removeAllActions() {
-        mRightLayout.removeAllViews();
+    public void removeAllActions(boolean remove) {
+        if(remove){
+            mRightLayout.removeAllViews();
+        }
     }
 
     /**

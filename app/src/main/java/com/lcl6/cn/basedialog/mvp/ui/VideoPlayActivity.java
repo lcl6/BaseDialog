@@ -59,6 +59,7 @@ public class VideoPlayActivity extends BaseMvpActivity {
     @Override
     protected void initView() {
         stateSuccess();
+        setTitleBarGone();
         initPlayer();
 
     }

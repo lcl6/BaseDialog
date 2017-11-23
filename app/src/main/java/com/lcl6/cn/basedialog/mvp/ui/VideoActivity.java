@@ -14,6 +14,7 @@ import com.lcl6.cn.basedialog.mvp.contract.VideoListConstract;
 import com.lcl6.cn.basedialog.mvp.presenter.VideoListPresent;
 import com.lcl6.cn.component.adapter.BaseRecyclerViewAdapter;
 import com.lcl6.cn.component.base.activity.BaseMvpActivity;
+import com.lcl6.cn.component.widget.title.TitleConfig;
 
 import java.util.List;
 
@@ -51,6 +52,12 @@ public class VideoActivity extends BaseMvpActivity<VideoListPresent> implements 
     @Override
     protected void initView() {
 
+        //TODO 添加右边扩展布局是否显示
+        TitleConfig builde = getTitleConfigBuilder()
+                .setTitle(getString(R.string.app_vedio))
+                .removeRightView(true)
+                .builde();
+        mTitleBar.setTitleConfig(builde);
         DaggerVideoComponent.builder().videoModule(new VideoModule(getContext(),this)).build().inject(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         mRecyclerView.setAdapter(mAdapter);

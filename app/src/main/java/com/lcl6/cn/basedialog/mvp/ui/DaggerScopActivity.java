@@ -56,7 +56,7 @@ public class DaggerScopActivity extends BaseMvpActivity<DaggerScopPresent> imple
     @Override
     protected void initView() {
         TitleBar titleBar = getTitleBar();
-        titleBar.removeAllActions();
+        titleBar.removeAllActions(true);
         TitleConfig builde = getTitleConfigBuilder().setLeftVisible(false).builde();
         titleBar.setTitleConfig(builde);
         mlist=new ArrayList<>();
