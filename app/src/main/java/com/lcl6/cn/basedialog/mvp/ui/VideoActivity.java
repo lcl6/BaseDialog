@@ -52,7 +52,6 @@ public class VideoActivity extends BaseMvpActivity<VideoListPresent> implements 
     @Override
     protected void initView() {
 
-        //TODO 添加右边扩展布局是否显示
         TitleConfig builde = getTitleConfigBuilder()
                 .setTitle(getString(R.string.app_vedio))
                 .removeRightView(true)
