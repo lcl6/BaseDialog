@@ -55,5 +55,11 @@ dependencies {
     //dagger2
     compile "com.google.dagger:dagger:$rootProject.dagger2Version"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+    //视频播放
+    compile project(path: ':playerview')
+
+    //json 解析
+    compile "com.alibaba:fastjson:$rootProject.jsonVersion"
+    compile "com.alibaba:fastjson:$rootProject.jsonAndroidVersion"
 
 }

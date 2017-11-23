@@ -18,6 +18,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.HttpUrl;
+
+import static com.lcl6.cn.basedialog.api.Api.VIDEO_DOMAIN_NAME;
 
 /**
  * Created by liancl on 2017/11/22.
@@ -36,7 +39,12 @@ public class VideoListPresent extends RxPresenter<VideoListConstract.View> imple
     public void getData() {
 
         //设置全局baseurl
-        App.getAppComponent().getRetrofitManager().setGlobalDomain(Api.NEWS_HOST);
+//        App.getAppComponent().getRetrofitManager().setGlobalDomain(Api.NEWS_HOST);
+        HttpUrl httpUrl =   App.getAppComponent().getRetrofitManager().fetchDomain(VIDEO_DOMAIN_NAME);
+        if (httpUrl == null || !httpUrl.toString().equals(Api.NEWS_HOST)) { //可以在 App 运行时随意切换某个接口的 BaseUrl
+            App.getAppComponent().getRetrofitManager().putDomain(VIDEO_DOMAIN_NAME, Api.NEWS_HOST);
+        }
+
         App.getAppComponent().getNetWorkManager().getRetrofit().create(Api.class).getVideoList("V9LG4B3A0",10)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

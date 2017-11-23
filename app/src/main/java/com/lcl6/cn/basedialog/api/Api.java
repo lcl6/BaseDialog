@@ -10,6 +10,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Path;
 
+import static com.lcl6.cn.component.net.RetrofitManager.DOMAIN_NAME_HEADER;
+
 /**
  * Created by jess on 18/07/2017 17:01
  * Contact with jess.yan.effort@gmail.com
@@ -39,7 +41,7 @@ public interface Api {
     // 避免出现 HTTP 403 Forbidden，参考：http://stackoverflow.com/questions/13670692/403-forbidden-with-java-but-not-web-browser
     String AVOID_HTTP403_FORBIDDEN = "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11";
 
-    @Headers(VIDEO_DOMAIN_NAME + AVOID_HTTP403_FORBIDDEN)
+    @Headers({DOMAIN_NAME_HEADER + VIDEO_DOMAIN_NAME,AVOID_HTTP403_FORBIDDEN})
     @GET("nc/video/list/{id}/n/{startPage}-10.html")
     Observable<Map<String, List<VideoInfo>>> getVideoList(@Path("id") String id,
                                                           @Path("startPage") int startPage);

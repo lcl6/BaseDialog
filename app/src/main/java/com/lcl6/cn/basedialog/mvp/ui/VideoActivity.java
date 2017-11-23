@@ -69,7 +69,7 @@ public class VideoActivity extends BaseMvpActivity<VideoListPresent> implements 
             mAdapter.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<VideoInfo>() {
                 @Override
                 public void onItemClick(RecyclerView.ViewHolder viewHolder, VideoInfo item, int position) {
-
+                    VideoPlayActivity.start(getContext(),item);
                 }
             });
 

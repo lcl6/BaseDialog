@@ -40,5 +40,6 @@ ext{
     rxlifecycleVersion = '2.1.0'
     dagger2Version= '2.11'
     eventVersion = '3.0.0'
-
+    jsonVersion="1.2.41"
+    jsonAndroidVersion="1.2.38.android"
 }

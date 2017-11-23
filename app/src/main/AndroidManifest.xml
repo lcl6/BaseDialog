@@ -56,6 +56,9 @@
         <activity android:name=".ui.activity.LruActivity"/>
 
         <activity android:name=".mvp.ui.VideoActivity" />
+        <activity android:name=".mvp.ui.VideoPlayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            />
 
 
     </application>

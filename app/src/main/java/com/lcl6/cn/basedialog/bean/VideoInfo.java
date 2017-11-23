@@ -1,10 +1,13 @@
 package com.lcl6.cn.basedialog.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by liancl on 2017/11/22.
  */
 
-public class VideoInfo {
+public class VideoInfo implements Serializable {
+    private static final long serialVersionUID = 4780642528398479656L;
     /**
      * sizeHD : 0
      * videoTopic : {"ename":"T1489393982925","tname":"天空与风","alias":"精彩美文、图片和视频","topic_icons":"http://dingyue.nosdn.127.net/VEKSo=CNNkS8vifRHph2TMolRnFvzyDGF6z8YM53sdKg61489393982530.jpg","tid":"T1489393982925"}
@@ -36,7 +39,7 @@ public class VideoInfo {
 
     private int sizeHD;
     private VideoTopicBean videoTopic;
-    private Object mp4Hd_url;
+    private String mp4Hd_url;
     private String description;
     private String title;
     private String mp4_url;
@@ -50,7 +53,7 @@ public class VideoInfo {
     private int votecount;
     private int length;
     private String videosource;
-    private Object m3u8Hd_url;
+    private String m3u8Hd_url;
     private int sizeSD;
     private String topicSid;
     private int playCount;
@@ -77,11 +80,11 @@ public class VideoInfo {
         this.videoTopic = videoTopic;
     }
 
-    public Object getMp4Hd_url() {
+    public String getMp4Hd_url() {
         return mp4Hd_url;
     }
 
-    public void setMp4Hd_url(Object mp4Hd_url) {
+    public void setMp4Hd_url(String mp4Hd_url) {
         this.mp4Hd_url = mp4Hd_url;
     }
 
@@ -189,11 +192,11 @@ public class VideoInfo {
         this.videosource = videosource;
     }
 
-    public Object getM3u8Hd_url() {
+    public String getM3u8Hd_url() {
         return m3u8Hd_url;
     }
 
-    public void setM3u8Hd_url(Object m3u8Hd_url) {
+    public void setM3u8Hd_url(String m3u8Hd_url) {
         this.m3u8Hd_url = m3u8Hd_url;
     }
 
@@ -269,7 +272,8 @@ public class VideoInfo {
         this.topicDesc = topicDesc;
     }
 
-    public static class VideoTopicBean {
+    public static class VideoTopicBean implements Serializable{
+        private static final long serialVersionUID = 1308451299783636572L;
         /**
          * ename : T1489393982925
          * tname : 天空与风
