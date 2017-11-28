@@ -2,7 +2,7 @@ package com.lcl6.cn.basedialog.engine;
 
 
 import com.dl7.player.danmaku.BaseDanmakuConverter;
-import com.lcl6.cn.basedialog.bean.damaku.DanmakuInfo;
+import com.lcl.greendao.bean.DanmakuInfo;
 
 import master.flame.danmaku.danmaku.model.BaseDanmaku;
 
@@ -26,7 +26,7 @@ public class DanmakuConverter extends BaseDanmakuConverter<DanmakuInfo> {
     }
 
     @Override
-    public DanmakuInfo convertDanmaku(BaseDanmaku danmaku) {
+    public DanmakuInfo  convertDanmaku(BaseDanmaku danmaku) {
         DanmakuInfo data = new DanmakuInfo();
         // 弹幕基础数据初始化，重要！记得调用
         initData(data, danmaku);

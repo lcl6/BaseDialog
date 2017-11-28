@@ -39,4 +39,6 @@ dependencies {
     compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.6.2'
     compile 'tv.danmaku.ijk.media:ijkplayer-x86:0.6.3'
     compile 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.6.2'
+
+    compile project(path:':danmuibrary')
 }

@@ -1,4 +1,4 @@
-package com.snxun.keypersondaolib;
+package com.lcl.greendao;
 
 import org.junit.Test;
 

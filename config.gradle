@@ -42,4 +42,6 @@ ext{
     eventVersion = '3.0.0'
     jsonVersion="1.2.41"
     jsonAndroidVersion="1.2.38.android"
+    greenDaoVersion="3.2.2"
+
 }

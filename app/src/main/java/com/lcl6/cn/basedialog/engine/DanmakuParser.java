@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
-import com.lcl6.cn.basedialog.bean.damaku.DanmakuInfo;
+import com.lcl.greendao.bean.DanmakuInfo;
 import com.lcl6.cn.basedialog.constant.Constant;
 
 import java.util.List;

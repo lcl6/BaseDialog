@@ -1,9 +1,9 @@
-package com.snxun.keypersondaolib;
+package com.lcl.greendao;
 
 import android.content.Context;
 
-import com.snxun.keypersondaolib.dao.DaoMaster;
-import com.snxun.keypersondaolib.dao.DaoSession;
+import com.lcl.greendao.dao.DaoMaster;
+import com.lcl.greendao.dao.DaoSession;
 
 import org.greenrobot.greendao.database.Database;
 

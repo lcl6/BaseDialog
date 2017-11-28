@@ -1,20 +1,17 @@
-package com.lcl6.cn.basedialog.bean.damaku;
+package com.ccc.danmuibrary;
 
 /**
  * Created by liancl on 2017/11/23.
  */
 
-public class DanmakuInfo extends com.dl7.player.danmaku.BaseDanmakuData {
+public class BaseDanmakuData {
+
 
     private int type;
     private String content;
     private long time;
     private float textSize;
     private int textColor;
-    // 用户名
-    private String userName;
-    // 对应一个视频
-    private String vid;
 
     public int getType() {
         return type;
@@ -56,19 +53,14 @@ public class DanmakuInfo extends com.dl7.player.danmaku.BaseDanmakuData {
         this.textColor = textColor;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getVid() {
-        return vid;
-    }
-
-    public void setVid(String vid) {
-        this.vid = vid;
+    @Override
+    public String toString() {
+        return "BaseDanmakuData{" +
+                "type=" + type +
+                ", content='" + content + '\'' +
+                ", time=" + time +
+                ", textSize=" + textSize +
+                ", textColor=" + textColor +
+                '}';
     }
 }

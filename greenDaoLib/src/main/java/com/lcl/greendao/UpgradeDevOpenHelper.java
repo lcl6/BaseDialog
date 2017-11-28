@@ -1,10 +1,10 @@
-package com.snxun.keypersondaolib;
+package com.lcl.greendao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.snxun.keypersondaolib.dao.DaoMaster;
+import com.lcl.greendao.dao.DaoMaster;
 
 /**
  * 自定义数据库升级的DevOpenHelper
