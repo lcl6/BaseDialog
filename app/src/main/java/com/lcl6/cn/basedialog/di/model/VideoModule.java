@@ -5,7 +5,7 @@ import android.content.Context;
 import com.lcl.greendao.dao.DanmakuInfoDao;
 import com.lcl6.cn.basedialog.adapter.VideoAdapter;
 import com.lcl6.cn.basedialog.bean.VideoInfo;
-import com.lcl6.cn.basedialog.mvp.contract.VideoListConstract;
+import com.lcl6.cn.basedialog.mvp.model.impl.VideoListModelImpl;
 import com.lcl6.cn.basedialog.mvp.presenter.VideoListPresent;
 import com.lcl6.cn.basedialog.mvp.presenter.VideoPlayerPresenter;
 
@@ -20,27 +20,27 @@ import dagger.Provides;
 public class VideoModule {
 
     private Context context;
-    private VideoListConstract.View mView;
     private DanmakuInfoDao danmakuInfoDao;
     private VideoInfo videoData;
-
-//    @Inject
-//    VideoListPresent mVideoListPresent;
-
 
     public VideoModule(DanmakuInfoDao danmakuInfoDao,VideoInfo videoData) {
         this.danmakuInfoDao = danmakuInfoDao;
         this.videoData = videoData;
     }
 
-    public VideoModule(Context context, VideoListConstract.View view) {
+    public VideoModule(Context context) {
         this.context = context;
-        mView = view;
+    }
+
+
+    @Provides
+    public VideoListModelImpl provideVideoListModelImpl(){
+        return new VideoListModelImpl();
     }
 
     @Provides
-    public VideoListPresent provideVideoListModelImpl(){
-        return new VideoListPresent(mView);
+    public VideoListPresent provideVideoListPresent(){
+        return new VideoListPresent();
     }
 
     @Provides
@@ -53,5 +53,6 @@ public class VideoModule {
     VideoPlayerPresenter provideVideoPlayerPresenter(){
         return new VideoPlayerPresenter(danmakuInfoDao,videoData);
     }
+
 
 }

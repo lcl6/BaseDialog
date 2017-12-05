@@ -43,6 +43,7 @@ public class VideoActivity extends BaseMvpActivity<VideoListPresent> implements 
 
     @Override
     protected VideoListPresent getPresenter() {
+        DaggerVideoComponent.builder().videoModule(new VideoModule(this)).build().inject(this);
         return mVideoListPresent;
     }
     @Override
@@ -57,7 +58,7 @@ public class VideoActivity extends BaseMvpActivity<VideoListPresent> implements 
                 .removeRightView(true)
                 .builde();
         mTitleBar.setTitleConfig(builde);
-        DaggerVideoComponent.builder().videoModule(new VideoModule(getContext(),this)).build().inject(this);
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         mRecyclerView.setAdapter(mAdapter);
 
