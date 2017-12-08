@@ -10,8 +10,6 @@ import android.os.Environment;
 import android.util.LruCache;
 
 import com.jakewharton.disklrucache.DiskLruCache;
-import com.lcl6.cn.component.base.frament.LazyFragment;
-import com.trello.rxlifecycle2.android.FragmentEvent;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -210,7 +208,6 @@ public class LruUtils {
     public static void getDiskBitmapTask(final DiskLruCache diskLruCache, final String imgKey, final Listener listener){
         Observable<Bitmap> bitmapObservable = getDiskBitmapObservable(diskLruCache, imgKey);
         bitmapObservable.subscribeOn(Schedulers.io())
-//                .compose(context.<Bitmap>bindUntilEvent(ActivityEvent.DESTROY))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Bitmap>() {
                     @Override
@@ -232,36 +229,6 @@ public class LruUtils {
                 });
     }
 
-    /**
-     * 获取磁盘图片 在frament中调用  防止内存泄漏
-     * @param diskLruCache 磁盘缓存
-     * @param imgKey 图片的key
-     * @param listener 回调
-     */
-    public static void getDiskBitmapTask(LazyFragment context, final DiskLruCache diskLruCache, final String imgKey, final Listener listener){
-        Observable<Bitmap> bitmapObservable = getDiskBitmapObservable(diskLruCache, imgKey);
-        bitmapObservable.subscribeOn(Schedulers.io())
-                .compose(context.<Bitmap>bindUntilEvent(FragmentEvent.DESTROY))
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Bitmap>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                    }
-
-                    @Override
-                    public void onNext(@NonNull Bitmap bitmap) {
-                        listener.onSuccess(bitmap);
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        listener.onNoDiskCacha();
-                    }
-                    @Override
-                    public void onComplete() {
-                    }
-                });
-    }
 
     /***
      * 获取bitmap observerable
