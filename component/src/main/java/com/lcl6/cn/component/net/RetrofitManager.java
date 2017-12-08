@@ -34,7 +34,7 @@ public class RetrofitManager {
     private static boolean DEPENDENCY_OKHTTP;
     private List<UrlChangeListener> mListeners = new ArrayList<>();
     private UrlParser mUrlParser;
-//    private static RetrofitManager mInstance;
+    private static RetrofitManager mInstance;
 
     static {
         boolean hasDependency;
@@ -63,16 +63,19 @@ public class RetrofitManager {
     }
 
 
-//    public static RetrofitManager getInstance() {
-//        if (mInstance == null) {
-//            synchronized (RetrofitManager.class) {
-//                if (mInstance == null) {
-//                    mInstance = new RetrofitManager();
-//                }
-//            }
-//        }
-//        return mInstance;
-//    }
+    /**
+     * 可以使用dagger也可以用单例
+     */
+    public static RetrofitManager getInstance() {
+        if (mInstance == null) {
+            synchronized (RetrofitManager.class) {
+                if (mInstance == null) {
+                    mInstance = new RetrofitManager();
+                }
+            }
+        }
+        return mInstance;
+    }
 
 
     /**
@@ -84,14 +87,15 @@ public class RetrofitManager {
     }
 
 
-
     /**
      * 可自行实现 {@link UrlParser} 动态切换 Url 解析策略
+     *
      * @param parser
      */
     public void setUrlParser(UrlParser parser) {
         this.mUrlParser = parser;
     }
+
     /**
      * 对 {@link Request} 进行一些必要的加工
      *
@@ -99,13 +103,9 @@ public class RetrofitManager {
      * @return
      */
     public Request processRequest(Request request) {
-
         Request.Builder newBuilder = request.newBuilder();
-
         String domainName = obtainDomainNameFromHeaders(request);
-
         HttpUrl httpUrl;
-
         // 如果有 header，获取 header 中配置的url，否则检查全局的 BaseUrl，未找到则为null
         if (!TextUtils.isEmpty(domainName)) {
             httpUrl = fetchDomain(domainName);
@@ -113,11 +113,9 @@ public class RetrofitManager {
         } else {
             httpUrl = fetchDomain(GLOBAL_DOMAIN_NAME);
         }
-
         if (null != httpUrl) {
             HttpUrl newUrl = mUrlParser.parseUrl(httpUrl, request.url());
             Log.d(RetrofitManager.TAG, "New Url is { " + newUrl.toString() + " } , Old Url is { " + request.url().toString() + " }");
-
             Object[] listeners = listenersToArray();
             if (listeners != null) {
                 for (int i = 0; i < listeners.length; i++) {
@@ -132,18 +130,23 @@ public class RetrofitManager {
 
     }
 
-    /** * 管理器是否在运行 */
+    /**
+     * 管理器是否在运行
+     */
     public boolean isRun() {
         return this.isRun;
     }
 
-    /** * 控制管理器是否运行,在每个域名地址都已经确定,不需要再动态更改时可设置为 false */
+    /**
+     * 控制管理器是否运行,在每个域名地址都已经确定,不需要再动态更改时可设置为 false
+     */
     public void setRun(boolean run) {
         this.isRun = run;
     }
 
     /**
      * 从 {@link Request#header(String)} 中取出 DomainName
+     *
      * @param request
      */
     private String obtainDomainNameFromHeaders(Request request) {
@@ -155,7 +158,9 @@ public class RetrofitManager {
         return request.header(DOMAIN_NAME);
     }
 
-    /**   * 取出对应 DomainName 的 Url */
+    /**
+     * 取出对应 DomainName 的 Url
+     */
     public HttpUrl fetchDomain(String domainName) {
         return mDomainNameHub.get(domainName);
     }

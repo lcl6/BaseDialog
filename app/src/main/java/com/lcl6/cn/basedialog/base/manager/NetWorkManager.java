@@ -34,25 +34,24 @@ import static com.lcl6.cn.basedialog.api.Api.APP_DEFAULT_DOMAIN;
  */
 
 public class NetWorkManager {
-//    private static NetWorkManager mInstance;
+    private static NetWorkManager mInstance;
     private OkHttpClient mOkHttpClient;
     private Retrofit mRetrofit;
-
-//    public static NetWorkManager getInstance() {
-//        if (mInstance == null) {
-//            synchronized (NetWorkManager.class) {
-//                if (mInstance == null) {
-//                    mInstance = new NetWorkManager();
-//                }
-//            }
-//        }
-//        return mInstance;
-//    }
-//设缓存有效期为1天
-static final long CACHE_STALE_SEC = 60 * 60 * 24 * 1;
-
+    //设缓存有效期为1天
+    static final long CACHE_STALE_SEC = 60 * 60 * 24 * 1;
     //查询缓存的Cache-Control设置，为if-only-cache时只查询缓存而不会请求服务器，max-stale可以配合设置缓存失效时间
     private static final String CACHE_CONTROL_CACHE = "only-if-cached, max-stale=" + CACHE_STALE_SEC;
+    /***可以使用dagger 也可以使用单例*/
+    public static NetWorkManager getInstance() {
+        if (mInstance == null) {
+            synchronized (NetWorkManager.class) {
+                if (mInstance == null) {
+                    mInstance = new NetWorkManager();
+                }
+            }
+        }
+        return mInstance;
+    }
     public NetWorkManager() {
 
         // 指定缓存路径,缓存大小100Mb
@@ -89,7 +88,7 @@ static final long CACHE_STALE_SEC = 60 * 60 * 24 * 1;
             Request request = chain.request();
             if (!NetWorkUtils.isNetworkAvailable(App.getAppComponent().getContext())) {
                 request = request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build();
-                Log.e(Constant.TAG,"no network");
+                Log.e(Constant.TAG, "no network");
             }
             Response originalResponse = chain.proceed(request);
 
@@ -108,8 +107,6 @@ static final long CACHE_STALE_SEC = 60 * 60 * 24 * 1;
             }
         }
     };
-
-
 
 
     public OkHttpClient getOkHttpClient() {
@@ -132,7 +129,10 @@ static final long CACHE_STALE_SEC = 60 * 60 * 24 * 1;
             return logResponse(chain.proceed(request));
         }
     }
-    /** 获取头信息 */
+
+    /**
+     * 获取头信息
+     */
     private Map<String, String> getHeaders() {
         HashMap<String, String> headersMap = new HashMap<>();
         return headersMap;
@@ -141,25 +141,27 @@ static final long CACHE_STALE_SEC = 60 * 60 * 24 * 1;
 
     /**
      * 打印请求信息日志
+     *
      * @param request 请求
      */
     private void logRequest(Request request) {
         List<String> list = request.url().pathSegments();
         Headers headers = request.headers();
 
-        Log.i(Constant.TAG, "[" +"headers"  + "] ---> " +headers.toString());
+        Log.i(Constant.TAG, "[" + "headers" + "] ---> " + headers.toString());
         Log.i(Constant.TAG, "[" + list.get(list.size() - 1) + "] ---> " + request.url().toString());
         Log.i(Constant.TAG, "[" + list.get(list.size() - 1) + "] ---> " + getRequestString(request));
     }
 
     /**
      * 获取请求字符串
+     *
      * @param request 请求
      */
-    private String getRequestString(Request request){
+    private String getRequestString(Request request) {
         try {
             final Request copy = request.newBuilder().build();
-            if (copy.body() == null){
+            if (copy.body() == null) {
                 return "";
             }
             final Buffer buffer = new Buffer();
@@ -170,8 +172,10 @@ static final long CACHE_STALE_SEC = 60 * 60 * 24 * 1;
         }
         return "";
     }
+
     /**
      * 打印返回数据日志
+     *
      * @param response 返回数据
      */
     private okhttp3.Response logResponse(okhttp3.Response response) {
@@ -193,26 +197,28 @@ static final long CACHE_STALE_SEC = 60 * 60 * 24 * 1;
                 .build();
         return response;
     }
+
     /**
      * 打印分段日志
+     *
      * @param tag 标签
      * @param log 原始日志
      */
     private void logSegmentedLog(String tag, String log) {
-        synchronized (NetWorkManager.class){
-            if (TextUtils.isEmpty(log) || log.length() < 3000){
+        synchronized (NetWorkManager.class) {
+            if (TextUtils.isEmpty(log) || log.length() < 3000) {
                 Log.d(Constant.TAG, "[" + tag + "] <--- " + log);
                 return;
             }
             int index = (int) Math.ceil(log.length() / 3000.0);
-            for (int i = 0; i < index; i++){
+            for (int i = 0; i < index; i++) {
                 int start = i * 3000;
                 int end = 3000 + i * 3000;
-                if (end >= log.length()){
+                if (end >= log.length()) {
                     end = log.length();
                 }
                 Log.d(Constant.TAG, "[" + tag + "] <--- " + log.substring(start, end));
-                if (end == log.length()){
+                if (end == log.length()) {
                     return;
                 }
             }

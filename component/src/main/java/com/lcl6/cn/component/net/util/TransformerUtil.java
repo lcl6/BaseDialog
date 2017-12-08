@@ -1,8 +1,5 @@
 package com.lcl6.cn.component.net.util;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
@@ -18,8 +15,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class TransformerUtil {
 
-    public static  <T> ObservableTransformer<T, T> getDefaultTransformer(Context context) {
-        final ProgressDialog mProgressDialog = new ProgressDialog(context);
+    public static  <T> ObservableTransformer<T, T> getDefaultTransformer() {
         return new ObservableTransformer<T, T>() {
             @Override
             public ObservableSource<T> apply(Observable<T> upstream) {
@@ -28,7 +24,6 @@ public class TransformerUtil {
                         .doOnSubscribe(new Consumer<Disposable>() {
                             @Override
                             public void accept(Disposable disposable) throws Exception {
-                                mProgressDialog.show();
                             }
                         })
                         .subscribeOn(AndroidSchedulers.mainThread())
@@ -36,7 +31,6 @@ public class TransformerUtil {
                         .doAfterTerminate(new Action() {
                             @Override
                             public void run() throws Exception {
-                                mProgressDialog.dismiss();
                             }
                         });
             }

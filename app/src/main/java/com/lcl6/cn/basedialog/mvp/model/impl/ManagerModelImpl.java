@@ -38,7 +38,7 @@ public class ManagerModelImpl implements ManagerModel {
 
         App.getAppComponent().getNetWorkManager().getRetrofit().create(OneApiService.class)
                 .requestDefault()
-                .compose(TransformerUtil.<ResponseBody>getDefaultTransformer(App.getAppComponent().getContext()))
+                .compose(TransformerUtil.<ResponseBody>getDefaultTransformer())
                 .subscribe(getDefaultObserver(listener));
     }
 
@@ -70,7 +70,7 @@ public class ManagerModelImpl implements ManagerModel {
         App.getAppComponent().getNetWorkManager()
                 .getRetrofit().create(OneApiService.class)
                 .getUsers(1, 10)
-                .compose(TransformerUtil.<ResponseBody>getDefaultTransformer(App.getAppComponent().getContext()))
+                .compose(TransformerUtil.<ResponseBody>getDefaultTransformer())
                 .subscribe(getDefaultObserver(listener));
     }
 
@@ -84,7 +84,7 @@ public class ManagerModelImpl implements ManagerModel {
         appComponent.getNetWorkManager()
                 .getRetrofit().create(TwoApiService.class)
                 .getData(10, 1)
-                .compose(TransformerUtil.<ResponseBody>getDefaultTransformer(App.getAppComponent().getContext()))
+                .compose(TransformerUtil.<ResponseBody>getDefaultTransformer())
                 .subscribe(getDefaultObserver(listener));
     }
 
@@ -98,7 +98,7 @@ public class ManagerModelImpl implements ManagerModel {
         mAppComponent.getNetWorkManager()
                 .getRetrofit().create(ThreeApiService.class)
                 .getBook(1220562)
-                .compose(TransformerUtil.<ResponseBody>getDefaultTransformer(App.getAppComponent().getContext()))
+                .compose(TransformerUtil.<ResponseBody>getDefaultTransformer())
                 .subscribe(getDefaultObserver(listener));
     }
 
