@@ -29,7 +29,7 @@ public interface Api {
     String DOUBAN_DOMAIN_NAME = "douban";
     String VIDEO_DOMAIN_NAME = "video";
     /**视频的baseurl*/
-     String NEWS_HOST = "http://c.3g.163.com/";
+    String NEWS_HOST = "http://c.3g.163.com/";
     /**
      * 获取视频列表
      * eg: http://c.3g.163.com/nc/video/list/V9LG4B3A0/n/10-10.html

@@ -1,8 +1,11 @@
 package com.lcl6.cn.component.widget.title;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorRes;
+import android.support.annotation.IdRes;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -22,10 +25,6 @@ import static com.lcl6.cn.component.widget.title.TitleConfig.DEFAULT_ACTION_TEXT
  * 创建时间：2015/9/25 11:36
  */
 public class TitleBar extends ViewGroup implements View.OnClickListener {
-//    private static final int DEFAULT_MAIN_TEXT_SIZE = 18;
-//    private static final int DEFAULT_SUB_TEXT_SIZE = 12;
-//    private static final int DEFAULT_ACTION_TEXT_SIZE = 15;
-//    public static final int DEFAULT_TITLE_BAR_HEIGHT = 48;
 
     private static final String STATUS_BAR_HEIGHT_RES_NAME = "status_bar_height";
 
@@ -223,11 +222,13 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         mCenterLayout.setOnClickListener(l);
     }
     /**设置状态栏标题*/
-    public void setTitle(int resid) {
+    @SuppressLint("ResourceType")
+    public void setTitle(@IdRes int resid) {
         setTitle(getResources().getString(resid));
     }
     /**设置状态栏标题颜色*/
-    private void setTitleColor(int resid) {
+    @SuppressLint("ResourceAsColor")
+    private void setTitleColor(@ColorRes int resid) {
         mCenterText.setTextColor(resid);
     }
     /**设置状态栏标题大小*/
@@ -235,14 +236,15 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         mCenterText.setTextSize(size);
     }
     /**设置状态栏子标题背景*/
-    private void setTitleBackground(int resid) {
+    @SuppressLint("ResourceType")
+    private void setTitleBackground(@IdRes int resid) {
         if(resid<=0){
             return;
         }
         mCenterText.setBackgroundResource(resid);
     }
     /**设置状态栏子标题颜色*/
-    private void setSubTitleColor(int resid) {
+    private void setSubTitleColor(@IdRes int resid) {
         mSubTitleText.setTextColor(resid);
     }
     /**设置状态栏子标题大小*/
@@ -275,7 +277,8 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         mDividerView.setBackgroundDrawable(drawable);
     }
     /**设置状态栏分割线颜色*/
-    private void setDividerColor(int color) {
+    @SuppressLint("ResourceAsColor")
+    private void setDividerColor(@ColorRes  int color) {
         if(color==0){
             return;
         }
