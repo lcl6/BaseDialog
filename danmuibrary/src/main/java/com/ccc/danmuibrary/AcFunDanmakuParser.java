@@ -1,4 +1,4 @@
-package com.dl7.player.danmaku;
+package com.ccc.danmuibrary;
 
 import android.graphics.Color;
 

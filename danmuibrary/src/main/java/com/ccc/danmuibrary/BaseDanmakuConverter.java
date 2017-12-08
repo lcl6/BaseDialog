@@ -1,7 +1,5 @@
-package com.dl7.player.danmaku;
+package com.ccc.danmuibrary;
 
-
-import com.ccc.danmuibrary.BaseDanmakuData;
 
 import master.flame.danmaku.danmaku.model.BaseDanmaku;
 import master.flame.danmaku.danmaku.model.FBDanmaku;
@@ -28,7 +26,7 @@ public abstract class BaseDanmakuConverter<T extends BaseDanmakuData> {
     protected void initData(T data, BaseDanmaku danmaku) {
         int danmakuType = TYPE_SCROLL_RL;
         if (danmaku instanceof R2LDanmaku) {
-            danmakuType = BaseDanmaku.TYPE_SCROLL_RL;
+            danmakuType = TYPE_SCROLL_RL;
         } else if (danmaku instanceof FBDanmaku) {
             danmakuType = BaseDanmaku.TYPE_FIX_BOTTOM;
         } else if (danmaku instanceof FTDanmaku) {

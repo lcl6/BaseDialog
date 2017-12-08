@@ -49,10 +49,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ccc.danmuibrary.BaseDanmakuConverter;
+import com.ccc.danmuibrary.BiliDanmukuParser;
+import com.ccc.danmuibrary.OnDanmakuListener;
 import com.dl7.player.R;
-import com.dl7.player.danmaku.BaseDanmakuConverter;
-import com.dl7.player.danmaku.BiliDanmukuParser;
-import com.dl7.player.danmaku.OnDanmakuListener;
 import com.dl7.player.utils.AnimHelper;
 import com.dl7.player.utils.MotionEventUtils;
 import com.dl7.player.utils.NavUtils;

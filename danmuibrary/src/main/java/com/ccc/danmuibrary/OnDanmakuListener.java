@@ -1,4 +1,4 @@
-package com.dl7.player.danmaku;
+package com.ccc.danmuibrary;
 
 /**
  * Created by long on 2016/12/22.

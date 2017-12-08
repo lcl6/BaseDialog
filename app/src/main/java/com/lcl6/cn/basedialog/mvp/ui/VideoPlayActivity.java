@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import com.dl7.player.danmaku.OnDanmakuListener;
+import com.ccc.danmuibrary.OnDanmakuListener;
 import com.dl7.player.media.IjkPlayerView;
 import com.lcl.greendao.GreenDaoManager;
 import com.lcl.greendao.bean.DanmakuInfo;

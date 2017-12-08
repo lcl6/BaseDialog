@@ -1,7 +1,7 @@
 package com.lcl6.cn.basedialog.engine;
 
 
-import com.dl7.player.danmaku.BaseDanmakuConverter;
+import com.ccc.danmuibrary.BaseDanmakuConverter;
 import com.lcl.greendao.bean.DanmakuInfo;
 
 import master.flame.danmaku.danmaku.model.BaseDanmaku;

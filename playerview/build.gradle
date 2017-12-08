@@ -31,8 +31,8 @@ dependencies {
     // ijkplayer
     compile 'tv.danmaku.ijk.media:ijkplayer-java:0.8.1'
     compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.3'
-    // Danmaku
-    compile 'com.github.ctiao:DanmakuFlameMaster:0.6.2'
+//    // Danmaku
+//    compile 'com.github.ctiao:DanmakuFlameMaster:0.6.2'
 
     // add
     compile 'tv.danmaku.ijk.media:ijkplayer-armv5:0.6.3'
