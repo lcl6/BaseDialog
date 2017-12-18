@@ -119,6 +119,13 @@
                 android:gravity="center"
                 android:text="视频弹幕"
                 />
+            <TextView
+                android:id="@+id/tv_hook"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="hook技术"
+                />
 
         </LinearLayout>
     </ScrollView>

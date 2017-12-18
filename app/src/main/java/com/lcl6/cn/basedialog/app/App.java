@@ -28,6 +28,7 @@ public class App extends Application {
         appComponent = DaggerAppComponent.builder().appModule(new AppModule(2, 3,this)).build();
         appComponent.inject(this);
 
+
 //        AppCrashUtil.getInstance(Constant.PATH).init(this, new AppCrashUtil.CrashUploader() {
 //            @Override
 //            public void uploadCrashMessage(ConcurrentHashMap<String, Object> infos) {
