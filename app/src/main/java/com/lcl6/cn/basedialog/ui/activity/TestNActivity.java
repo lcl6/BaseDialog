@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
+import android.os.StrictMode;
 import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.widget.ImageView;
@@ -40,7 +41,10 @@ public class TestNActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        //另外一种可以不用provider 就可以访问file 的方法
+        StrictMode.VmPolicy.Builder builder = new           StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        builder.detectFileUriExposure();
     }
 
     @Override

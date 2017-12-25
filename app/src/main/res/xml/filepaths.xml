@@ -2,6 +2,6 @@
 <paths>
     <external-path
         path="."
-        name="DICM"
+        name="abb"
         />
 </paths>
