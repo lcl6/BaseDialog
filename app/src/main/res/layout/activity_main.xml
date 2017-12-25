@@ -127,6 +127,14 @@
                 android:text="hook技术"
                 />
 
+            <TextView
+                android:id="@+id/tv_testn"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="测试7.0"
+                />
+
         </LinearLayout>
     </ScrollView>
 

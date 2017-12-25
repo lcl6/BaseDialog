@@ -17,6 +17,18 @@
         android:supportsRtl="true"
         android:name=".app.App"
         android:theme="@style/AppTheme">
+        <provider
+            android:authorities="com.lcl6.cn.basedialog.fileprovider"
+            android:name="android.support.v4.content.FileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false"
+            >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths"
+                />
+        </provider>
+        
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,6 +72,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             />
         <activity android:name=".ui.activity.HookActivity" />
+        <activity android:name=".ui.activity.TestNActivity" />
 
 
     </application>
