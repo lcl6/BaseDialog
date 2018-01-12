@@ -8,6 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="styleNetworkStateView">@style/NetworkStateViewTheme</item>
         <item name="android:navigationBarColor">@color/colorPrimary</item>
+
+
+        <!-- Customize your theme here. -->
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+        <item name="android:windowActionBar">false</item>
+        <!--&lt;!&ndash;slider&ndash;&gt;-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
     <style name="NetworkStateViewTheme" parent="NetworkStateView.Style">
         <item name="nsvTextSize">16sp</item>
@@ -51,5 +59,13 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+
+
+    <style name="AnimationActivity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
 
 </resources>

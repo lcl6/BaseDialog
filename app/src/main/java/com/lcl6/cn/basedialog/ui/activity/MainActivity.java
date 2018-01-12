@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         ButterKnife.bind(this);
 
         new Thread(
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next,R.id.tv_jsoup,R.id.tv_mvp
             ,R.id.tv_widget,R.id.tv_retrofit,R.id.tv_dagger,R.id.tv_dagger_scop,R.id.tv_viewpage,R.id.tv_lru
-    ,R.id.tv_video,R.id.tv_hook,R.id.tv_testn})
+    ,R.id.tv_video,R.id.tv_hook,R.id.tv_testn,R.id.tv_permission})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.tv_cumston:
@@ -154,6 +155,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.tv_testn://测试android7.0
                 TestNActivity.start(getContext());
+                break;
+            case R.id.tv_permission://测试权限
+                PermisisonActivity.start(getContext());
                 break;
         }
     }

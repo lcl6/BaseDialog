@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+
+    android:layout_margin="10dp"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_premission_list"
+        android:background="@drawable/bg_corners_a0191919"
+        />
+    <TextView
+        android:id="@+id/tv_open_setting"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点击打开设置"
+        android:padding="6dp"
+        android:background="@drawable/bg_corners_a0191919"
+        />
+    <TextView
+        android:id="@+id/tv_ask_photo"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点击请求相机权限"
+        android:padding="6dp"
+        android:background="@drawable/bg_corners_a0191919"
+        />
+    <TextView
+        android:id="@+id/tv_ask_record"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:text="点击请求录音权限"
+        android:background="@drawable/bg_corners_a0191919"
+        />
+</LinearLayout>

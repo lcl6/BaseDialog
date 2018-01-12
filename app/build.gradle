@@ -63,4 +63,10 @@ dependencies {
     compile "com.alibaba:fastjson:$rootProject.jsonAndroidVersion"
     //数据库
     compile project(path:':greenDaoLib')
+
+    compile project(':utilcode')
+
+//    compile "com.blankj:utilcode:$rootProject.utilsVersion"
+
+
 }

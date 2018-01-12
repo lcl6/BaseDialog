@@ -19,6 +19,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        com.blankj.utilcode.util.Utils.init(this);
         Utils.init(getApplicationContext());
         // 初始化内存泄漏检查工具
         if (LeakCanary.isInAnalyzerProcess(this)) {

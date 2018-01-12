@@ -121,32 +121,6 @@ public final class TitleConfig {
 
     public TitleConfig() {
     }
-//    public TitleConfig(Buidler buidler) {
-//        this.action=buidler.action;
-//        this.actionList=buidler.actionList;
-//        this.charLeftTitle=buidler.charLeftTitle;
-//        this.colorResId=buidler.colorResId;
-//        this.divideColor= buidler.divideColor;
-//        this.divideDrawable=buidler.divideDrawable;
-//        this.dividerHeight=buidler.dividerHeight;
-//        this.immersive=buidler.immersive;
-//        this.leftTextColor=buidler.leftTextColor;
-//        this.leftTextVsible=buidler.leftTextVsible;
-//        this.mainTitle=buidler.mainTitle;
-//        this.mainTitleResId=buidler.mainTitleResId;
-//        this.leftTextSize=buidler.leftTextSize;
-//        this.resBackId=buidler.resBackId;
-//        this.stringResId= buidler.stringResId;
-//        this.subTitle=buidler.subTitle;
-//        this.subTitleBackRoundResId= buidler.subTitleBackRoundResId;
-//        this.subTitleTextSize=buidler.subTitleTextSize;
-//        this.subTitleColorResId=buidler.subTitleColorResId;
-//        this.titleHeight=buidler.titleHeight;
-//        this.titleView=buidler.titleView;
-//        this.mainTitleSize=buidler.mainTitleSize;
-//        this.subTitleColor=buidler.subTitleColor;
-//        this.titleBackgroundColor=buidler.titleBackgroundColor;
-//    }
 
     public boolean isRemoveRightView() {
         return removeRightView;
@@ -259,32 +233,6 @@ public final class TitleConfig {
 
         public Buidler() {
         }
-
-//        public Buidler(TitleConfig titleConfig) {
-//            this.action=titleConfig.action;
-//            this.actionList=titleConfig.actionList;
-//            this.charLeftTitle=titleConfig.charLeftTitle;
-//            this.colorResId=titleConfig.colorResId;
-//            this.divideColor= titleConfig.divideColor;
-//            this.divideDrawable=titleConfig.divideDrawable;
-//            this.dividerHeight=titleConfig.dividerHeight;
-//            this.immersive=titleConfig.immersive;
-//            this.leftTextColor=titleConfig.leftTextColor;
-//            this.leftTextVsible=titleConfig.leftTextVsible;
-//            this.mainTitle=titleConfig.mainTitle;
-//            this.mainTitleResId=titleConfig.mainTitleResId;
-//            this.leftTextSize=titleConfig.leftTextSize;
-//            this.resBackId=titleConfig.resBackId;
-//            this.stringResId= titleConfig.stringResId;
-//            this.subTitle=titleConfig.subTitle;
-//            this.subTitleBackRoundResId= titleConfig.subTitleBackRoundResId;
-//            this.subTitleTextSize=titleConfig.subTitleTextSize;
-//            this.subTitleColorResId=titleConfig.subTitleColorResId;
-//            this.titleHeight=titleConfig.titleHeight;
-//            this.titleView=titleConfig.titleView;
-//            this.mainTitleSize=titleConfig.mainTitleSize;
-//            this.titleBackgroundColor=titleConfig.titleBackgroundColor;
-//        }
 
         /**
          * 设置状态栏右边文字的颜色

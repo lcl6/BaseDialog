@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/lin_base"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <ScrollView
@@ -134,7 +135,13 @@
                 android:gravity="center"
                 android:text="测试7.0"
                 />
-
+            <TextView
+                android:id="@+id/tv_permission"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="测试权限"
+                />
         </LinearLayout>
     </ScrollView>
 

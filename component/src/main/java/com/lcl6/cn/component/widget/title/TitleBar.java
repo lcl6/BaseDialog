@@ -99,8 +99,6 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         setLeftTextColor(titleConfig.getLeftTextColor());
         setLeftVisible(titleConfig.isLeftTextVsible());
         setTitle(titleConfig.getMainTitle());
-        //这个方法先放着 带更新
-//        setTitle();
         setTitleColor(titleConfig.getMainTitleResId());
         setTitleSize(titleConfig.getMainTitleSize());
         setTitleBackground(titleConfig.getMainTitleResId());

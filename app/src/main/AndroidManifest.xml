@@ -9,8 +9,12 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -29,7 +33,9 @@
                 />
         </provider>
         
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".ui.activity.MainActivity"
+            android:launchMode="singleTop"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -72,9 +78,12 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             />
         <activity android:name=".ui.activity.HookActivity" />
-        <activity android:name=".ui.activity.TestNActivity" />
-
-
+        <activity android:name=".ui.activity.TestNActivity"
+            android:launchMode="singleTop"
+            />
+        <activity android:name=".ui.activity.PermisisonActivity"
+            android:launchMode="singleTop"
+            />
     </application>
 
 </manifest>
