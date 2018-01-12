@@ -64,9 +64,9 @@ dependencies {
     //数据库
     compile project(path:':greenDaoLib')
 
-    compile project(':utilcode')
+//    compile project(':utilcode')
 
-//    compile "com.blankj:utilcode:$rootProject.utilsVersion"
+    compile "com.blankj:utilcode:$rootProject.utilsVersion"
 
 
 }
