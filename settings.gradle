@@ -1,1 +1,1 @@
-include ':app', ':basedialogl', ':utils', ':component', ':playerview', ':greenDaoLib', ':danmuibrary', ':utilcode'
+include ':app', ':basedialogl', ':utils', ':component', ':playerview', ':greenDaoLib', ':danmuibrary'

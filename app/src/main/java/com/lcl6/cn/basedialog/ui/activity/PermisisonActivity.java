@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.PermissionUtils;
 import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialog.constant.Constant;
 import com.lcl6.cn.basedialog.util.DialogHelper;
+import com.lcl6.cn.basedialog.widget.ChoiceLayout;
 import com.lcl6.cn.component.base.activity.BaseActivity;
 
 import java.util.List;
@@ -28,6 +29,8 @@ public class PermisisonActivity  extends BaseActivity{
     @BindView(R.id.tv_premission_list)
     TextView mTextPermission;
 
+    @BindView(R.id.cl_tit)
+    ChoiceLayout choiceLayout;
 
 
     public static void start(Context context) {
@@ -48,6 +51,9 @@ public class PermisisonActivity  extends BaseActivity{
             sb.append(permission.substring(permission.lastIndexOf('.') + 1)).append("\n");
         }
         mTextPermission.setText(sb.toString());
+
+//        choiceLayout.
+
     }
 
     @Override

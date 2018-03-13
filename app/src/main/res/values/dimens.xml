@@ -1,0 +1,7 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="text_width">120dp</dimen>
+    <dimen name="text_padding">6dp</dimen>
+    <dimen name="item_padding">4dp</dimen>
+</resources>

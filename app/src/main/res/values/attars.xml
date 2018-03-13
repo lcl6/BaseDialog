@@ -44,5 +44,17 @@
         <attr name="sb_icon_change" format="reference"/>
     </declare-styleable>
 
+    <declare-styleable name="ChoiceLayout">
+        <attr name="redstartvisiable" format="boolean"/>
+        <attr name="drawablerightvisiable" format="boolean"/>
+
+        <attr name="title" format="string"/>
+        <attr name="content" format="string"/>
+
+
+    </declare-styleable>
+
+
+
 
 </resources>
