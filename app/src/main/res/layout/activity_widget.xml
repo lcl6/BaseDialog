@@ -25,12 +25,14 @@
                 android:id="@+id/ed_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:hint="@string/app_custom" />
 
             <TextView
                 android:id="@+id/tv_result"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:text="@string/app_custom" />
 
             <TextView
@@ -38,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
+
                 android:text="---------------以下是自定义控件---------------" />
 
 
@@ -89,7 +92,7 @@
                     android:id="@+id/rximage"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
-
+                    android:visibility="gone"
                     />
             </com.lcl6.cn.basedialog.widget.MyLinearlayout>
 
@@ -98,6 +101,36 @@
                 android:layout_height="200dp"
                 android:visibility="gone"
                 />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/maps"
+                    android:background="@color/color_666666"
+                    />
+
+
+                <com.lcl6.cn.basedialog.widget.WrapImageView
+                    android:id="@+id/ri_wrap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/maps"
+                    android:background="@color/color_666666"
+                    />
+
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
 
 
         </LinearLayout>

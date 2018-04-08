@@ -15,10 +15,12 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialog.constant.Constant;
+import com.lcl6.cn.basedialog.widget.WrapImageView;
 import com.lcl6.cn.basedialog.widget.anima.view.RoatXImageView;
 import com.lcl6.cn.component.base.activity.BaseActivity;
 
@@ -57,6 +59,11 @@ public class WidgetActivity extends BaseActivity {
     @BindView(R.id.rximage)
     RoatXImageView mapView;
 
+    @BindView(R.id.ri_wrap)
+    WrapImageView rimage;
+
+    @BindView(R.id.seekBar)
+    SeekBar seekBar;
 
 
     public static void start(Context context) {
@@ -123,6 +130,26 @@ public class WidgetActivity extends BaseActivity {
                 });
         mCompositeDisposable = new CompositeDisposable();
         mCompositeDisposable.add(mCompositeDisposable);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                rimage.setProgressWidth(i/20);
+                rimage.invalidate();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
     }
 
     private void startSearch(String query) {

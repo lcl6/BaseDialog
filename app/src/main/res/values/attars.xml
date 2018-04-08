@@ -54,6 +54,9 @@
 
     </declare-styleable>
 
+    <declare-styleable name="WrapImageView">
+        <attr name="wi_width" format="integer"/>
+    </declare-styleable>
 
 
 
