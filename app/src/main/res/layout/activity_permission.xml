@@ -54,4 +54,13 @@
         app:drawablerightvisiable="false"
         />
 
+    <TextView
+        android:id="@+id/tv_click_double"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:text="测试双击"
+        android:background="@drawable/bg_corners_a0191919"
+        />
 </LinearLayout>

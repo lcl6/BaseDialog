@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.PermissionUtils;
 import com.lcl6.cn.basedialog.R;
 import com.lcl6.cn.basedialog.constant.Constant;
 import com.lcl6.cn.basedialog.util.DialogHelper;
+import com.lcl6.cn.basedialog.util.OnClickEvent;
 import com.lcl6.cn.basedialog.widget.ChoiceLayout;
 import com.lcl6.cn.component.base.activity.BaseActivity;
 
@@ -31,6 +32,9 @@ public class PermisisonActivity  extends BaseActivity{
 
     @BindView(R.id.cl_tit)
     ChoiceLayout choiceLayout;
+    @BindView(R.id.tv_click_double)
+    TextView mTextClickDouble;
+
 
 
     public static void start(Context context) {
@@ -59,6 +63,13 @@ public class PermisisonActivity  extends BaseActivity{
     @Override
     protected void initData() {
         onLoadSuccessStatus();
+
+        mTextClickDouble.setOnClickListener(new OnClickEvent() {
+            @Override
+            public void singleClick(View v) {
+                Log.e(Constant.TAG, "singleClick: ");
+            }
+        });
     }
 
 

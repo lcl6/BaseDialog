@@ -40,17 +40,17 @@ public class WrapImageView extends android.support.v7.widget.AppCompatImageView 
     public void setProgressHeight(int progress){
         this.progrssHeight=progress;
     }
+    
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
 //        int size = MeasureSpec.getSize(widthMeasureSpec);
 //        widthMeasureSpec = MeasureSpec.makeMeasureSpec(size * progrssWidth, MeasureSpec.EXACTLY);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
-
         measuredWidth=progrssWidth*measuredWidth;
         measuredHeight=progrssHeight*measuredHeight;
         setMeasuredDimension(measuredWidth,measuredHeight);
     }
+
 }
