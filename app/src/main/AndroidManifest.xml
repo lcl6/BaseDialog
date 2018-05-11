@@ -84,6 +84,8 @@
         <activity android:name=".ui.activity.PermisisonActivity"
             android:launchMode="singleTop"
             />
+        <activity android:name=".ui.activity.EventBusActivity" />
+        <activity android:name=".ui.EventBusNextActivity" />
     </application>
 
 </manifest>
