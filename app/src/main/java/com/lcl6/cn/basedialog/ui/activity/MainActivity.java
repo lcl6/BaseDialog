@@ -1,8 +1,15 @@
 package com.lcl6.cn.basedialog.ui.activity;
 
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -161,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.tv_permission://测试权限
                 PermisisonActivity.start(getContext());
+
                 break;
 
             case R.id.tv_zhangx:
@@ -169,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
 
 
 
