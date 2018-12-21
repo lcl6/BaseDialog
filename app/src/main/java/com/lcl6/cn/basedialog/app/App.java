@@ -14,11 +14,12 @@ import com.squareup.leakcanary.LeakCanary;
 
 public class App extends Application {
 
-//    private static App instance;
+    private static App instance;
     private static AppComponent appComponent;
     @Override
     public void onCreate() {
         super.onCreate();
+        instance=this;
         com.blankj.utilcode.util.Utils.init(this);
         Utils.init(getApplicationContext());
         // 初始化内存泄漏检查工具
@@ -41,9 +42,9 @@ public class App extends Application {
     }
 
 
-//    public static App getInstance(){
-//        return instance;
-//    }
+    public static App getInstance(){
+        return instance;
+    }
 
     public static AppComponent getAppComponent(){
         return appComponent;

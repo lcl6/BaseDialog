@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lcl6.cn.basedialog.R;
-import com.lcl6.cn.basedialog.event.ClickEvent;
+import com.lcl6.cn.basedialog.app.App;
 import com.lcl6.cn.basedialog.mvp.ui.DaggerScopActivity;
 import com.lcl6.cn.basedialog.mvp.ui.ManagerActivity;
 import com.lcl6.cn.basedialog.mvp.ui.MvpActivity;
@@ -26,8 +26,7 @@ import com.lcl6.cn.basedialog.widget.dialog.CustomButtomDialog;
 import com.lcl6.cn.basedialog.widget.dialog.CustomDialog;
 import com.lcl6.cn.basedialog.widget.dialog.CustomLeftDialog;
 import com.lcl6.cn.basedialog.widget.dialog.CustomRightDialog;
-
-import org.greenrobot.eventbus.EventBus;
+import com.lcl6.cn.utils.ScreenUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -61,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ScreenUtils.adaptScreen4HorizontalSlide(App.getInstance(),this,367);
         setContentView(R.layout.activity_main);
 
 
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick({R.id.tv_cumston,R.id.tv_bottom,R.id.tv_right,R.id.tv_left,R.id.tv_next,R.id.tv_jsoup,R.id.tv_mvp
             ,R.id.tv_widget,R.id.tv_retrofit,R.id.tv_dagger,R.id.tv_dagger_scop,R.id.tv_viewpage,R.id.tv_lru
-    ,R.id.tv_video,R.id.tv_hook,R.id.tv_testn,R.id.tv_permission,R.id.tv_zhangx})
+    ,R.id.tv_video,R.id.tv_hook,R.id.tv_testn,R.id.tv_permission,R.id.tv_zhangx,R.id.tv_sp})
     public void onClick(View v){
         switch (v.getId()){
             case R.id.tv_cumston:
@@ -172,13 +172,51 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.tv_zhangx:
-                EventBus.getDefault().postSticky(new ClickEvent());
-                EventBusActivity.start(getContext());
+//                EventBus.getDefault().postSticky(new ClickEvent());
+//                EventBusActivity.start(getContext());
+//                openAppByActionMain(getContext(),"com.snxun.jwttc");
+                break;
+
+            case R.id.tv_sp:
+                AdapterActivity.start(getContext());
                 break;
         }
     }
 
 
 
+    /**
+     * 通过android.intent.action.MAIN来打开APP
+     * @param context 上下文
+     * @param packageName 目标APP的包名
+     */
+    public static void openAppByActionMain(Context context, String packageName) throws IllegalArgumentException, ActivityNotFoundException {
+        if (context == null || TextUtils.isEmpty(packageName)) {
+            throw new IllegalArgumentException("参数不能为空");
+        }
+
+        String mainActivityName = "";// 启动页的路径
+
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        PackageManager packageManager = context.getPackageManager();
+        for (ResolveInfo resolve : packageManager.queryIntentActivities(intent, 0)) {
+            ActivityInfo info = resolve.activityInfo;
+            if (info == null){
+                continue;
+            }
+            if (packageName.equals(info.packageName)){
+                mainActivityName = info.name;
+                break;
+            }
+        }
+
+        if (TextUtils.isEmpty(mainActivityName)) {
+            throw new ActivityNotFoundException("没有找到该应用");
+        }
+
+        intent.setComponent(new ComponentName(packageName, mainActivityName));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 
 }

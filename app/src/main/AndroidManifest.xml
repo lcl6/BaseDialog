@@ -86,6 +86,7 @@
             />
         <activity android:name=".ui.activity.EventBusActivity" />
         <activity android:name=".ui.EventBusNextActivity" />
+        <activity android:name=".ui.activity.AdapterActivity" />
     </application>
 
 </manifest>

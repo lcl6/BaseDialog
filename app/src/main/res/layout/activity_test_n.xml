@@ -17,5 +17,4 @@
         android:id="@+id/img_avatar"
         android:layout_width="200dp"
         android:layout_height="200dp" />
-
 </LinearLayout>

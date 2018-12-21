@@ -140,7 +140,8 @@
                 android:layout_width="160dp"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:text="测试权限"
+                android:text="测试粘性"
+                android:textSize="15sp"
                 />
             <TextView
                 android:id="@+id/tv_zhangx"
@@ -148,6 +149,15 @@
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:text="测试粘性"
+                android:textSize="15dp"
+                />
+            <TextView
+                android:id="@+id/tv_sp"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="测试适配"
+                android:textSize="15dp"
                 />
         </LinearLayout>
     </ScrollView>

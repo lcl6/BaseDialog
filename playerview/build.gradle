@@ -22,23 +22,23 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    testCompile 'junit:junit:4.12'
+    api "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    testImplementation 'junit:junit:4.12'
     // ijkplayer
-    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.8.1'
-    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.3'
+    api 'tv.danmaku.ijk.media:ijkplayer-java:0.8.1'
+    api 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.3'
 //    // Danmaku
 //    compile 'com.github.ctiao:DanmakuFlameMaster:0.6.2'
 
     // add
-    compile 'tv.danmaku.ijk.media:ijkplayer-armv5:0.6.3'
-    compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.6.2'
-    compile 'tv.danmaku.ijk.media:ijkplayer-x86:0.6.3'
-    compile 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.6.2'
+    api 'tv.danmaku.ijk.media:ijkplayer-armv5:0.6.3'
+    api 'tv.danmaku.ijk.media:ijkplayer-arm64:0.6.2'
+    api 'tv.danmaku.ijk.media:ijkplayer-x86:0.6.3'
+    api 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.6.2'
 
-    compile project(path:':danmuibrary')
+    api project(path:':danmuibrary')
 }

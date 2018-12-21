@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'kotlin-android'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -7,8 +7,8 @@ android {
         applicationId "com.lcl6.cn.basedialog"
         minSdkVersion rootProject.ext.midSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -24,49 +24,51 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
-    compile project(':basedialogl')// banner
-    compile project(':utils')// banner
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
+    api project(':basedialogl')// banner
+    api project(':utils')// banner
     // butterknife
-    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    api "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
     //网络爬虫
-    compile "org.jsoup:jsoup:$rootProject.jsoupVersion"
+    api "org.jsoup:jsoup:$rootProject.jsoupVersion"
 
-    compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-    compile project(path: ':component')
+    api "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    api project(path: ':component')
 
-    compile "com.github.bumptech.glide:glide:$rootProject.glideVersion"
-    compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    api "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    api "com.android.support:support-v4:$rootProject.supportLibraryVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
     //内存泄漏检查工具
-    debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanaryVersion"
-    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.leakcanaryVersion"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanaryVersion"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.leakcanaryVersion"
 
 
-    compile "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
-    compile "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
-    compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-    compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
-    compile "io.reactivex.rxjava2:rxandroid:$rootProject.rxjavaVersion"
+    api "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    api "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    api "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+    api "io.reactivex.rxjava2:rxandroid:$rootProject.rxjavaVersion"
 
     //dagger2
-    compile "com.google.dagger:dagger:$rootProject.dagger2Version"
+    api "com.google.dagger:dagger:$rootProject.dagger2Version"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
     //视频播放
-    compile project(path: ':playerview')
+    api project(path: ':playerview')
 
     //json 解析
-    compile "com.alibaba:fastjson:$rootProject.jsonVersion"
-    compile "com.alibaba:fastjson:$rootProject.jsonAndroidVersion"
+    api "com.alibaba:fastjson:$rootProject.jsonVersion"
+    api "com.alibaba:fastjson:$rootProject.jsonAndroidVersion"
     //数据库
-    compile project(path:':greenDaoLib')
+    api project(path:':greenDaoLib')
 
 //    compile project(':utilcode')
 
-    compile "com.blankj:utilcode:$rootProject.utilsVersion"
-
-
+    api "com.blankj:utilcode:$rootProject.utilsVersion"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.0"
+}
+repositories {
+    mavenCentral()
 }

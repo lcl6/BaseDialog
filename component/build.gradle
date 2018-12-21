@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'//添加
+//apply plugin: 'com.novoda.bintray-release'//添加
 android {
 //    compileSdkVersion 26
 //    buildToolsVersion "26.0.0"
@@ -31,26 +31,26 @@ android {
 }
 
 dependencies {
-    compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    compile "com.android.support:design:$rootProject.supportLibraryVersion"
-    provided "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
-    compile "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.rxlifecycleVersion"
-    compile "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.rxlifecycleVersion"
+    api "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    api "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    api "com.android.support:design:$rootProject.supportLibraryVersion"
+    api "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    api "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.rxlifecycleVersion"
+    api "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.rxlifecycleVersion"
     // butterknife
-    provided "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    api "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
     //eventbus
-    compile "org.greenrobot:eventbus:$rootProject.eventVersion"
-    compile project(':utils')
-    compile files('lib/disklrucache-2.0.2.jar')
+    api "org.greenrobot:eventbus:$rootProject.eventVersion"
+    api project(':utils')
+    api files('lib/disklrucache-2.0.2.jar')
 }
-//添加
-publish {
-    userOrg = 'lcl'//bintray.com用户名
-    groupId = 'com.lcl6.cn.component'//jcenter上的路径
-    artifactId = 'component'//项目名称
-    publishVersion = '1.0.2'//版本号
-    desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
-    website = 'https://github.com/lcl6/Lubanl'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
-}
+////添加
+//publish {
+//    userOrg = 'lcl'//bintray.com用户名
+//    groupId = 'com.lcl6.cn.component'//jcenter上的路径
+//    artifactId = 'component'//项目名称
+//    publishVersion = '1.0.2'//版本号
+//    desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
+//    website = 'https://github.com/lcl6/Lubanl'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
+//}

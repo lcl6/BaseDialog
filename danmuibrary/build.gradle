@@ -26,9 +26,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    api "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
 
     // Danmaku
-    compile 'com.github.ctiao:DanmakuFlameMaster:0.6.2'
+    api 'com.github.ctiao:DanmakuFlameMaster:0.6.2'
 
 }
