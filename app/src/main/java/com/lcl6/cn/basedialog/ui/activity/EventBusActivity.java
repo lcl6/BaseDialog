@@ -48,7 +48,7 @@ public class EventBusActivity extends BaseActivity {
         tvNext.setOnClickListener(new OnClickEvent() {
             @Override
             public void singleClick(View v) {
-                EventBusNextActivity.start(getContext());
+                EventBusNextActivity.Companion.start(getContext());
             }
         });
     }

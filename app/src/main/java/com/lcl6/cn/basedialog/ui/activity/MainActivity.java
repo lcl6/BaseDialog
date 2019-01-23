@@ -22,6 +22,7 @@ import com.lcl6.cn.basedialog.mvp.ui.DaggerScopActivity;
 import com.lcl6.cn.basedialog.mvp.ui.ManagerActivity;
 import com.lcl6.cn.basedialog.mvp.ui.MvpActivity;
 import com.lcl6.cn.basedialog.mvp.ui.VideoActivity;
+import com.lcl6.cn.basedialog.service.Serviver;
 import com.lcl6.cn.basedialog.widget.dialog.CustomButtomDialog;
 import com.lcl6.cn.basedialog.widget.dialog.CustomDialog;
 import com.lcl6.cn.basedialog.widget.dialog.CustomLeftDialog;
@@ -65,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         ButterKnife.bind(this);
+
+
+        Intent intent = new Intent(this,Serviver.class);
+        startService(intent);
 
         new Thread(
                 new Runnable() {
@@ -137,19 +142,19 @@ public class MainActivity extends AppCompatActivity {
                 JsoupActivity.start(getContext());
                 break;
             case R.id.tv_mvp://跳转mvp界面
-                MvpActivity.start(getContext());
+                MvpActivity.Companion.start(getContext());
                 break;
             case R.id.tv_widget://自定义界面
                 WidgetActivity.start(getContext());
                 break;
             case R.id.tv_retrofit://网络管理器
-                ManagerActivity.start(getContext());
+                ManagerActivity.Companion.start(getContext());
                 break;
             case R.id.tv_dagger://dagger
                 DaggerActivity.start(getContext());
                 break;
             case R.id.tv_dagger_scop://dagger scop
-                DaggerScopActivity.start(getContext());
+                DaggerScopActivity.Companion.start(getContext());
                 break;
             case R.id.tv_viewpage://测试viewpager
                 ViewPagerActivity.start(getContext());
@@ -158,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 LruActivity.start(getContext());
                 break;
             case R.id.tv_video://测试视频弹幕
-                VideoActivity.start(getContext());
+                VideoActivity.Companion.start(getContext());
                 break;
             case R.id.tv_hook://测试hook
                 HookActivity.start(getContext());

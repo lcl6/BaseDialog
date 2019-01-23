@@ -63,11 +63,11 @@ public class ViewPagerActivity extends BaseActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return TextFrament.newInstance(mPublishSubject);//
+                    return TextFrament.Companion.newInstance(mPublishSubject);//
                 case 1:
                     return TextSecondFrament.newInstance();//
                 default:
-                    return TextFrament.newInstance(mPublishSubject);
+                    return TextFrament.Companion.newInstance(mPublishSubject);
             }
         }
 

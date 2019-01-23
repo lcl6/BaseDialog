@@ -63,4 +63,12 @@
         android:text="测试双击"
         android:background="@drawable/bg_corners_a0191919"
         />
+
+    <EditText
+        android:id="@+id/ed_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
 </LinearLayout>

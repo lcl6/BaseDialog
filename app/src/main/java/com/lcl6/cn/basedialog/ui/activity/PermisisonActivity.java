@@ -34,9 +34,6 @@ public class PermisisonActivity  extends BaseActivity{
     ChoiceLayout choiceLayout;
     @BindView(R.id.tv_click_double)
     TextView mTextClickDouble;
-
-
-
     public static void start(Context context) {
         Intent starter = new Intent(context, PermisisonActivity.class);
         context.startActivity(starter);
@@ -57,6 +54,7 @@ public class PermisisonActivity  extends BaseActivity{
         mTextPermission.setText(sb.toString());
 
 //        choiceLayout.
+
 
     }
 

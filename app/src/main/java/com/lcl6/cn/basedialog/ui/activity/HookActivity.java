@@ -15,6 +15,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -30,6 +31,8 @@ public class HookActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
+        ButterKnife.bind(this);
 
     }
 
